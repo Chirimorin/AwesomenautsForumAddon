@@ -8,11 +8,30 @@
 // @match         https://www.awesomenauts.com/forum*
 // ==/UserScript==
 
-var tableElements = document.getElementsByTagName('td');
-for (var i = 0; i < tableElements.length; i++) 
-{
+//var tableElements = document.getElementsByTagName('td');
+//for (var i = 0; i < tableElements.length; i++) 
+//{
   //Thanks to Nodja for the code to keep onclick behavior. 
-  tableElements[i].setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
+  //tableElements[i].setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
+//}
+
+
+//Thanks to Nodja for the code to keep onclick behavior. 
+// gets all td elements with class="row1 clickable"
+var allClickables = document.evaluate
+                                    (
+                                      '//td[@class="row1 clickable"]',
+                                      document, 
+                                      null,
+                                      XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
+                                      null
+                                    );
+
+//replaces the onclick to check for left button and ctrl key
+for (var i=0; i<allClickables.snapshotLength; i++) 
+{
+  var elem = allClickables.snapshotItem(i);
+  elem.setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
 }
 
 
