@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Awesomenauts forum addon
 // @description   Allows for the usage of middle click and ctrl+click without problems. Also fixes images that are too big. 
-// @version       1.6
+// @version       1.7
 // @author        Chirimorin
 // @run-at        document-end
 // @match         http://www.awesomenauts.com/forum*
@@ -11,7 +11,8 @@
 var tableElements = document.getElementsByTagName('td');
 for (var i = 0; i < tableElements.length; i++) 
 {
-  tableElements[i].removeAttribute ("onclick");
+  //Thanks to Nodja for the code to keep onclick behavior. 
+  tableElements[i].setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
 }
 
 
@@ -22,18 +23,15 @@ for (i=0; i<postBodys.length ; i++)
     for (j=0; j<imgs.length; j++) 
     {
         imgs[j].style.maxWidth = '700px';
-        //imgs[j].title = 'Click for the original size';
 		imgs[j].addEventListener('click', function(event) 
             {
 				if (event.currentTarget.style.maxWidth == 'none') 
                 {
 					event.currentTarget.style.maxWidth = '700px';
-					//event.currentTarget.title = 'Click for the original size';
 				} 
                 else 
                 {
 					event.currentTarget.style.maxWidth = 'none';
-					//event.currentTarget.title = 'Click for the reduced size';
 				}
 			}, false);
     }
