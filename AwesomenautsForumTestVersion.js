@@ -25,7 +25,7 @@ for (var i=0; i < links.length; i++)
     if (thisLink.href.search('forum') != -1) //make sure the link is to a forum page
     {
         alert('forum found');
-        if ( thisLink.href.search('?') == -1 ) 
+        if (thisLink.href.search('\\?') == -1 ) 
         {
             alert('? not found');
             thisLink.href += '?ForumScriptTest=1';
