@@ -39,6 +39,14 @@ for (var i=0; i < links.length; i++)
     }
 }
 
+if ( original.search.indexOf('ForumScriptTest=1') != -1)
+{
+    alert('forumScriptTest found');
+}
+else
+{
+    alert('forumScriptTest not found');
+}
 
 
 //NORMAL SCRIPT STARTS HERE
