@@ -1,4 +1,6 @@
-alert('test version active');
+//Making clear the test version is active
+var newElem = document.createElement('div');
+newElem.innerHTML = '<h1>Awesomenauts Forum userscript TEST MODE active</h1>';
 
 //Changing the links so test mode is kept even when changing pages. 
 var links = document.evaluate
