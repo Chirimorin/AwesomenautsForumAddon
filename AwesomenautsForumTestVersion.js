@@ -13,24 +13,31 @@ for (var i=0; i < links.length; i++)
     var thisLink = links[i]
     if (thisLink.href.search('awesomenauts.com/forum') != -1) //make sure the link is to a forum page
     {
-        if (thisLink.href.search('\\?') == -1 ) 
+        if (thisLink.href.search('#') == -1)
         {
-            thisLink.href += '?ForumScriptTest=1';
+            if (thisLink.href.search('\\?') == -1 ) 
+            {
+                thisLink.href += '?ForumScriptTest=1';
+            }
+            else
+            {
+                thisLink.href += '&ForumScriptTest=1';
+            }
         }
         else
         {
-            thisLink.href += '&ForumScriptTest=1';
+            var originalLinkSplit = thisLink.href.split("#");
+            if (thisLink.href.search('\\?') == -1 ) 
+            {
+                thisLink.href = originalLinkSplit[0] + '?ForumScriptTest=1#' + originalLinkSplit[1];
+            }
+            else
+            {
+                thisLink.href = originalLinkSplit[0] + '&ForumScriptTest=1#' + originalLinkSplit[1];
+            }
         }
     }
 }
-
-
-if ( window.location.search('ForumScriptTest=1') != -1 ) 
-{
-    alert('test mode active found');
-}
-
-
 
 
 
