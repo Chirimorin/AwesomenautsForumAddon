@@ -5,14 +5,16 @@ BottomLogo.innerHTML += '<h2>Awesomenauts forum addon TEST MODE</h2>';
 //Changing the links so test mode is kept even when changing pages. 
 //var links = document.evaluate
 //                            (
-//                                '//a', 
+//                                '//a[contains(@href)]', 
 //                                document.body, 
 //                                null, 
 //                                XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, 
 //                                null
 //                            ); 
 
-var links = document.getElementsByTagName('a');
+//var links = document.getElementsByTagName('a');
+
+var links = document.links;
 
 //for (var i=0; i < links.snapshotLength; i++) 
 for (var i=0; i < links.length; i++)
