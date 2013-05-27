@@ -1,6 +1,6 @@
 //Making clear the test version is active
-var newElem = document.createElement('div');
-newElem.innerHTML = '<h1>Awesomenauts Forum userscript TEST MODE active</h1>';
+var BottomLogo = document.getElementById('bottom_logo');
+BottomLogo.innerHTML = '<p>Awesomenauts forum addon TEST MODE</p>';
 
 //Changing the links so test mode is kept even when changing pages. 
 var links = document.evaluate
