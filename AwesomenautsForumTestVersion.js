@@ -3,18 +3,22 @@ var BottomLogo = document.getElementById('bottom_logo');
 BottomLogo.innerHTML += '<h2>Awesomenauts forum addon TEST MODE</h2>';
 
 //Changing the links so test mode is kept even when changing pages. 
-var links = document.evaluate
-                            (
-                                '//a', 
-                                document, 
-                                null, 
-                                XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, 
-                                null
-                            ); 
+//var links = document.evaluate
+//                            (
+//                                '//a', 
+//                                document.body, 
+//                                null, 
+//                                XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, 
+//                                null
+//                            ); 
 
-for (var i=0; i < links.snapshotLength; i++) 
+var links = document.getElementsByTagName('a');
+
+//for (var i=0; i < links.snapshotLength; i++) 
+for (var i=0; i < links.length; i++)
 { 
-    var thisLink = links.snapshotItem(i); 
+    //var thisLink = links.snapshotItem(i); 
+    var thisLink = links[i]
     alert('link found: ' + thisLink.href);
     if (thisLink.href.search.indexOf('forum') != -1) //make sure the link is to a forum page
     {
