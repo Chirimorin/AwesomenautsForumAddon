@@ -15,7 +15,7 @@ var links = document.evaluate
 for (var i=0; i < links.snapshotLength; i++) 
 { 
     var thisLink = links.snapshotItem(i); 
-    alert('link found');
+    alert('link found: ' + thisLink.href);
     if (thisLink.href.search.indexOf('forum') != -1) //make sure the link is to a forum page
     {
         alert('forum found');
