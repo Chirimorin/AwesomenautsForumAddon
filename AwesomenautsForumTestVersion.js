@@ -1,3 +1,5 @@
+alert(event.shiftKey);
+
 //Thanks to Nodja for the code to keep onclick behavior. 
 // gets all td elements with class="row1 clickable"
 var allClickables = document.evaluate
