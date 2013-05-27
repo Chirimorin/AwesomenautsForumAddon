@@ -22,10 +22,10 @@ for (var i=0; i < links.length; i++)
     //var thisLink = links.snapshotItem(i); 
     var thisLink = links[i]
     alert('link found: ' + thisLink.href);
-    if (thisLink.href.search.indexOf('forum') != -1) //make sure the link is to a forum page
+    if (thisLink.href.search('forum') != -1) //make sure the link is to a forum page
     {
         alert('forum found');
-        if ( thisLink.href.search.indexOf('?') == -1 ) 
+        if ( thisLink.href.search('?') == -1 ) 
         {
             alert('? not found');
             thisLink.href += '?ForumScriptTest=1';
