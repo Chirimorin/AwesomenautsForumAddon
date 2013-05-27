@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name          Auto updating Awesomenauts forum addon
-// @description   Auto updating version of the Awesomenauts forum addon. 
-// @version       1.0
+// @name          Awesomenauts forum addon -TEST VERSION-
+// @description   See http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730 for more info.
+// @version       2.0
 // @author        Chirimorin
 // @run-at        document-end
 // @match         http://www.awesomenauts.com/forum*
@@ -11,6 +11,6 @@
 if(window.top == window) {
   var script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForum.js"
+  script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumTestVersion.js"
   document.body.appendChild(script);
 } 
