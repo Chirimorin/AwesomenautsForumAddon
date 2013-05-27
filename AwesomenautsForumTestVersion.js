@@ -1,42 +1,40 @@
+//TEST SCRIPT ONLY, DO NOT COPY
+
 //Making clear the test version is active
 var BottomLogo = document.getElementById('bottom_logo');
 BottomLogo.innerHTML += '<h2>Awesomenauts forum addon TEST MODE</h2>';
 
-//Changing the links so test mode is kept even when changing pages. 
-//var links = document.evaluate
-//                            (
-//                                '//a[contains(@href)]', 
-//                                document.body, 
-//                                null, 
-//                                XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, 
-//                                null
-//                            ); 
-
-//var links = document.getElementsByTagName('a');
-
+//Get all the links on the page for editing
 var links = document.links;
 
-//for (var i=0; i < links.snapshotLength; i++) 
+//Add the ForumScriptTest to all forum links
 for (var i=0; i < links.length; i++)
 { 
-    //var thisLink = links.snapshotItem(i); 
     var thisLink = links[i]
-    alert('link found: ' + thisLink.href);
-    if (thisLink.href.search('forum') != -1) //make sure the link is to a forum page
+    if (thisLink.href.search('awesomenauts.com/forum') != -1) //make sure the link is to a forum page
     {
-        alert('forum found');
         if (thisLink.href.search('\\?') == -1 ) 
         {
-            alert('? not found');
             thisLink.href += '?ForumScriptTest=1';
         }
         else
         {
-            alert('? found');
             thisLink.href += '&ForumScriptTest=1';
         }
     }
-} 
+}
+
+
+if ( window.location.search('ForumScriptTest=1') != -1 ) 
+{
+    alert('test mode active found');
+}
+
+
+
+
+
+//NORMAL SCRIPT STARTS HERE
 
 //Thanks to Nodja for the code to keep onclick behavior. 
 // gets all td elements with class="row1 clickable"
