@@ -1,3 +1,5 @@
+alert('test version active');
+
 //Changing the links so test mode is kept even when changing pages. 
 var links = document.evaluate
                             (
