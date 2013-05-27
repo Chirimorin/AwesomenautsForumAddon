@@ -1,3 +1,15 @@
+//Test behavior
+if ( window.location.search.indexOf('ForumScriptTest=1') != -1)
+{
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumTestVersion.js"
+    document.body.appendChild(script);
+}
+else
+{
+//Normal script starts here
+    
 //Thanks to Nodja for the code to keep onclick behavior. 
 // gets all td elements with class="row1 clickable"
 var allClickables = document.evaluate
@@ -38,3 +50,6 @@ for (i=0; i<postBodys.length ; i++)
 			}, false);
     }
 }
+
+}
+
