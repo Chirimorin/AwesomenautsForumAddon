@@ -65,9 +65,8 @@ for (var i=0; i<allClickables.snapshotLength; i++)
 var postBodys = document.getElementsByClassName('postbody');
 for (i=0; i<postBodys.length ; i++) 
 {
-    postBodys[i].style = 'width: 764px; word-wrap: break-word;'
-    //postBodys[i].style.width = '764px';
-    //postBodys[i].style.word-wrap = 'break-word';
+    postBodys[i].style.width = '764px';
+    postBodys[i].style.wordWrap = 'break-word';
     
     var imgs = postBodys[i].getElementsByTagName('img');
     for (j=0; j<imgs.length; j++) 
