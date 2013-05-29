@@ -71,12 +71,12 @@ for (i=0; i<postBodys.length ; i++)
     var imgs = postBodys[i].getElementsByTagName('img');
     for (j=0; j<imgs.length; j++) 
     {
-        imgs[j].style.maxWidth = '700px';
+        imgs[j].style.maxWidth = '764px';
         imgs[j].addEventListener('click', function(event) 
             {
                 if (event.currentTarget.style.maxWidth == 'none') 
                 {
-                    event.currentTarget.style.maxWidth = '700px';
+                    event.currentTarget.style.maxWidth = '764px';
                 } 
                 else 
                 {
