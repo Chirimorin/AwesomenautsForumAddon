@@ -68,8 +68,6 @@ for (i=0; i<postBodys.length ; i++)
     postBodys[i].style.maxWidth = '764px';
     postBodys[i].style.wordWrap = 'break-word';
     
-    postBodys[i].innerHTML.replace(":test:","Succeeded!");
-    
     var imgs = postBodys[i].getElementsByTagName('img');
     for (j=0; j<imgs.length; j++) 
     {
@@ -87,4 +85,23 @@ for (i=0; i<postBodys.length ; i++)
             }, false);
     }
 }
+
+$x=function(xpath,root){var doc=root?root.evaluate?root:root.ownerDocument:document,next;var got=doc.evaluate(xpath,root||doc,null,null,null),result=[];while(next=got.iterateNext())result.push(next);return result;};
+
+var searchChars = {
+  1: ":test:",
+  2: ":imgtest:"};
+var replacChars = {
+  1: "Succeeded!",
+  2: "<img src=http://i83.servimg.com/u/f83/17/49/01/19/ayla11.png>"};
+
+
+for (var i = 1; i < 3; i++) {
+  var searchTmp = searchChars[i];
+  var replacTmp = replacChars[i];
+
+  Array.forEach($x("//text()[contains(.,'"+searchTmp+"')]"),function(item){
+  item.parentNode.innerHTML=item.parentNode.innerHTML.replace(new RegExp(searchTmp,"g"),replacTmp);
+  });
+};
 
