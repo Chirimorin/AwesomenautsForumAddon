@@ -86,10 +86,15 @@ for (i=0; i<postBodys.length ; i++)
     }
 }
 
-var previewButton = document.getElementById('preview');
+unsafeWindow.HTMLFormElement.prototype.real_submit = unsafeWindow.HTMLFormElement.prototype.submit;
+unsafeWindow.HTMLFormElement.prototype.submit = interceptor;
 
-$("#submit_button").click(function(event) {
-    event.preventDefault();
-    alert('Preview button pressed!');
-});
+ window.addEventListener('submit', function(e) {
+                                interceptor(e);
+                                e.preventDefault();
+                            }, false);
+
+function interceptor(e) {
+    alert('post intercepted!');
+}
 
