@@ -68,6 +68,8 @@ for (i=0; i<postBodys.length ; i++)
     postBodys[i].style.maxWidth = '764px';
     postBodys[i].style.wordWrap = 'break-word';
     
+    postBodys[i].innerHTML.replace(":test:","Succeeded!");
+    
     var imgs = postBodys[i].getElementsByTagName('img');
     for (j=0; j<imgs.length; j++) 
     {
@@ -84,17 +86,5 @@ for (i=0; i<postBodys.length ; i++)
                 }
             }, false);
     }
-}
-
-unsafeWindow.HTMLFormElement.prototype.real_submit = unsafeWindow.HTMLFormElement.prototype.submit;
-unsafeWindow.HTMLFormElement.prototype.submit = interceptor;
-
- window.addEventListener('submit', function(e) {
-                                interceptor(e);
-                                e.preventDefault();
-                            }, false);
-
-function interceptor(e) {
-    alert('post intercepted!');
 }
 
