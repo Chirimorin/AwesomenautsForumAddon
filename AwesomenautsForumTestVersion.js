@@ -86,3 +86,10 @@ for (i=0; i<postBodys.length ; i++)
     }
 }
 
+var previewButton = document.getElementById('preview');
+
+previewButton.click(function(event) {
+    event.preventDefault();
+    alert('Preview button pressed!');
+});
+
