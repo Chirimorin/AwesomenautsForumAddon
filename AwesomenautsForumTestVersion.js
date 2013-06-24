@@ -86,9 +86,9 @@ for (i=0; i<postBodys.length ; i++)
     }
 }
 
-//extra smilies code by Nodja
+//array that contains all the smiley codewords, name and image urls;
 var smilieslist = new Array();
-smilieslist.push({name: "Duck (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/ducks10.gif", code: "[img]http://i83.servimg.com/u/f83/17/49/01/19/ducks10.gif[/img]"});
+smilieslist.push({name: "Duck (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/ducks10.gif", code: ":duck:"});
 smilieslist.push({name: "Prestige 10 (by RiceMaster)", url: "http://i.imgur.com/BBctJc8.gif", code: "[img]http://i.imgur.com/BBctJc8.gif[/img]"});
 smilieslist.push({name: "League 1 (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/lg1_g11.gif", code: "[img]http://i83.servimg.com/u/f83/17/49/01/19/lg1_g11.gif[/img]"});
 smilieslist.push({name: "League 2 (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/lg210.gif", code: "[img]http://i83.servimg.com/u/f83/17/49/01/19/lg210.gif[/img]"});
@@ -108,12 +108,14 @@ smilieslist.push({name: "Gnaw spit (by conorbebe)", url: "http://i.imgur.com/M50
 smilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: "[img]http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif[/img]"});
 
 
+//function used to escape a string to be used inside a regex
 function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
 if(window.location.href.indexOf("posting.php") > -1) //figure out if we're posting
 {
+   //find form and attack an event that will handle the submit, submit works for both preview and submit buttons
    var form = document.getElementsByName('postform')[0];
    if (form.attachEvent) {
       form.attachEvent("submit", submitHandler);
@@ -121,17 +123,19 @@ if(window.location.href.indexOf("posting.php") > -1) //figure out if we're posti
       form.addEventListener("submit", submitHandler);
    }
    
-   var message = document.getElementsByName("message")[0].value;
-
    
+   var message = document.getElementsByName("message")[0].value; //gets the message textarea text
+   // this loop will replace all urls in our array that are around [img] tags and replace it with 
+   // the smiley code word (things like :happy:, [img]http://i.imgur.com/KDfPpJQ.gif[/img], etc)
    for(i=0;i<smilieslist.length;i++)
    {
+      //we need to escape the url and the tags here since they contain special regex characters (/, [, ., etc)
       var re = new RegExp(escapeRegExp("[img]" + smilieslist[i].url  + "[/img]"),"gi");
       message = message.replace(re, smilieslist[i].code);
    }
    document.getElementsByName("message")[0].value = message;
    
-   //get all row1 tds
+   //get all row1 tds, one of the will contain the smileys
    var allRow1 = document.evaluate
                                     (
                                       '//td[@class="row1"]',
@@ -140,11 +144,17 @@ if(window.location.href.indexOf("posting.php") > -1) //figure out if we're posti
                                       XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
                                       null
                                     );
+   // find out which row1 has the smileys, we know this because it contains "Message body:",
+   // this will probably break if the interface is in another language                        
    for (var i=0; i<allRow1.snapshotLength; i++) 
    {
       var elem = allRow1.snapshotItem(i);
       if (elem.innerHTML.indexOf("Message body:") > -1) break;
    }
+   // elem should now be the td with the smileys on it (the one on the left of the screen)
+   
+   // this will add out custom html code to the row1, notice the td with id customsmilies
+   // this customsmilies td will be where our custom smileys will be inserted
    elem.innerHTML += "<table width=\"100%\" cellspacing=\"5\" cellpadding=\"0\" border=\"0\" align=\"center\"> \
       <tbody> \
          <tr> \
@@ -156,9 +166,13 @@ if(window.location.href.indexOf("posting.php") > -1) //figure out if we're posti
          </tr> \
       </tbody> \
    </table>";
+   
+   // put the drawsmilies in a separate function so we can update them on the fly in the future
    drawSmilies();
 }
 
+// this will change the message text when you press submit/preview, basically replacing things 
+// like [img]http://i.imgur.com/KDfPpJQ.gif[/img], [img]http://i83.servimg.com/u/f83/17/49/01/19/derpl_10.png[/img], etc to an image tag with the corresponding url
 function submitHandler(e)
 {
    var message = document.getElementsByName("message")[0].value;
@@ -169,11 +183,17 @@ function submitHandler(e)
       message = message.replace(re, "[img]" + smilieslist[i].url + "[/img]");
    }
    document.getElementsByName("message")[0].value = message;
-    return false;
+   
+   // returning true here supposedly prevents the submit behaviour, doesn't seem to affect anything in chrome
+   // we return false anyway, just in case
+    return false; 
 }
 
 function drawSmilies()
 {
+   // generates the html and adds the smilies to our td that we made before, 
+   // the width and height are not set on the images, so be careful with the image urls used
+   // will probably set a maxwidth/maxheight when we allow people to use their own images
    var smilieshtml = '';
    for(i=0;i<smilieslist.length;i++)
    {
@@ -185,6 +205,7 @@ function drawSmilies()
    }
    document.getElementById("customsmilies").innerHTML = smilieshtml;
 }
+
 
 
 
