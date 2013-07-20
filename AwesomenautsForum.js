@@ -81,6 +81,7 @@ smilieslist.push({name: "Frog (by RiceMaster)", url: "http://i36.servimg.com/u/f
 smilieslist.push({name: "Coco kiss (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/coco_k10.gif", code: ":cocokiss:"});
 smilieslist.push({name: "Coco (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/coco10.gif", code: ":coco:"});
 smilieslist.push({name: "Genji bow (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/genji_10.gif", code: ":genji:"});
+smilieslist.push({name: "Genji the Gray (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/wizrd_10.gif", code: ":genjismoke:"});
 
 
 
