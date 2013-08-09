@@ -1,8 +1,14 @@
 //TEST SCRIPT ONLY, DO NOT COPY
 
-//Making clear the test version is active
-var BottomLogo = document.getElementById('bottom_logo');
-BottomLogo.innerHTML += '<h2>Awesomenauts forum addon TEST MODE</h2>';
+//Replace the banner at the top of the page with the test version banner
+var imgs = document.getElementsByTagName ('img');
+for (i=0; i<imgs.length ; i++) 
+{
+    if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
+    {
+        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBannerTest.png";
+    }
+}
 
 //Get all the links on the page for editing
 var links = document.links;
@@ -41,16 +47,6 @@ for (var i=0; i < links.length; i++)
 
 
 //NORMAL SCRIPT STARTS HERE
-
-//Replace the banner at the top of the page
-var imgs = document.getElementsByTagName ('img');
-for (i=0; i<imgs.length ; i++) 
-{
-    if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
-    {
-        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanner.png";
-    }
-}
 
 //Thanks to Nodja for the code to keep onclick behavior. 
 // gets all td elements with class="row1 clickable"

@@ -8,8 +8,18 @@ if ( window.location.search.indexOf('ForumScriptTest=1') != -1)
 }
 else
 {
+//Replace the banner at the top of the page
+var imgs = document.getElementsByTagName ('img');
+for (i=0; i<imgs.length ; i++) 
+{
+    if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
+    {
+        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanner.png";
+    }
+}
+
 //Normal script starts here
-    
+
 //Thanks to Nodja for the code to keep onclick behavior. 
 //gets all td elements with class="row1 clickable"
 var allClickables = document.evaluate
