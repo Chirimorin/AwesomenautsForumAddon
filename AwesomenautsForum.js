@@ -140,8 +140,8 @@ if(window.location.href.indexOf("posting.php") > -1) //figure out if we're posti
             </td> \
          </tr> \
          <tr> \
-            <td class=\"gensmall\" align=\"center\"><a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=14829\">RiceMasters thread</a></td> \
-            <td class=\"gensmall\" align=\"center\"><a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=18484\">Muffels thread</a></td> \
+            <td class=\"gensmall\" align=\"center\"><a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=14829\">RiceMasters thread</a><br /> \
+            <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=18484\">Muffels thread</a></td> \
          <\tr> \
       </tbody> \
    </table>";
