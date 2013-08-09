@@ -43,12 +43,12 @@ for (var i=0; i < links.length; i++)
 //NORMAL SCRIPT STARTS HERE
 
 //Replace the banner at the top of the page
-var imgs = document.getElementsByTagName ("img");
+var imgs = document.getElementsByTagName ('img');
 for (i=0; i<imgs.length ; i++) 
 {
-    if(images[i].src == "./styles/awesome/imageset/sitelogo.jpg")
+    if(imgs[i].src == "./styles/awesome/imageset/sitelogo.jpg")
     {
-        images[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanner.png";
+        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanner.png";
     }
 }
 
