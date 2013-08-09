@@ -63,7 +63,7 @@ smilieslist.push({name: "League 2 (by RiceMaster)", url: "http://i83.servimg.com
 smilieslist.push({name: "League 3 (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/lg310.gif", code: ":l3:"});
 smilieslist.push({name: "League 4 (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/lg410.gif", code: ":l4:"});
 smilieslist.push({name: "Cluck (by conorbebe)", url: "http://i.imgur.com/BBctJc8.gif", code: ":cluck:"});
-smilieslist.push({name: "Clunk Explode (by Muffel)", url: "http://i.imgur.com/Bf5wECc.gif", code: ":clunksplode:"});
+smilieslist.push({name: "Clunk (by Muffel)", url: "http://i.imgur.com/Bf5wECc.gif", code: ":clunk:"});
 smilieslist.push({name: "Voltar (by conorbebe)", url: "http://i.imgur.com/KDfPpJQ.gif", code: ":voltar:"});
 smilieslist.push({name: "Exploding Drone (by Muffel)", url: "http://i.imgur.com/mJzlvKm.gif", code: ":voltardrone:"});
 smilieslist.push({name: "Creepy Leon (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/creep_10.gif", code: ":creepyleon:"});
