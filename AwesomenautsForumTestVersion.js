@@ -46,7 +46,7 @@ for (var i=0; i < links.length; i++)
 var imgs = document.getElementsByTagName ('img');
 for (i=0; i<imgs.length ; i++) 
 {
-    if(imgs[i].src == "./styles/awesome/imageset/sitelogo.jpg")
+    if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
     {
         imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanner.png";
     }
