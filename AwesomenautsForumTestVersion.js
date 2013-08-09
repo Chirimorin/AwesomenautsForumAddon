@@ -46,9 +46,9 @@ for (var i=0; i < links.length; i++)
 var imgs = document.getElementsByTagName ("img");
 for (i=0; i<imgs.length ; i++) 
 {
-    if(images[x].src == "./styles/awesome/imageset/sitelogo.jpg")
+    if(images[i].src == "./styles/awesome/imageset/sitelogo.jpg")
     {
-        images[x].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanneer.png";
+        images[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanneer.png";
     }
 }
 
