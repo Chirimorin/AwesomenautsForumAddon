@@ -48,7 +48,7 @@ for (i=0; i<imgs.length ; i++)
 {
     if(images[i].src == "./styles/awesome/imageset/sitelogo.jpg")
     {
-        images[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanneer.png";
+        images[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanner.png";
     }
 }
 
