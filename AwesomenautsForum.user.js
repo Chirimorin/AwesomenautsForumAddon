@@ -11,6 +11,6 @@
 if(window.top == window) {
   var script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForum.js"
+  script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForum.js";
   document.body.appendChild(script);
 } 
