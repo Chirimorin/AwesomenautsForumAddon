@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Awesomenauts forum addon
 // @description   See http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730 for more info.
-// @version       2.0
+// @version       2.1
 // @author        Chirimorin
 // @run-at        document-end
 // @match         http://www.awesomenauts.com/forum*
