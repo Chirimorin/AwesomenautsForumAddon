@@ -48,22 +48,24 @@ for (var i=0; i < links.length; i++)
 
 //NORMAL SCRIPT STARTS HERE
 
-String.prototype.insert = function (index, string) {
-  if (index > 0)
-    return this.substring(0, index) + string + this.substring(index, this.length);
-  else
-    return string + this;
+//Insert string function for use further in the script.
+String.prototype.insert = function (index, string) 
+{
+    if (index > 0)
+        return this.substring(0, index) + string + this.substring(index, this.length);
+    else
+        return string + this;
 };
 
 //Find the username of the person who is logged in.
 //Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
-
 var ForumButtons = document.getElementsByClassName('forum-buttons');
 for (i=0; i<ForumButtons.length; i++)
 {
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
 }
 
+//Find posts by the logged in user and outline the avatar. 
 var PostAuthors = document.getElementsByClassName('postauthor');
 var PostBodys = document.getElementsByClassName('row-post-body');
 for (i=0; i<PostAuthors.length; i++)
