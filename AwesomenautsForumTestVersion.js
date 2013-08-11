@@ -65,8 +65,8 @@ for (i=0; i<ForumButtons.length; i++)
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
     
     //Add button for the options menu
-    //ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('User Control Panel')+22),"&nbsp;&nbsp;<img src=\"./styles/awesome/theme/images/menu_sep.png\" alt>&nbsp; <a href=\"./ucp.php\">Userscript Settings</a>");
-    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php\">Userscript Settings</a><br /><br />");
+    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php\">Userscript Settings</a><br />");
+    ForumButtons[i].style.backgroundSize="1px 40px";
 }
 
 //Find posts by the logged in user and outline the avatar. 
