@@ -14,7 +14,7 @@ for (i=0; i<imgs.length ; i++)
 {
     if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
     {
-        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBanner.png";
+        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBanner.png";
     }
 }
 

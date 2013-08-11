@@ -6,7 +6,7 @@ for (i=0; i<imgs.length ; i++)
 {
     if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
     {
-        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ReplaceBannerTest.png";
+        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBannerTest.png";
     }
 }
 
@@ -65,7 +65,7 @@ for (i=0; i<ForumButtons.length; i++)
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
     
     //Add button for the options menu
-    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php\">Userscript Settings</a><br />");
+    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=userscript\">Userscript Settings</a><br />");
     ForumButtons[i].style.backgroundSize="1px 40px";
 }
 
@@ -78,6 +78,14 @@ for (i=0; i<PostAuthors.length; i++)
     {
         PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid #0000FF'");
     }
+}
+
+//Userscript settings page
+if ( window.location.search.indexOf('i=userscript') != -1)
+{
+    var body = document.getElementById('errorpage');
+    body.innerHTML = "<object data=https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/settings.html> <embed src=https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/settings.html> </embed> Error: Embedded data could not be displayed. </object>";
+    
 }
 
 //Thanks to Nodja for the code to keep onclick behavior. 
