@@ -58,7 +58,6 @@ String.prototype.insert = function (index, string)
 };
 
 //Add options button to UCP
-alert("new version running");
 if (window.location.href.indexOf("ucp.php") != -1)
 {
     options = document.getElementsByClassName('tablebg');
