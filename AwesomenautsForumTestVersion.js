@@ -74,14 +74,14 @@ var PostAuthors = document.getElementsByClassName('postauthor');
 var PostBodys = document.getElementsByClassName('row-post-body');
 for (i=0; i<PostAuthors.length; i++)
 {
-    if (PostAuthors[i].innerHTML.indexOf(UserName) != -1)
+    if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
     {
         PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid #0000FF'");
     }
 }
 
 //Userscript settings page
-if ( window.location.search.indexOf('i=userscript') != -1)
+if ( window.location.href.indexOf('i=userscript') != -1)
 {
     var body = document.getElementById('errorpage');
     body.style.height='99%';
