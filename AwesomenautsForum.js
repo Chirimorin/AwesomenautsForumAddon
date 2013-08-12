@@ -105,7 +105,6 @@ smilieslist.push({name: "Creepy Leon (by RiceMaster)", url: "http://i83.servimg.
 smilieslist.push({name: "Clunk (by Muffel)", url: "http://i.imgur.com/Bf5wECc.gif", code: ":clunk:"});
 smilieslist.push({name: "Cluck (by conorbebe)", url: "http://i.imgur.com/BBctJc8.gif", code: ":cluck:"});
 smilieslist.push({name: "Voltar (by conorbebe)", url: "http://i.imgur.com/KDfPpJQ.gif", code: ":voltar:"});
-smilieslist.push({name: "Exploding Drone (by Muffel)", url: "http://i.imgur.com/mJzlvKm.gif", code: ":voltardrone:"});
 smilieslist.push({name: "Gnaw (by conorbebe)", url: "http://i.imgur.com/gZ89B3d.gif", code: ":gnaw:"});
 smilieslist.push({name: "Gnaw spit (by conorbebe)", url: "http://i.imgur.com/M50popG.gif", code: ":gnawspit:"});
 smilieslist.push({name: "Plant1 (by Muffel)", url: "http://i.imgur.com/LjlUxjU.gif", code: ":plant1:"});
@@ -122,7 +121,6 @@ smilieslist.push({name: "Blow spike (by conorbebe)", url: "http://i.imgur.com/jm
 smilieslist.push({name: "Genji the Gray (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/wizrd_10.gif", code: ":genjismoke:"});
 smilieslist.push({name: "Cocoon (by Muffel)", url: "http://i.imgur.com/HdvTy6k.gif", code: ":cocoon:"});
 smilieslist.push({name: "Headbanging Swiggins (by Muffel)", url: "http://i.imgur.com/Nt1ng34.gif", code: ":headbang:"});
-smilieslist.push({name: "Blabl Zork OMG (by conorbebe)", url: "http://i.imgur.com/LdNa43H.gif", code: ":omg:"});
 smilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/ROmI7JY.gif", code: ":reddroid:"});
 smilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/A9cQWeI.gif", code: ":bluedroid:"});
 smilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});

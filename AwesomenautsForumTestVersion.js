@@ -84,8 +84,8 @@ for (i=0; i<PostAuthors.length; i++)
 if ( window.location.search.indexOf('i=userscript') != -1)
 {
     var body = document.getElementById('errorpage');
-    body.innerHTML = "<object data=https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/settings.html> <embed src=https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/settings.html> </embed> Error: Embedded data could not be displayed. </object>";
-    
+    body.style.height='99%';
+    body.innerHTML = "<object data='http://www.awesomenauts.com/forum/ucp.php?i=413' width='100%' height='100%'> <embed src='http://www.awesomenauts.com/forum/ucp.php?i=413' width='100%' height='100%'> </embed> Error: Embedded data could not be displayed. </object>";
 }
 
 //Thanks to Nodja for the code to keep onclick behavior. 
