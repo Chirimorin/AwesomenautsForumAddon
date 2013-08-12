@@ -57,19 +57,6 @@ String.prototype.insert = function (index, string)
         return string + this;
 };
 
-//Add options button to UCP
-if (window.location.href.indexOf("ucp.php") != -1)
-{
-    options = document.getElementsByClassName('tablebg');
-    for (i=0; i<options.length; i++)
-    {
-        if (options[i].innerHTML.indexOf('Friends &amp; Foes') != -1) //Make sure we're in the options panel
-        {
-            options[i].innerHTML = options[i].innerHTML.insert(options[i].innerHTML.indexOf('<tr><td class="cat-bottom">') - 1,"<tr><td class=\"row2\" nowrap=\"nowrap\" onmouseover=\"this.className='row1'\" onmouseout=\"this.className='row2'\" onclick=\"location.href=this.firstChild.href;\"><a class=\"nav\" href=\"./ucp.php?i=userscript\">Userscript Settings</a></td></tr>");
-        }
-    }
-}
-
 var ForumButtons = document.getElementsByClassName('forum-buttons');
 for (i=0; i<ForumButtons.length; i++)
 {
@@ -94,12 +81,12 @@ for (i=0; i<PostAuthors.length; i++)
 }
 
 //Userscript settings page
-//if ( window.location.href.indexOF('i=userscript') != -1)
-//{
-//    var body = document.getElementById('errorpage');
-//    body.style.height='99%';
-//    body.innerHTML = "<object data='http://www.awesomenauts.com/forum/ucp.php?i=413' width='100%' height='100%'> <embed src='http://www.awesomenauts.com/forum/ucp.php?i=413' width='100%' height='100%'> </embed> Error: Embedded data could not be displayed. </object>";
-//}
+if ( window.location.search.indexOf('i=userscript') != -1)
+{
+    var body = document.getElementById('errorpage');
+    body.style.height='99%';
+    body.innerHTML = "<object data='http://www.awesomenauts.com/forum/ucp.php?i=413' width='100%' height='100%'> <embed src='http://www.awesomenauts.com/forum/ucp.php?i=413' width='100%' height='100%'> </embed> Error: Embedded data could not be displayed. </object>";
+}
 
 //Thanks to Nodja for the code to keep onclick behavior. 
 // gets all td elements with class="row1 clickable"
