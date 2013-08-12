@@ -94,7 +94,7 @@ for (i=0; i<PostAuthors.length; i++)
 }
 
 //Userscript settings page
-//if ( window.location.href.indexOf('i=userscript') != -1)
+//if ( window.location.href.indexOF('i=userscript') != -1)
 //{
 //    var body = document.getElementById('errorpage');
 //    body.style.height='99%';
