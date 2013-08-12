@@ -1,5 +1,5 @@
 //Test behavior
-if ( window.location.search.indexOf('ForumScriptTest=1') != -1)
+if ( window.location.href.indexOF('ForumScriptTest=1') != -1)
 {
     var script = document.createElement("script");
     script.type = "text/javascript";
