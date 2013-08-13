@@ -176,8 +176,8 @@ smilieslist.push({name: "Genji the Gray (by RiceMaster)", url: "http://i36.servi
 smilieslist.push({name: "Cocoon (by Muffel)", url: "http://i.imgur.com/HdvTy6k.gif", code: ":cocoon:"});
 smilieslist.push({name: "Headbanging Swiggins (by Muffel)", url: "http://i.imgur.com/Nt1ng34.gif", code: ":headbang:"});
 smilieslist.push({name: "Blabl Zork OMG (by conorbebe)", url: "http://i.imgur.com/LdNa43H.gif", code: ":omg:"});
-smilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/ROmI7JY.gif", code: ":reddroid:"});
-smilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/A9cQWeI.gif", code: ":bluedroid:"});
+smilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/iqKzH2e.gif", code: ":reddroid:"});
+smilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/8TJJRjx.gif", code: ":bluedroid:"});
 smilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});
 
 
