@@ -116,12 +116,15 @@ smilieslist.push({name: "Rae Smirk (by RiceMaster)", url: "http://i36.servimg.co
 smilieslist.push({name: "Derpl (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/derpl_10.png", code: ":derpl:"});
 smilieslist.push({name: "Vinnie (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/vini_d10.gif", code: ":vinnie:"});
 smilieslist.push({name: "Vinnie Face (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/vini_h10.gif", code: ":vinnieface:"});
-smilieslist.push({name: "Vinnie Clap (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/vini_a11.gif", code: ":vinnieclap:"});
+smilieslist.push({name: "Vinnie Clap (by RiceMaster)", url: "http://i.imgur.com/eooPTUX.gif", code: ":vinnieclap:"});
 smilieslist.push({name: "Blow spike (by conorbebe)", url: "http://i.imgur.com/jm1zqZd.gif", code: ":spikeblow:"});
 smilieslist.push({name: "Genji the Gray (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/wizrd_10.gif", code: ":genjismoke:"});
 smilieslist.push({name: "Cocoon (by Muffel)", url: "http://i.imgur.com/HdvTy6k.gif", code: ":cocoon:"});
 smilieslist.push({name: "Headbanging Swiggins (by Muffel)", url: "http://i.imgur.com/Nt1ng34.gif", code: ":headbang:"});
 smilieslist.push({name: "Facepalm Swiggins (by RiceMaster)", url: "http://i.imgur.com/m1d6EKu.gif", code: ":facepalm:"});
+smilieslist.push({name: "Ted McPain (by RiceMaster)", url: "http://i.imgur.com/PCBCkE0.gif", code: ":cry:"});
+smilieslist.push({name: "Skree (by RiceMaster)", url: "http://i.imgur.com/E2gPizl.gif", code: ":skree:"});
+smilieslist.push({name: "Sentry (by RiceMaster)", url: "http://i.imgur.com/ZG4ursK.gif", code: ":sentry:"});
 smilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/iqKzH2e.gif", code: ":reddroid:"});
 smilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/8TJJRjx.gif", code: ":bluedroid:"});
 smilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});
