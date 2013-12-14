@@ -105,7 +105,6 @@ smilieslist.push({name: "Creepy Leon (by RiceMaster)", url: "http://i83.servimg.
 smilieslist.push({name: "Clunk (by Muffel)", url: "http://i.imgur.com/Bf5wECc.gif", code: ":clunk:"});
 smilieslist.push({name: "Cluck (by conorbebe)", url: "http://i.imgur.com/BBctJc8.gif", code: ":cluck:"});
 smilieslist.push({name: "Voltar (by conorbebe)", url: "http://i.imgur.com/KDfPpJQ.gif", code: ":voltar:"});
-smilieslist.push({name: "Voltar shifty (by RiceMaster)", url: "http://i.imgur.com/G3ltcEs.gif", code: ":shifty:"});
 smilieslist.push({name: "Gnaw (by conorbebe)", url: "http://i.imgur.com/gZ89B3d.gif", code: ":gnaw:"});
 smilieslist.push({name: "Gnaw spit (by conorbebe)", url: "http://i.imgur.com/M50popG.gif", code: ":gnawspit:"});
 smilieslist.push({name: "Plant1 (by Muffel)", url: "http://i.imgur.com/LjlUxjU.gif", code: ":plant1:"});
@@ -117,15 +116,10 @@ smilieslist.push({name: "Rae Smirk (by RiceMaster)", url: "http://i36.servimg.co
 smilieslist.push({name: "Derpl (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/derpl_10.png", code: ":derpl:"});
 smilieslist.push({name: "Vinnie (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/vini_d10.gif", code: ":vinnie:"});
 smilieslist.push({name: "Vinnie Face (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/vini_h10.gif", code: ":vinnieface:"});
-smilieslist.push({name: "Vinnie Clap (by RiceMaster)", url: "http://i.imgur.com/eooPTUX.gif", code: ":vinnieclap:"});
 smilieslist.push({name: "Blow spike (by conorbebe)", url: "http://i.imgur.com/jm1zqZd.gif", code: ":spikeblow:"});
 smilieslist.push({name: "Genji the Gray (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/wizrd_10.gif", code: ":genjismoke:"});
 smilieslist.push({name: "Cocoon (by Muffel)", url: "http://i.imgur.com/HdvTy6k.gif", code: ":cocoon:"});
 smilieslist.push({name: "Headbanging Swiggins (by Muffel)", url: "http://i.imgur.com/Nt1ng34.gif", code: ":headbang:"});
-smilieslist.push({name: "Facepalm Swiggins (by RiceMaster)", url: "http://i.imgur.com/m1d6EKu.gif", code: ":facepalm:"});
-smilieslist.push({name: "Ted McPain (by RiceMaster)", url: "http://i.imgur.com/PCBCkE0.gif", code: ":cry:"});
-smilieslist.push({name: "Skree (by RiceMaster)", url: "http://i.imgur.com/E2gPizl.gif", code: ":skree:"});
-smilieslist.push({name: "Sentry (by RiceMaster)", url: "http://i.imgur.com/ZG4ursK.gif", code: ":sentry:"});
 smilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/iqKzH2e.gif", code: ":reddroid:"});
 smilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/8TJJRjx.gif", code: ":bluedroid:"});
 smilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});
