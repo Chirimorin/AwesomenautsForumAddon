@@ -74,6 +74,7 @@ for (i=0; i<PostAuthors.length; i++)
     {
         PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid #0000FF'");
 		PostBodys[((i+1)*2)-2].style.background="#c8ffff";
+		PostBodys[((i+1)*2)-2].style.color="#ffffff";
     }
 }
 
