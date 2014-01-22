@@ -73,7 +73,7 @@ for (i=0; i<PostAuthors.length; i++)
     if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
     {
         PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid #0000FF'");
-		PostBodys[((i+1)*2)-2].style.background="#83d4de";
+		PostBodys[((i+1)*2)-2].style.background="#c8ffff";
     }
 }
 
