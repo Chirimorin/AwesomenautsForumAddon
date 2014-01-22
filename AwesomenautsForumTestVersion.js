@@ -241,5 +241,4 @@ function drawSmilies()
    document.getElementById("customsmilies").innerHTML = smilieshtml;
 }
 
-}
 
