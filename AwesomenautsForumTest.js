@@ -133,39 +133,39 @@ if (window.location.href.indexOf("ucp.php") != -1)
 		if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
 		{
 			table[i].innerHTML = table[i].innerHTML.insert(8,"\
-																<tr>\
-																	<th colspan=\"3\">Forum Userscript Settings</th>\
-																</tr>\
-																<tr>\
-																	<td class=\"row1\" colspan=\"3\" align=\"center\">\
-																		<table width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
-																			<tr>\
-																				<td class=\"row1\" colspan=\"3\" align=\"center\">\
-																					<p class=\"genmed\">\
-																						Here you can change the settings for Chirimorin's forum userscript.\
-																					</p>\
-																				</td>\
-																			</tr>\
-																			<tr>\
-																				<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-																					<b class=\"genmed\">Current version:</b>\
-																				</td>\
-																				<td width=\"100%\">\
-																					<b class=\"gen\">" + currentVersion +"</b>\
-																				</td>\
-																			</tr>\
-																			<tr>\
-																				<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-																					<b class=\"genmed\">Current version:</b>\
-																				</td>\
-																				<td width=\"100%\">\
-																					<b class=\"gen\">" + currentVersion +"</b>\
-																				</td>\
-																			</tr>\
-																		</table>\
-																	</td>\
-																</tr>\
-																");
+				<tr>\
+					<th colspan=\"3\">Forum Userscript Settings</th>\
+				</tr>\
+				<tr>\
+					<td class=\"row1\" colspan=\"3\" align=\"center\">\
+						<table width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
+							<tr>\
+								<td class=\"row1\" colspan=\"3\" align=\"center\">\
+									<p class=\"genmed\">\
+										Here you can change the settings for Chirimorin's forum userscript.\
+									</p>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Current version:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\">" + currentVersion +"</b>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Current version:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\">" + currentVersion +"</b>\
+								</td>\
+							</tr>\
+						</table>\
+					</td>\
+				</tr>\
+				");
 		}
 	}
 }
