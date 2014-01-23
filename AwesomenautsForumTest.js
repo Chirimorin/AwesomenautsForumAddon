@@ -48,6 +48,36 @@ for (var i=0; i < links.length; i++)
 
 //NORMAL SCRIPT STARTS HERE
 
+var currentVersion = 3.0;
+
+GetStorage = function(item)
+{
+	return JSON.parse(localStorage.getItem(item));
+}
+
+SetStorage = function(item, value)
+{
+	localStorage.setItem(item, JSON.stringify(value));
+}
+
+if (GetStorage('version') == undefined)
+{
+	//Storage version not found, set default values for all variables. 
+	SetStorage('version',currentVersion); //Current version of the script. Used for update checks. 
+	SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = background
+	SetStorage('markingColor',"#0000FF"); //Post marking color. HEX value.
+	SetStorage('markingText',"#000000"); //Text color used when markingMode = 2
+}
+
+if (GetStorage('version') < currentVersion)
+{
+	//Add new storage values here, checking for version. (a variable introduced in V3.2 should be set if (GetStorage('version')<3.2)
+	SetStorage('version',currentVersion);
+	Alert("Awesomenauts Forum UserScript updated! Current version: " + currentVersion);
+}
+
+
+
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
 {
@@ -65,23 +95,32 @@ for (i=0; i<ForumButtons.length; i++)
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
    
     //Add button for the options menu
-    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=userscript\">Userscript Settings</a><br />");
+    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
     ForumButtons[i].style.backgroundSize="1px 40px";
 }
 
 
-//Find posts by the logged in user and mark the post.
-var PostAuthors = document.getElementsByClassName('postauthor');
-var PostBodys = document.getElementsByClassName('row-post-body');
-for (i=0; i<PostAuthors.length; i++)
+if (GetStorage('markingMode') != 0)
 {
-    if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
-    {
-        //PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid #0000FF'");
-		PostBodys[((i+1)*2)-2].style.background="#0000ff";
-		var PostDetails = PostBodys[((i+1)*2)-2].getElementsByClassName('postdetails');
-		PostDetails[0].style.color="#ffffff";
-    }
+	//Find posts by the logged in user and mark the post.
+	var PostAuthors = document.getElementsByClassName('postauthor');
+	var PostBodys = document.getElementsByClassName('row-post-body');
+	for (i=0; i<PostAuthors.length; i++)
+	{
+		if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
+		{
+			if (GetStorage('markingMode') == 1) //Outline avatar. 
+			{
+				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetStorage('markingColor') + "'");
+			}
+			if (GetStorage('markingMode') == 2) //Background color.
+			{
+				PostBodys[((i+1)*2)-2].style.background=GetStorage('markingColor');
+				var PostDetails = PostBodys[((i+1)*2)-2].getElementsByClassName('postdetails');
+				PostDetails[0].style.color=GetStorage('markingText');
+			}
+		}
+	}
 }
 
 //Thanks to Nodja for the code to keep onclick behavior. 
@@ -135,16 +174,61 @@ script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Li
 document.body.appendChild(script);
 
 
-//Add options button to UCP
+//Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
-    options = document.getElementsByClassName('tablebg');
-    for (i=0; i<options.length; i++)
+	//Add the Userscript Settings button.
+    table = document.getElementsByClassName('tablebg');
+    for (i=0; i<table.length; i++)
     {
-        if (options[i].innerHTML.indexOf('Friends &amp; Foes') != -1) //Make sure we're in the options panel
-        {
-            options[i].innerHTML = options[i].innerHTML.insert(options[i].innerHTML.indexOf('<tr><td class="cat-bottom">') - 1,"<tr><td class=\"row2\" nowrap=\"nowrap\" onmouseover=\"this.className='row1'\" onmouseout=\"this.className='row2'\" onclick=\"location.href=this.firstChild.href;\"><a class=\"nav\" href=\"./ucp.php?i=userscript\">Userscript Settings</a></td></tr>");
-        }
-    }
+		if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
+		{
+			table[i].innerHTML.insert(options[i].innerHTML.indexOf('tbody')+5,"test");
+		}
+	}
 }
 
+if (window.location.href.indexOf("ucp.php") != -1)
+{
+    table = document.getElementsByClassName('tablebg');
+    for (i=0; i<table.length; i++)
+    {
+		if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
+		{
+			table[i].innerHTML = table[i].innerHTML.insert(8,"\
+																<tr>\
+																	<th colspan=\"3\">Forum Userscript Settings</th>\
+																</tr>\
+																<tr>\
+																	<td class=\"row1\" colspan=\"3\" align=\"center\">\
+																		<table width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
+																			<tr>\
+																				<td class=\"row1\" colspan=\"3\" align=\"center\">\
+																					<p class=\"genmed\">\
+																						Here you can change the settings for Chirimorin's forum userscript.\
+																					</p>\
+																				</td>\
+																			</tr>\
+																			<tr>\
+																				<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+																					<b class=\"genmed\">Current version:</b>\
+																				</td>\
+																				<td width=\"100%\">\
+																					<b class=\"gen\">" + currentVersion +"</b>\
+																				</td>\
+																			</tr>\
+																			<tr>\
+																				<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+																					<b class=\"genmed\">Current version:</b>\
+																				</td>\
+																				<td width=\"100%\">\
+																					<b class=\"gen\">" + currentVersion +"</b>\
+																				</td>\
+																			</tr>\
+																		</table>\
+																	</td>\
+																</tr>\
+																");
+		}
+	}
+}
