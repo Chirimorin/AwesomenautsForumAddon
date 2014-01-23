@@ -177,19 +177,6 @@ document.body.appendChild(script);
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
-	//Add the Userscript Settings button.
-    table = document.getElementsByClassName('tablebg');
-    for (i=0; i<table.length; i++)
-    {
-		if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
-		{
-			table[i].innerHTML.insert(options[i].innerHTML.indexOf('tbody')+5,"test");
-		}
-	}
-}
-
-if (window.location.href.indexOf("ucp.php") != -1)
-{
     table = document.getElementsByClassName('tablebg');
     for (i=0; i<table.length; i++)
     {
