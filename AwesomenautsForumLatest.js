@@ -8,7 +8,7 @@ for (i=0; i<imgs.length ; i++)
     }
 }
 
-//Normal script starts here
+//NORMAL SCRIPT STARTS HERE
 
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
@@ -27,15 +27,26 @@ for (i=0; i<ForumButtons.length; i++)
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
 }
 
-//Find posts by the logged in user and outline the avatar. 
-var PostAuthors = document.getElementsByClassName('postauthor');
-var PostBodys = document.getElementsByClassName('row-post-body');
-for (i=0; i<PostAuthors.length; i++)
+if (GetStorage('markingMode') != 0) //Do we want to mark the users posts? 
 {
-    if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
-    {
-        PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid #0000FF'");
-    }
+	var PostAuthors = document.getElementsByClassName('postauthor');
+	var PostBodys = document.getElementsByClassName('row-post-body');
+	for (i=0; i<PostAuthors.length; i++)
+	{
+		if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
+		{
+			if (GetStorage('markingMode') == 1) //Outline avatar. 
+			{
+				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetStorage('markingColor') + "'");
+			}
+			if (GetStorage('markingMode') == 2) //Background color.
+			{
+				PostBodys[((i+1)*2)-2].style.background=GetStorage('markingColor');
+				var PostDetails = PostBodys[((i+1)*2)-2].getElementsByClassName('postdetails');
+				PostDetails[0].style.color=GetStorage('markingText');
+			}
+		}
+	}
 }
 
 //Thanks to Nodja for the code to keep onclick behavior. 
@@ -82,8 +93,28 @@ for (i=0; i<postBodys.length ; i++)
     }
 }
 
-//Append the smilies code
-var script = document.createElement("script");
-script.type = "text/javascript";
-script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
-document.body.appendChild(script);
+if (GetStorage('extraSmilies') == true) //Do we want to load the extra smilies?
+{
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
+	document.body.appendChild(script);
+}
+
+if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
+{
+	var links = document.links;
+	for (var i=0; i < links.length; i++)
+	{ 
+		var thisLink = links[i]
+		if (thisLink.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
+		{
+			pollCode = thisLink.href.substring(thisLink.href.indexOf("strawpoll.me/")+13,thisLink.href.length);
+			if (pollCode.length > 0) //Did we find a poll or just a link?
+			{
+				thisLink.parentNode.innerHTML += "<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>";
+			}
+		}
+	}
+}
+

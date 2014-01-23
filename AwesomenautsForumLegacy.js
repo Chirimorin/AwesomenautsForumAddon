@@ -8,7 +8,7 @@ for (i=0; i<imgs.length ; i++)
     }
 }
 
-//Normal script starts here
+//NORMAL SCRIPT STARTS HERE
 
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
@@ -87,4 +87,19 @@ var script = document.createElement("script");
 script.type = "text/javascript";
 script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
 document.body.appendChild(script);
+
+//strawpoll auto embed poll
+var links = document.links;
+for (var i=0; i < links.length; i++)
+{ 
+    var thisLink = links[i]
+    if (thisLink.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
+    {
+		pollCode = thisLink.href.substring(thisLink.href.indexOf("strawpoll.me/")+13,thisLink.href.length);
+		if (pollCode.length > 0) //Did we find a poll or just a link?
+		{
+			thisLink.parentNode.innerHTML += "<iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>";
+		}
+    }
+}
 

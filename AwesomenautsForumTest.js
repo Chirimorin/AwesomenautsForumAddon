@@ -1,5 +1,3 @@
-//TEST SCRIPT ONLY, DO NOT COPY
-
 //Replace the banner at the top of the page with the test version banner
 var imgs = document.getElementsByTagName ('img');
 for (i=0; i<imgs.length ; i++) 
@@ -10,73 +8,7 @@ for (i=0; i<imgs.length ; i++)
     }
 }
 
-//Get all the links on the page for editing
-var links = document.links;
-
-//Add the ForumScriptTest to all forum links
-for (var i=0; i < links.length; i++)
-{ 
-    var thisLink = links[i]
-    if (thisLink.href.search('awesomenauts.com/forum') != -1) //make sure the link is to a forum page
-    {
-        if (thisLink.href.search('#') == -1)
-        {
-            if (thisLink.href.search('\\?') == -1 ) 
-            {
-                thisLink.href += '?ForumScriptTest=1';
-            }
-            else
-            {
-                thisLink.href += '&ForumScriptTest=1';
-            }
-        }
-        else
-        {
-            var originalLinkSplit = thisLink.href.split("#");
-            if (thisLink.href.search('\\?') == -1 ) 
-            {
-                thisLink.href = originalLinkSplit[0] + '?ForumScriptTest=1#' + originalLinkSplit[1];
-            }
-            else
-            {
-                thisLink.href = originalLinkSplit[0] + '&ForumScriptTest=1#' + originalLinkSplit[1];
-            }
-        }
-    }
-}
-
-
 //NORMAL SCRIPT STARTS HERE
-
-var currentVersion = 3.0;
-
-GetStorage = function(item)
-{
-	return JSON.parse(localStorage.getItem(item));
-}
-
-SetStorage = function(item, value)
-{
-	localStorage.setItem(item, JSON.stringify(value));
-}
-
-if (GetStorage('version') == undefined)
-{
-	//Storage version not found, set default values for all variables. 
-	SetStorage('version',currentVersion); //Current version of the script. Used for update checks. 
-	SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = background
-	SetStorage('markingColor',"#0000FF"); //Post marking color. HEX value.
-	SetStorage('markingText',"#000000"); //Text color used when markingMode = 2
-}
-
-if (GetStorage('version') < currentVersion)
-{
-	//Add new storage values here, checking for version. (a variable introduced in V3.2 should be set if (GetStorage('version')<3.2)
-	SetStorage('version',currentVersion);
-	Alert("Awesomenauts Forum UserScript updated! Current version: " + currentVersion);
-}
-
-
 
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
@@ -167,12 +99,30 @@ for (i=0; i<postBodys.length ; i++)
     }
 }
 
-//Append the smilies code
-var script = document.createElement("script");
-script.type = "text/javascript";
-script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
-document.body.appendChild(script);
+if (GetStorage('extraSmilies') == true) //Do we want to load the extra smilies?
+{
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
+	document.body.appendChild(script);
+}
 
+if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
+{
+	var links = document.links;
+	for (var i=0; i < links.length; i++)
+	{ 
+		var thisLink = links[i]
+		if (thisLink.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
+		{
+			pollCode = thisLink.href.substring(thisLink.href.indexOf("strawpoll.me/")+13,thisLink.href.length);
+			if (pollCode.length > 0) //Did we find a poll or just a link?
+			{
+				thisLink.parentNode.innerHTML += "<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>";
+			}
+		}
+	}
+}
 
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
@@ -219,3 +169,4 @@ if (window.location.href.indexOf("ucp.php") != -1)
 		}
 	}
 }
+

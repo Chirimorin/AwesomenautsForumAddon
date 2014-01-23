@@ -1,4 +1,8 @@
-v2.4.1 (silent): 
+v2.5:
+* New: Strawpoll.me automatic poll embedding.
+* New: Back-end support for settings. A settings menu to change these will come soon.
+
+v2.4.2 (silent): 
 & Changed: A lot of back-end changes to support a coming update.
 
 v2.4.1 (silent):
