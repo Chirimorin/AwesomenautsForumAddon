@@ -1,36 +1,39 @@
+v2.4.1 (silent): 
+& Changed: A lot of back-end changes to support a coming update.
+
 v2.4.1 (silent):
 ~ Fix: Fixed an issue that rarely caused custom smilies to not appear. 
 
 v2.4:
-* New: Avatar outlining. Find your own posts with ease![/list]
+* New: Avatar outlining. Find your own posts with ease!
 
 v2.3:
 * New: Banner on top of the page now shows that the script is running.
-* New: Links to the threads that contain the custom smilies.[/list]
+* New: Links to the threads that contain the custom smilies.
 
 v2.2:
-* New: Custom smileys for your forum pleasure![/list]
+* New: Custom smileys for your forum pleasure!
 
 v2.1.1:
 & Changed: Max width for images changed to 764px (was 700px)
-& Changed: Fix so the script no longer breaks the new post screen layout.[/list]
+& Changed: Fix so the script no longer breaks the new post screen layout.
 
 v2.1:
-* New: Long words should no longer break the page layout.[/list]
+* New: Long words should no longer break the page layout.
 
 v2.0.1:
-* New: Test mode implemented into the script. The test script will be loaded if "ForumScriptTest=1" is present in the URL. [/list]
+* New: Test mode implemented into the script. The test script will be loaded if "ForumScriptTest=1" is present in the URL. 
 
 v2.0:
-* New: Automatic updating, no need to worry anymore about updating your addon as this will be done automatically[/list]
+* New: Automatic updating, no need to worry anymore about updating your addon as this will be done automatically
 
 v1.7:
-& Changed: Used Nodjas code to keep default onclick behavior when not ctrl+click or middle clicking.[/list]
+& Changed: Used Nodjas code to keep default onclick behavior when not ctrl+click or middle clicking.
 
 v1.6:
 & Changed: new tab fix optimized.
-* New: Automatic resizing of oversized images[/list]
+* New: Automatic resizing of oversized images
 
 v1.0:
 * First public version
-* New: Open in new tab will work properly with ctrl+click or middle click[/list]
+* New: Open in new tab will work properly with ctrl+click or middle click
