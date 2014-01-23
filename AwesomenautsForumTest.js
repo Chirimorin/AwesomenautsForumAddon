@@ -57,13 +57,18 @@ String.prototype.insert = function (index, string)
         return string + this;
 };
 
-//Find the username of the person who is logged in.
-//Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
 var ForumButtons = document.getElementsByClassName('forum-buttons');
 for (i=0; i<ForumButtons.length; i++)
 {
+    //Find the username of the person who is logged in.
+    //Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
+   
+    //Add button for the options menu
+    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=userscript\">Userscript Settings</a><br />");
+    ForumButtons[i].style.backgroundSize="1px 40px";
 }
+
 
 //Find posts by the logged in user and mark the post.
 var PostAuthors = document.getElementsByClassName('postauthor');
@@ -129,4 +134,17 @@ script.type = "text/javascript";
 script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
 document.body.appendChild(script);
 
+
+//Add options button to UCP
+if (window.location.href.indexOf("ucp.php") != -1)
+{
+    options = document.getElementsByClassName('tablebg');
+    for (i=0; i<options.length; i++)
+    {
+        if (options[i].innerHTML.indexOf('Friends &amp; Foes') != -1) //Make sure we're in the options panel
+        {
+            options[i].innerHTML = options[i].innerHTML.insert(options[i].innerHTML.indexOf('<tr><td class="cat-bottom">') - 1,"<tr><td class=\"row2\" nowrap=\"nowrap\" onmouseover=\"this.className='row1'\" onmouseout=\"this.className='row2'\" onclick=\"location.href=this.firstChild.href;\"><a class=\"nav\" href=\"./ucp.php?i=userscript\">Userscript Settings</a></td></tr>");
+        }
+    }
+}
 
