@@ -99,7 +99,7 @@ for (i=0; i<postBodys.length ; i++)
     }
 }
 
-if (GetStorage('extraSmilies') == true) //Do we want to load the extra smilies?
+if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
 	var script = document.createElement("script");
 	script.type = "text/javascript";
