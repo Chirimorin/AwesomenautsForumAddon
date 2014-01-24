@@ -87,7 +87,7 @@ for (i=0; i<postBodys.length ; i++)
 		//Testing code for marking resized images
 		//imgs[j].onload = function()
 		{
-			alert("image found. Dimensions: " + this.width + "x" + this.height);
+			alert("image found. Dimensions: " + imgs[j].width + "x" + imgs[j].height);
 		}
 		
         imgs[j].style.maxWidth = '764px';
