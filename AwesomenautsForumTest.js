@@ -26,8 +26,7 @@ for (i=0; i<ForumButtons.length; i++)
     //Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
    
-    //Add button for the options menu
-	if (GetStorage('settingsLink'))
+	if (GetStorage('settingsLink')) //Add button for the options menu
 	{
 		ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
 		ForumButtons[i].style.backgroundSize="1px 40px";

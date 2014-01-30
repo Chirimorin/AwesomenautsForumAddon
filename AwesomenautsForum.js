@@ -42,6 +42,10 @@ if (supports_local_storage()) //Local storage supported, good!
 			SetStorage('strawpollEmbed',true); //Auto embedding of Strawpoll.me polls. 
 		}
 		
+		if (GetStorage('version')<2.61)
+		{
+			SetStorage('settingsLink',true);
+		}
 		SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
 		alert("Awesomenauts Forum UserScript updated! Current version: " + currentVersion); //Alert the user that an update has happened.
 	}

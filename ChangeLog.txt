@@ -1,3 +1,6 @@
+v2.61
+* New: Setting for the settings link.
+
 v2.6:
 * New: Settings! Don't like a feature? Now you can turn it off!
 
