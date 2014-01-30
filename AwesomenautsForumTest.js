@@ -156,17 +156,19 @@ if (window.location.href.indexOf("ucp.php") != -1)
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Current version:</b>\
+									<b class=\"genmed\">Use test script:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\">" + currentVersion +"</b>\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"testScript\" onchange=\"SetStorage('testScriptTest',this.checked)\"></b>\
 								</td>\
 							</tr>\
 						</table>\
 					</td>\
 				</tr>\
 				");
+			
+			//Load all the saved values into the menu
+			document.getElementById('testScript').checked = GetStorage('testScriptTest');
 		}
 	}
 }
-
