@@ -12,7 +12,7 @@ script.type = "text/javascript";
 
 if (supports_local_storage()) //Local storage supported, good!
 {
-	var currentVersion = 2.6;
+	var currentVersion = 2.61;
 
 	GetStorage = function(item)
 	{
