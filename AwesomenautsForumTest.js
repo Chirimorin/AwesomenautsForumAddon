@@ -27,8 +27,11 @@ for (i=0; i<ForumButtons.length; i++)
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
    
     //Add button for the options menu
-    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
-    ForumButtons[i].style.backgroundSize="1px 40px";
+	if (GetStorage('settingsLink'))
+	{
+		ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
+		ForumButtons[i].style.backgroundSize="1px 40px";
+	}
 }
 
 
@@ -158,6 +161,15 @@ if (window.location.href.indexOf("ucp.php") != -1)
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Settings link:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetStorage('settingsLink',this.checked)\"></b><br />\
+									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Extra smilies:</b>\
 								</td>\
 								<td width=\"100%\">\
@@ -189,6 +201,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 				");
 			
 			//Load all the saved values into the menu
+			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
 			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
