@@ -156,10 +156,29 @@ if (window.location.href.indexOf("ucp.php") != -1)
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Extra smilies:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetStorage('extraSmilies',this.checked)\"></b><br />\
+									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetStorage('strawpollEmbed',this.checked)\"></b><br />\
+									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Use test script:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"testScript\" onchange=\"SetStorage('testScriptTest',this.checked)\"></b>\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScriptTest',this.checked)\"></b><br />\
+									<span class=\"genmed\">Loads the test version of this script, see the main topic for more info.</span>\
 								</td>\
 							</tr>\
 						</table>\
@@ -168,7 +187,14 @@ if (window.location.href.indexOf("ucp.php") != -1)
 				");
 			
 			//Load all the saved values into the menu
-			document.getElementById('testScript').checked = GetStorage('testScriptTest');
+			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
+			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
+			document.getElementById('testScriptCheck').checked = GetStorage('testScriptTest');
 		}
 	}
 }
+
+
+//			SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = background
+//			SetStorage('markingColor',"#0000FF"); //Post marking color. HEX value.
+//			SetStorage('markingText',"#FFFFFF"); //Text color used when markingMode = 2
