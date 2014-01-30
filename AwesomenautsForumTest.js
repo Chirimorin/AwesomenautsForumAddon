@@ -142,7 +142,8 @@ if (window.location.href.indexOf("ucp.php") != -1)
 							<tr>\
 								<td class=\"row1\" colspan=\"3\" align=\"center\">\
 									<p class=\"genmed\">\
-										Here you can change the settings for Chirimorin's forum userscript.\
+										Here you can change the settings for Chirimorin's forum userscript.<br />\
+										For more info, please visit <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
 									</p>\
 								</td>\
 							</tr>\
@@ -177,7 +178,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Use test script:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScriptTest',this.checked)\"></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScript',this.checked)\"></b><br />\
 									<span class=\"genmed\">Loads the test version of this script, see the main topic for more info.</span>\
 								</td>\
 							</tr>\
@@ -189,7 +190,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			//Load all the saved values into the menu
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
-			document.getElementById('testScriptCheck').checked = GetStorage('testScriptTest');
+			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
 		}
 	}
 }
