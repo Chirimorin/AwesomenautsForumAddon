@@ -19,13 +19,18 @@ String.prototype.insert = function (index, string)
         return string + this;
 };
 
-//Find the username of the person who is logged in.
-//Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
 var ForumButtons = document.getElementsByClassName('forum-buttons');
 for (i=0; i<ForumButtons.length; i++)
 {
+    //Find the username of the person who is logged in.
+    //Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
     var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
+   
+    //Add button for the options menu
+    ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
+    ForumButtons[i].style.backgroundSize="1px 40px";
 }
+
 
 if (GetStorage('markingMode') != 0) //Do we want to mark the users posts? 
 {
@@ -114,6 +119,78 @@ if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
 			{
 				thisLink.parentNode.innerHTML += "<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>";
 			}
+		}
+	}
+}
+
+//Options menu
+if (window.location.href.indexOf("ucp.php") != -1)
+{
+    table = document.getElementsByClassName('tablebg');
+    for (i=0; i<table.length; i++)
+    {
+		if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
+		{
+			table[i].innerHTML = table[i].innerHTML.insert(8,"\
+				<tr>\
+					<th colspan=\"3\">Forum Userscript Settings</th>\
+				</tr>\
+				<tr>\
+					<td class=\"row1\" colspan=\"3\" align=\"center\">\
+						<table width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
+							<tr>\
+								<td class=\"row1\" colspan=\"3\" align=\"center\">\
+									<p class=\"genmed\">\
+										Here you can change the settings for Chirimorin's forum userscript.<br />\
+										All settings are applied automatically.<br />\
+										For more info, please visit <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
+									</p>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Current version:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\">" + currentVersion +"</b>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Extra smilies:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetStorage('extraSmilies',this.checked)\"></b><br />\
+									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetStorage('strawpollEmbed',this.checked)\"></b><br />\
+									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Use test script:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScript',this.checked)\"></b><br />\
+									<span class=\"genmed\">Loads the test version of this script, see the main topic for more info.</span>\
+								</td>\
+							</tr>\
+						</table>\
+					</td>\
+				</tr>\
+				");
+			
+			//Load all the saved values into the menu
+			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
+			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
+			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
 		}
 	}
 }

@@ -143,6 +143,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								<td class=\"row1\" colspan=\"3\" align=\"center\">\
 									<p class=\"genmed\">\
 										Here you can change the settings for Chirimorin's forum userscript.<br />\
+										All settings are applied automatically.<br />\
 										For more info, please visit <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
 									</p>\
 								</td>\

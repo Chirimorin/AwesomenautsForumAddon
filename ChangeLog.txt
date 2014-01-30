@@ -1,3 +1,6 @@
+v2.6:
+* New: Settings! Don't like a feature? Now you can turn it off!
+
 v2.5:
 * New: Strawpoll.me automatic poll embedding.
 * New: Back-end support for settings. A settings menu to change these will come soon.
