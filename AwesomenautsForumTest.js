@@ -31,6 +31,10 @@ for (i=0; i<ForumButtons.length; i++)
 		ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
 		ForumButtons[i].style.backgroundSize="1px 40px";
 	}
+	else //white line in menu fix
+	{
+		ForumButtons[i].style.backgroundSize="1px 30px";
+	}
 }
 
 
