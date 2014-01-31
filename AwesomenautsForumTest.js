@@ -246,5 +246,3 @@ if (window.location.href.indexOf("ucp.php") != -1)
 	}
 }
 
-
-//			SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = background

@@ -12,7 +12,7 @@ script.type = "text/javascript";
 
 if (supports_local_storage()) //Local storage supported, good!
 {
-	var currentVersion = 2.61;
+	var currentVersion = 2.62;
 
 	GetStorage = function(item)
 	{
@@ -35,9 +35,9 @@ if (supports_local_storage()) //Local storage supported, good!
 		if (GetStorage('version')<2.5)
 		{
 			SetStorage('testScript',false);
-			SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = background
-			SetStorage('markingColor',"#0000FF"); //Post marking color. HEX value.
-			SetStorage('markingText',"#FFFFFF"); //Text color used when markingMode = 2
+			SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = avatar panel background
+			SetStorage('markingColor',"blue"); //Post marking color. 
+			SetStorage('markingText',"white"); //Text color used when markingMode = 2
 			SetStorage('extraSmilies',true); //Extra smilies for posting. 
 			SetStorage('strawpollEmbed',true); //Auto embedding of Strawpoll.me polls. 
 		}

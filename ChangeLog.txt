@@ -1,3 +1,7 @@
+v2.62
+* New: Settings for post marking mode and post marking color.
+* New: Avatar Panel Background post marking mode. 
+
 v2.61
 * New: Setting for the settings link.
 
