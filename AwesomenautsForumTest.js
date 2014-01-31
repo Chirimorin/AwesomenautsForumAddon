@@ -194,7 +194,11 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Post marking type:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScript',this.checked)\" /></b><br />\
+									<b class=\"gen\"><select id=\"markingModeSelect\" onchange=\"SetStorage('markingMode',this.value)\">\
+										<option value=\"0\">No marking</option>\
+										<option value=\"1\">Avatar outline</option>\
+										<option value=\"2\">Avatar panel background</option>\
+									</select></b><br />\
 									<span class=\"genmed\">Choose the type of marking your own posts.</span>\
 								</td>\
 							</tr>\
@@ -213,7 +217,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"text\" id=\"markingTextBox\" onchange=\"SetStorage('markingText',this.value)\" /></b><br />\
-									<span class=\"genmed\">The text color in your avatar panel when panel color marking mode is selected.</span>\
+									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
 								</td>\
 							</tr>\
 							<tr>\
@@ -234,7 +238,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
-			//document.getElementById('markingMode').checked = GetStorage('markingMode');
+			document.getElementById('markingModeSelect').value = GetStorage('markingMode');
 			document.getElementById('markingColorBox').value = GetStorage('markingColor');
 			document.getElementById('markingTextBox').value = GetStorage('markingText');
 			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
