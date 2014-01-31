@@ -167,7 +167,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Settings link:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetStorage('settingsLink',this.checked)\"></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetStorage('settingsLink',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
 								</td>\
 							</tr>\
@@ -176,7 +176,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Extra smilies:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetStorage('extraSmilies',this.checked)\"></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetStorage('extraSmilies',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
 								</td>\
 							</tr>\
@@ -185,8 +185,35 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetStorage('strawpollEmbed',this.checked)\"></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetStorage('strawpollEmbed',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Post marking type:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScript',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Choose the type of marking your own posts.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Post marking color</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"text\" id=\"markingColorBox\" onchange=\"SetStorage('markingColor',this.value)\" /></b><br />\
+									<span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Post text color</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"text\" id=\"markingTextBox\" onchange=\"SetStorage('markingText',this.value)\" /></b><br />\
+									<span class=\"genmed\">The text color in your avatar panel when panel color marking mode is selected.</span>\
 								</td>\
 							</tr>\
 							<tr>\
@@ -194,7 +221,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Use test script:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScript',this.checked)\"></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScript',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Loads the test version of this script, see the main topic for more info.</span>\
 								</td>\
 							</tr>\
@@ -207,6 +234,9 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
+			//document.getElementById('markingMode').checked = GetStorage('markingMode');
+			document.getElementById('markingColorBox').value = GetStorage('markingColor');
+			document.getElementById('markingTextBox').value = GetStorage('markingText');
 			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
 		}
 	}
@@ -214,5 +244,3 @@ if (window.location.href.indexOf("ucp.php") != -1)
 
 
 //			SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = background
-//			SetStorage('markingColor',"#0000FF"); //Post marking color. HEX value.
-//			SetStorage('markingText',"#FFFFFF"); //Text color used when markingMode = 2
