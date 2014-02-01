@@ -1,3 +1,7 @@
+v2.7
+* New: Extra BB code button: Transparent text.
+& Changed: Extra smilies now also load for private messages.
+
 v2.62
 * New: Settings for post marking mode and post marking color.
 * New: Avatar Panel Background post marking mode. 

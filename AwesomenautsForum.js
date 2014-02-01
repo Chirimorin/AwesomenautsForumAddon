@@ -12,7 +12,7 @@ script.type = "text/javascript";
 
 if (supports_local_storage()) //Local storage supported, good!
 {
-	var currentVersion = 2.62;
+	var currentVersion = 2.7;
 
 	GetStorage = function(item)
 	{
@@ -44,8 +44,14 @@ if (supports_local_storage()) //Local storage supported, good!
 		
 		if (GetStorage('version')<2.61)
 		{
-			SetStorage('settingsLink',true);
+			SetStorage('settingsLink',true); //Puts a link for the settings in the top menu
 		}
+		
+		if (GetStorage('version')<2.7)
+		{
+			SetStorage('extraBBCode',true); //Adds extra bbcode to the post menu
+		}
+		
 		SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
 		alert("Awesomenauts Forum UserScript updated! Current version: " + currentVersion); //Alert the user that an update has happened.
 	}

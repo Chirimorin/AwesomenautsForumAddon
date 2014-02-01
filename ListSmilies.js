@@ -41,7 +41,8 @@ function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
-if(window.location.href.indexOf("posting.php") > -1) //figure out if we're posting
+//if(window.location.href.indexOf("posting.php") > -1) //figure out if we're posting
+if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
 {
    var form = document.getElementsByName('postform')[0];
    if (form.attachEvent) {
