@@ -38,9 +38,8 @@ for (i=0; i<ForumButtons.length; i++)
 }
 
 
-if (GetStorage('markingMode') != 0)
+if (GetStorage('markingMode') != 0) //Do we want to mark the users posts? 
 {
-	//Find posts by the logged in user and mark the post.
 	var PostAuthors = document.getElementsByClassName('postauthor');
 	var PostBodys = document.getElementsByClassName('row-post-body');
 	for (i=0; i<PostAuthors.length; i++)
