@@ -129,6 +129,27 @@ if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
 	}
 }
 
+if (GetStorage('extraBBCode'))
+{
+	if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
+	{
+		help_line['trans'] = 'Makes text transparent';
+		
+		var form = document.getElementsByName('postform')[0];
+		if (form.attachEvent) 
+		{
+			form.attachEvent("submit", submitHandler);
+		}
+		else 
+		{
+		   form.addEventListener("submit", submitHandler);
+		}
+		
+		var table = document.getElementsByName('addbbcode22')[0].parentNode;
+		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
+	}
+}
+
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
@@ -221,6 +242,15 @@ if (window.location.href.indexOf("ucp.php") != -1)
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Extra BB code buttons:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetStorage('extraBBCode',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
+								</td>\
+							</tr>\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Use test script:</b>\
 								</td>\
 								<td width=\"100%\">\
@@ -240,6 +270,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			document.getElementById('markingModeSelect').value = GetStorage('markingMode');
 			document.getElementById('markingColorBox').value = GetStorage('markingColor');
 			document.getElementById('markingTextBox').value = GetStorage('markingText');
+			document.getElementById('extraBBCodeCheck').checked = GetStorage('extraBBCode');
 			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
 		}
 	}
