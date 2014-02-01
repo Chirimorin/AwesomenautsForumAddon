@@ -134,17 +134,6 @@ if (GetStorage('extraBBCode'))
 	if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
 	{
 		help_line['trans'] = 'Makes text transparent';
-		
-		var form = document.getElementsByName('postform')[0];
-		if (form.attachEvent) 
-		{
-			form.attachEvent("submit", submitHandler);
-		}
-		else 
-		{
-		   form.addEventListener("submit", submitHandler);
-		}
-		
 		var table = document.getElementsByName('addbbcode22')[0].parentNode;
 		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
 	}
