@@ -6,6 +6,26 @@ function supports_local_storage() {
   }
 }
 
+//Insert string function for use further in the script.
+String.prototype.insert = function (index, string) 
+{
+    if (index > 0)
+        return this.substring(0, index) + string + this.substring(index, this.length);
+    else
+        return string + this;
+};
+
+
+//Find the banner at the top of the page
+var banner;
+var imgs = document.getElementsByTagName ('img');
+for (i=0; i<imgs.length ; i++) 
+{
+    if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
+    {
+        banner = imgs[i];
+    }
+}
 
 var script = document.createElement("script");
 script.type = "text/javascript";
@@ -58,15 +78,18 @@ if (supports_local_storage()) //Local storage supported, good!
 
 	if ( GetStorage('testScript') == true ) //Load test script?
 	{
+        banner.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBannerTest.png";
 		script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumTest.js"
 	}
 	else //Load latest script version
 	{
+        banner.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBanner.png";
 		script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumLatest.js"
 	}
 }
 else //Local storage not supported, load legacy script. 
 {
+    banner.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBanner.png";
     script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumLegacy.js"
 }
 
