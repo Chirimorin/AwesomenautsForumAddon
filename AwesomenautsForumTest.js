@@ -40,7 +40,7 @@ if (GetStorage('markingMode') != 0) //Do we want to mark the users posts?
 			if (GetStorage('markingMode') == 2) //Background color.
 			{
 				PostBodys[((i+1)*2)-2].style.background=GetStorage('markingColor');
-				var PostDetails = PostBodys[((i+1)*2)-2].find('.postdetails');
+				var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
 				PostDetails[0].style.color=GetStorage('markingText');
 			}
 		}
