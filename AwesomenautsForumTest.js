@@ -59,30 +59,7 @@ for (i=0; i<allClickables.length; i++)
 }
 
 
-//var postBodys = $('.postbody');
-//for (i=0; i<postBodys.length ; i++) 
-//{
-//    postBodys[i].style.maxWidth = '764px';
-//    postBodys[i].style.wordWrap = 'break-word';
-//    
-//    var imgs = postBodys[i].getElementsByTagName('img');
-//    for (j=0; j<imgs.length; j++) 
-//    {
-//        imgs[j].style.maxWidth = '764px';
-//		imgs[j].addEventListener('click', function(event) 
-//            {
-//				if (event.currentTarget.style.maxWidth == 'none') 
-//                {
-//					event.currentTarget.style.maxWidth = '764px';
-//				} 
-//                else 
-//                {
-//					event.currentTarget.style.maxWidth = 'none';
-//				}
-//			}, false);
-//    }
-//}
-
+//Fix oversized images and mark them
 $('.postbody').each(function(){
     $(this).css("max-width","764px");
     $(this).css("word-wrap","break-word");
@@ -108,7 +85,6 @@ $('.postbody').each(function(){
                     $(this).css("border-color","red");
                 }
             });
-            alert('oversized picture found!');
         }
     });
 });
