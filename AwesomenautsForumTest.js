@@ -6,25 +6,28 @@
 
 //Test functionality starts here
 
-var ForumButtons = $('.forum-buttons');
-for (i=0; i<ForumButtons.length; i++)
-{
+
+//Menu edit + find username
+var UserName;
+$('.forum-buttons').each(function(){
     //Find the username of the person who is logged in.
-    //Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
-    var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
-   
-	if (GetStorage('settingsLink')) //Add button for the options menu
-	{
-		ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
-		ForumButtons[i].style.backgroundSize="1px 40px";
+    //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
+    UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
+    
+    if (GetStorage('settingsLink'))
+    {
+        var html = $(this).html();
+        $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
+        $(this).css("background-size", "1px 40px");
 	}
 	else //white line in menu fix
 	{
-		ForumButtons[i].style.backgroundSize="1px 30px";
+        $(this).css("background-size", "1px 30px");
 	}
-}
+});
 
 
+//Marking users posts
 if (GetStorage('markingMode') != 0) //Do we want to mark the users posts? 
 {
 	var PostAuthors = $('.postauthor');
@@ -47,26 +50,7 @@ if (GetStorage('markingMode') != 0) //Do we want to mark the users posts?
 	}
 }
 
-////Thanks to Nodja for the code to keep onclick behavior. 
-////gets all td elements with class="row1 clickable"
-//var allClickables = document.evaluate
-//                                    (
-//                                      '//td[@class="row1 clickable"]',
-//                                      document, 
-//                                      null,
-//                                      XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
-//                                      null
-//                                    );
-//
-//
-////replaces the onclick to check for left button and ctrl key
-//for (var i=0; i<allClickables.snapshotLength; i++) 
-//{
-//  var elem = allClickables.snapshotItem(i);
-//  elem.setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
-//}
-////End of Nodjas script
-
+//new tab fix
 var allClickables = $('.row1.clickable');
 for (i=0; i<allClickables.length; i++)
 {
@@ -75,29 +59,59 @@ for (i=0; i<allClickables.length; i++)
 }
 
 
-var postBodys = $('.postbody');
-for (i=0; i<postBodys.length ; i++) 
-{
-    postBodys[i].style.maxWidth = '764px';
-    postBodys[i].style.wordWrap = 'break-word';
+//var postBodys = $('.postbody');
+//for (i=0; i<postBodys.length ; i++) 
+//{
+//    postBodys[i].style.maxWidth = '764px';
+//    postBodys[i].style.wordWrap = 'break-word';
+//    
+//    var imgs = postBodys[i].getElementsByTagName('img');
+//    for (j=0; j<imgs.length; j++) 
+//    {
+//        imgs[j].style.maxWidth = '764px';
+//		imgs[j].addEventListener('click', function(event) 
+//            {
+//				if (event.currentTarget.style.maxWidth == 'none') 
+//                {
+//					event.currentTarget.style.maxWidth = '764px';
+//				} 
+//                else 
+//                {
+//					event.currentTarget.style.maxWidth = 'none';
+//				}
+//			}, false);
+//    }
+//}
+
+$('.postbody').each(function(){
+    $(this).css("max-width","764px");
+    $(this).css("word-wrap","break-word");
     
-    var imgs = postBodys[i].getElementsByTagName('img');
-    for (j=0; j<imgs.length; j++) 
-    {
-        imgs[j].style.maxWidth = '764px';
-		imgs[j].addEventListener('click', function(event) 
-            {
-				if (event.currentTarget.style.maxWidth == 'none') 
+    $(this).find('img').each(function(){
+        if ($(this).width() > 760)
+        {
+            $(this).css("max-width","760px");
+            $(this).css("border-style","dashed");
+            $(this).css("border-color","red");
+            
+            $(this).click(function(){
+                if ($(this).css("max-width") == "760px")
                 {
-					event.currentTarget.style.maxWidth = '764px';
-				} 
-                else 
+                    $(this).css("max-width","");
+                    $(this).css("border-style","");
+                    $(this).css("border-color","");
+                }
+                else
                 {
-					event.currentTarget.style.maxWidth = 'none';
-				}
-			}, false);
-    }
-}
+                    $(this).css("max-width","760px");
+                    $(this).css("border-style","dashed");
+                    $(this).css("border-color","red");
+                }
+            });
+            alert('oversized picture found!');
+        }
+    });
+});
 
 if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
