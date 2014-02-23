@@ -47,24 +47,32 @@ if (GetStorage('markingMode') != 0) //Do we want to mark the users posts?
 	}
 }
 
-//Thanks to Nodja for the code to keep onclick behavior. 
-//gets all td elements with class="row1 clickable"
-var allClickables = document.evaluate
-                                    (
-                                      '//td[@class="row1 clickable"]',
-                                      document, 
-                                      null,
-                                      XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
-                                      null
-                                    );
+////Thanks to Nodja for the code to keep onclick behavior. 
+////gets all td elements with class="row1 clickable"
+//var allClickables = document.evaluate
+//                                    (
+//                                      '//td[@class="row1 clickable"]',
+//                                      document, 
+//                                      null,
+//                                      XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
+//                                      null
+//                                    );
+//
+//
+////replaces the onclick to check for left button and ctrl key
+//for (var i=0; i<allClickables.snapshotLength; i++) 
+//{
+//  var elem = allClickables.snapshotItem(i);
+//  elem.setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
+//}
+////End of Nodjas script
 
-//replaces the onclick to check for left button and ctrl key
-for (var i=0; i<allClickables.snapshotLength; i++) 
+var allClickables = $('.row1.clickable');
+for (i=0; i<allClickables.length; i++)
 {
-  var elem = allClickables.snapshotItem(i);
-  elem.setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
+    var onclick = $(allClickables[i]).attr("onclick");
+    $(allClickables[i]).attr("onclick", "if (event.button == 0 && event.ctrlKey == false) " + onclick);
 }
-//End of Nodjas script
 
 
 var postBodys = $('.postbody');
