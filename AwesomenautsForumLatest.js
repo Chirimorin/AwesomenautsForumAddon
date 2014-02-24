@@ -254,7 +254,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 				");
 			
 			//Load all the saved values into the menu
-            document.getElementById('imageMarkingCheck').value = GetStorage('imageMarking');
+            document.getElementById('imageMarkingCheck').checked = GetStorage('imageMarking');
 			document.getElementById('imageMarkingColorBox').value = GetStorage('imageMarkingColor');
 			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
