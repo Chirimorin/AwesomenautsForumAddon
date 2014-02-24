@@ -32,7 +32,7 @@ script.type = "text/javascript";
 
 if (supports_local_storage()) //Local storage supported, good!
 {
-	var currentVersion = 2.8;
+	var currentVersion = 2.9;
 
 	GetStorage = function(item)
 	{
@@ -71,6 +71,21 @@ if (supports_local_storage()) //Local storage supported, good!
 		{
 			SetStorage('extraBBCode',true); //Adds extra bbcode to the post menu
 		}
+        
+        if (GetStorage('version')<2.9)
+        {
+            SetStorage('postMarkingMode',getStorage('markingMode')); //rename saved variable
+            SetStorage('postMarkingColor',getStorage('markingColor')); //rename saved variable
+            SetStorage('postMarkingTextColor',getStorage('markingText')); //rename saved variable
+            
+            localStorage.removeItem('markingMode');
+            localStorage.removeItem('markingColor');
+            localStorage.removeItem('markingText');
+            
+            SetStorage('imageMarking',true); //Marks resized images
+            SetStorage('imageMarkingColor',"red"); //Color of marking resized images
+            
+        }
 		
 		SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
 		alert("Awesomenauts Forum UserScript updated! Current version: " + currentVersion); //Alert the user that an update has happened.

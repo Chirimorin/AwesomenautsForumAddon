@@ -1,3 +1,6 @@
+v2.9
+* New: Don't like the dashed line around images? There's a setting for that!
+
 v2.8
 * New: Resized images are now marked with a red dashed line.
 ~ Fix: quoted images are no longer oversized
