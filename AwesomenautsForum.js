@@ -84,7 +84,7 @@ if (supports_local_storage()) //Local storage supported, good!
 	else //Load latest script version
 	{
         banner.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBanner.png";
-		script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumLatest.js" + currentVersion;
+		script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumLatest.js?v=" + currentVersion;
 	}
 }
 else //Local storage not supported, load legacy script. 
