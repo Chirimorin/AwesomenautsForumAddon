@@ -148,26 +148,6 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"gen\">" + currentVersion +"</b>\
 								</td>\
 							</tr>\
-                            <br />\
-                            <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Image marking:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"imageMarkingCheck\" onchange=\"SetStorage('imageMarking',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Puts a dashed line around images that have been resized.</span>\
-								</td>\
-							</tr>\
-                            <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Image marking color:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetStorage('imageMarkingColor',this.value)\" /></b><br />\
-									<span class=\"genmed\">The color of image marking. (in either hex or text, wrong values will result in no marking)</span>\
-								</td>\
-							</tr>\
-                            <br />\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Settings link:</b>\
@@ -177,7 +157,6 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
 								</td>\
 							</tr>\
-                            <br />\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Extra smilies:</b>\
@@ -187,16 +166,6 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
 								</td>\
 							</tr>\
-                            <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Extra BB code buttons:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetStorage('extraBBCode',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
-								</td>\
-							</tr>\
-                            <br />\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
@@ -206,13 +175,12 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
 								</td>\
 							</tr>\
-                            <br />\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Post marking type:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetStorage('postMarkingMode',this.value)\">\
+									<b class=\"gen\"><select id=\"markingModeSelect\" onchange=\"SetStorage('markingMode',this.value)\">\
 										<option value=\"0\">No marking</option>\
 										<option value=\"1\">Avatar outline</option>\
 										<option value=\"2\">Avatar panel background</option>\
@@ -222,23 +190,31 @@ if (window.location.href.indexOf("ucp.php") != -1)
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Post marking color:</b>\
+									<b class=\"genmed\">Post marking color</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetStorage('postMarkingColor',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"text\" id=\"markingColorBox\" onchange=\"SetStorage('markingColor',this.value)\" /></b><br />\
 									<span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
 								</td>\
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Post text color:</b>\
+									<b class=\"genmed\">Post text color</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetStorage('postMarkingText',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"text\" id=\"markingTextBox\" onchange=\"SetStorage('markingText',this.value)\" /></b><br />\
 									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
 								</td>\
 							</tr>\
-                            <br />\
+							<tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Extra BB code buttons:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetStorage('extraBBCode',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
+								</td>\
+							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Use test script:</b>\
@@ -254,14 +230,12 @@ if (window.location.href.indexOf("ucp.php") != -1)
 				");
 			
 			//Load all the saved values into the menu
-            document.getElementById('imageMarkingCheck').checked = GetStorage('imageMarking');
-			document.getElementById('imageMarkingColorBox').value = GetStorage('imageMarkingColor');
 			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
-			document.getElementById('postMarkingModeSelect').value = GetStorage('postMarkingMode');
-			document.getElementById('postMarkingColorBox').value = GetStorage('postMarkingColor');
-			document.getElementById('postMarkingTextBox').value = GetStorage('postMarkingText');
+			document.getElementById('markingModeSelect').value = GetStorage('markingMode');
+			document.getElementById('markingColorBox').value = GetStorage('markingColor');
+			document.getElementById('markingTextBox').value = GetStorage('markingText');
 			document.getElementById('extraBBCodeCheck').checked = GetStorage('extraBBCode');
 			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
 		}
