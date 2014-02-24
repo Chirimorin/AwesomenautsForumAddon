@@ -1,26 +1,28 @@
-var ForumButtons = document.getElementsByClassName('forum-buttons');
-for (i=0; i<ForumButtons.length; i++)
-{
+//Menu edit + find username
+var UserName;
+$('.forum-buttons').each(function(){
     //Find the username of the person who is logged in.
-    //Will return bullshit if nobody is logged in, but this is just used for searching so no harm is done.
-    var UserName = ForumButtons[i].innerHTML.substring(ForumButtons[i].innerHTML.indexOf("Logout [ ") + 9, ForumButtons[i].innerHTML.indexOf(" ]"));
-   
-	if (GetStorage('settingsLink')) //Add button for the options menu
-	{
-		ForumButtons[i].innerHTML = ForumButtons[i].innerHTML.insert((ForumButtons[i].innerHTML.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />");
-		ForumButtons[i].style.backgroundSize="1px 40px";
+    //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
+    UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
+    
+    if (GetStorage('settingsLink'))
+    {
+        var html = $(this).html();
+        $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
+        $(this).css("background-size", "1px 40px");
 	}
 	else //white line in menu fix
 	{
-		ForumButtons[i].style.backgroundSize="1px 30px";
+        $(this).css("background-size", "1px 30px");
 	}
-}
+});
 
 
+//Marking users posts
 if (GetStorage('markingMode') != 0) //Do we want to mark the users posts? 
 {
-	var PostAuthors = document.getElementsByClassName('postauthor');
-	var PostBodys = document.getElementsByClassName('row-post-body');
+	var PostAuthors = $('.postauthor');
+	var PostBodys = $('.row-post-body');
 	for (i=0; i<PostAuthors.length; i++)
 	{
 		if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
@@ -32,56 +34,52 @@ if (GetStorage('markingMode') != 0) //Do we want to mark the users posts?
 			if (GetStorage('markingMode') == 2) //Background color.
 			{
 				PostBodys[((i+1)*2)-2].style.background=GetStorage('markingColor');
-				var PostDetails = PostBodys[((i+1)*2)-2].getElementsByClassName('postdetails');
+				var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
 				PostDetails[0].style.color=GetStorage('markingText');
 			}
 		}
 	}
 }
 
-//Thanks to Nodja for the code to keep onclick behavior. 
-//gets all td elements with class="row1 clickable"
-var allClickables = document.evaluate
-                                    (
-                                      '//td[@class="row1 clickable"]',
-                                      document, 
-                                      null,
-                                      XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,
-                                      null
-                                    );
-
-//replaces the onclick to check for left button and ctrl key
-for (var i=0; i<allClickables.snapshotLength; i++) 
+//new tab fix
+var allClickables = $('.row1.clickable');
+for (i=0; i<allClickables.length; i++)
 {
-  var elem = allClickables.snapshotItem(i);
-  elem.setAttribute("onclick","if (event.button == 0 && event.ctrlKey == false) " + elem.getAttribute("onclick"));
+    var onclick = $(allClickables[i]).attr("onclick");
+    $(allClickables[i]).attr("onclick", "if (event.button == 0 && event.ctrlKey == false) " + onclick);
 }
-//End of Nodjas script
 
 
-var postBodys = document.getElementsByClassName('postbody');
-for (i=0; i<postBodys.length ; i++) 
-{
-    postBodys[i].style.maxWidth = '764px';
-    postBodys[i].style.wordWrap = 'break-word';
+//Fix oversized images and mark them
+$('.postbody').each(function(){
+    $(this).css("max-width","764px");
+    $(this).css("word-wrap","break-word");
     
-    var imgs = postBodys[i].getElementsByTagName('img');
-    for (j=0; j<imgs.length; j++) 
-    {
-        imgs[j].style.maxWidth = '764px';
-		imgs[j].addEventListener('click', function(event) 
-            {
-				if (event.currentTarget.style.maxWidth == 'none') 
+    $(this).find('img').each(function(){
+        var maxWidth = $(this).parent().width()-6
+        if ($(this).width() > maxWidth)
+        {
+            $(this).css("max-width", maxWidth + "px");
+            $(this).css("border-style","dashed");
+            $(this).css("border-color","red");
+            
+            $(this).click(function(){
+                if ($(this).css("max-width") == maxWidth + "px")
                 {
-					event.currentTarget.style.maxWidth = '764px';
-				} 
-                else 
+                    $(this).css("max-width","");
+                    $(this).css("border-style","");
+                    $(this).css("border-color","");
+                }
+                else
                 {
-					event.currentTarget.style.maxWidth = 'none';
-				}
-			}, false);
-    }
-}
+                    $(this).css("max-width", maxWidth + "px");
+                    $(this).css("border-style","dashed");
+                    $(this).css("border-color","red");
+                }
+            });
+        }
+    });
+});
 
 if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
@@ -121,7 +119,7 @@ if (GetStorage('extraBBCode'))
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
-    table = document.getElementsByClassName('tablebg');
+    table = $('.tablebg');
     for (i=0; i<table.length; i++)
     {
 		if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
