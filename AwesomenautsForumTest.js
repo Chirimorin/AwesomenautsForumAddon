@@ -65,14 +65,15 @@ $('.postbody').each(function(){
     $(this).css("word-wrap","break-word");
     
     $(this).find('img').each(function(){
-        if ($(this).width() > 760)
+        var maxWidth = $(this).parent().width()-6
+        if ($(this).width() > maxWidth)
         {
-            $(this).css("max-width","760px");
+            $(this).css("max-width", maxWidth + "px");
             $(this).css("border-style","dashed");
             $(this).css("border-color","red");
             
             $(this).click(function(){
-                if ($(this).css("max-width") == "760px")
+                if ($(this).css("max-width") == maxWidth + "px")
                 {
                     $(this).css("max-width","");
                     $(this).css("border-style","");
@@ -80,7 +81,7 @@ $('.postbody').each(function(){
                 }
                 else
                 {
-                    $(this).css("max-width","760px");
+                    $(this).css("max-width", maxWidth + "px");
                     $(this).css("border-style","dashed");
                     $(this).css("border-color","red");
                 }
