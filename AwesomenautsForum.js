@@ -74,9 +74,9 @@ if (supports_local_storage()) //Local storage supported, good!
         
         if (GetStorage('version')<2.9)
         {
-            SetStorage('postMarkingMode',getStorage('markingMode')); //rename saved variable
-            SetStorage('postMarkingColor',getStorage('markingColor')); //rename saved variable
-            SetStorage('postMarkingTextColor',getStorage('markingText')); //rename saved variable
+            SetStorage('postMarkingMode',GetStorage('markingMode')); //rename saved variable
+            SetStorage('postMarkingColor',GetStorage('markingColor')); //rename saved variable
+            SetStorage('postMarkingTextColor',GetStorage('markingText')); //rename saved variable
             
             localStorage.removeItem('markingMode');
             localStorage.removeItem('markingColor');
