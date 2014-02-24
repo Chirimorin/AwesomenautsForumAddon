@@ -19,7 +19,7 @@ $('.forum-buttons').each(function(){
 
 
 //Marking users posts
-if (GetStorage('markingMode') != 0) //Do we want to mark the users posts? 
+if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
 {
 	var PostAuthors = $('.postauthor');
 	var PostBodys = $('.row-post-body');
@@ -27,15 +27,15 @@ if (GetStorage('markingMode') != 0) //Do we want to mark the users posts?
 	{
 		if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
 		{
-			if (GetStorage('markingMode') == 1) //Outline avatar. 
+			if (GetStorage('postMarkingMode') == 1) //Outline avatar. 
 			{
-				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetStorage('markingColor') + "'");
+				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetStorage('postMarkingColor') + "'");
 			}
-			if (GetStorage('markingMode') == 2) //Background color.
+			if (GetStorage('postMarkingMode') == 2) //Background color.
 			{
-				PostBodys[((i+1)*2)-2].style.background=GetStorage('markingColor');
+				PostBodys[((i+1)*2)-2].style.background=GetStorage('postMarkingColor');
 				var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
-				PostDetails[0].style.color=GetStorage('markingText');
+				PostDetails[0].style.color=GetStorage('postMarkingText');
 			}
 		}
 	}
@@ -60,8 +60,11 @@ $('.postbody').each(function(){
         if ($(this).width() > maxWidth)
         {
             $(this).css("max-width", maxWidth + "px");
-            $(this).css("border-style","dashed");
-            $(this).css("border-color","red");
+            if (GetStorage('imageMarking'))
+            {
+                $(this).css("border-style","dashed");
+                $(this).css("border-color",GetStorage('imageMarkingColor'));
+            }
             
             $(this).click(function(){
                 if ($(this).css("max-width") == maxWidth + "px")
@@ -73,8 +76,11 @@ $('.postbody').each(function(){
                 else
                 {
                     $(this).css("max-width", maxWidth + "px");
-                    $(this).css("border-style","dashed");
-                    $(this).css("border-color","red");
+                    if (GetStorage('imageMarking'))
+                    {
+                        $(this).css("border-style","dashed");
+                        $(this).css("border-color",GetStorage('imageMarkingColor'));
+                    }
                 }
             });
         }
@@ -148,6 +154,24 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"gen\">" + currentVersion +"</b>\
 								</td>\
 							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Image marking:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"imageMarkingCheck\" onchange=\"SetStorage('imageMarking',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Puts a dashed line around resized images.</span>\
+								</td>\
+							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Image marking color:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetStorage('imageMarkingColor',this.value)\" /></b><br />\
+									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
+								</td>\
+							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Settings link:</b>\
@@ -180,7 +204,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Post marking type:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><select id=\"markingModeSelect\" onchange=\"SetStorage('markingMode',this.value)\">\
+									<b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetStorage('postMarkingMode',this.value)\">\
 										<option value=\"0\">No marking</option>\
 										<option value=\"1\">Avatar outline</option>\
 										<option value=\"2\">Avatar panel background</option>\
@@ -190,19 +214,19 @@ if (window.location.href.indexOf("ucp.php") != -1)
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Post marking color</b>\
+									<b class=\"genmed\">Post marking color:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"markingColorBox\" onchange=\"SetStorage('markingColor',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetStorage('postMarkingColor',this.value)\" /></b><br />\
 									<span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
 								</td>\
 							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Post text color</b>\
+									<b class=\"genmed\">Post text color:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"markingTextBox\" onchange=\"SetStorage('markingText',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetStorage('postMarkingText',this.value)\" /></b><br />\
 									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
 								</td>\
 							</tr>\
@@ -230,12 +254,15 @@ if (window.location.href.indexOf("ucp.php") != -1)
 				");
 			
 			//Load all the saved values into the menu
+            
+            document.getElementById('imageMarkingCheck').checked = GetStorage('imageMarking');
+			document.getElementById('imageMarkingColorBox').value = GetStorage('imageMarkingColor');
 			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
-			document.getElementById('markingModeSelect').value = GetStorage('markingMode');
-			document.getElementById('markingColorBox').value = GetStorage('markingColor');
-			document.getElementById('markingTextBox').value = GetStorage('markingText');
+			document.getElementById('postMarkingModeSelect').value = GetStorage('postMarkingMode');
+			document.getElementById('postMarkingColorBox').value = GetStorage('postMarkingColor');
+			document.getElementById('postMarkingTextBox').value = GetStorage('postMarkingText');
 			document.getElementById('extraBBCodeCheck').checked = GetStorage('extraBBCode');
 			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
 		}
