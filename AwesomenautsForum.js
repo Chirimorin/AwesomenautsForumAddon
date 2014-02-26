@@ -1,3 +1,8 @@
+var jquery = document.createElement("script");
+jquery.type = "text/javascript";
+jquery.src = "http://code.jquery.com/jquery-latest.min.js";
+document.head.appendChild(jquery);
+
 function supports_local_storage() {
   try {
     return 'localStorage' in window && window['localStorage'] !== null;
@@ -109,8 +114,3 @@ else //Local storage not supported, load legacy script.
 }
 
 document.body.appendChild(script);
-
-var jquery = document.createElement("script");
-jquery.type = "text/javascript";
-jquery.src = "http://code.jquery.com/jquery-latest.min.js";
-document.body.appendChild(jquery);
