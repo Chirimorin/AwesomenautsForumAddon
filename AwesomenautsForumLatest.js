@@ -57,7 +57,7 @@ $('.postbody').each(function(){
     
     $(this).find('img').each(function(){
         var maxWidth = $(this).parent().width()-6
-        if ($(this).width() > maxWidth)
+        if ($(this).width() > $(this).parent().width())
         {
             $(this).css("max-width", maxWidth + "px");
             if (GetStorage('imageMarking'))
