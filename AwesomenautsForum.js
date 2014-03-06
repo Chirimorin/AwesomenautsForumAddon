@@ -20,6 +20,11 @@ String.prototype.insert = function (index, string)
         return string + this;
 };
 
+//Exists function for checking if the jQuery selector found something.
+$.fn.exists = function () {
+    return this.length !== 0;
+}
+
 
 //Find the banner at the top of the page
 var banner;

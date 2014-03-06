@@ -103,6 +103,28 @@ if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 	document.body.appendChild(script);
 }
 
+function embedYoutube(divID, ytVideoID, element)
+{
+    if ($("#yt-"+divID).exists())
+    {
+        if ($("#yt-"+divID).css('display') == 'none')
+        {
+            $("#yt-"+divID).slideDown();
+        }
+        else
+        {
+            $("#yt-"+divID).slideUp();
+        }
+    }
+    else
+    {
+        var embedCode = '<div id="yt-'+divID+'" class="ytembbed" style="display:none;"><iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/'+ytVideoID+'"frameborder="0" allowFullScreen></iframe></div>'
+        
+        $(element).after(embedCode);
+        
+        $("#yt-"+divID).slideDown();
+    }
+}
 
 $('a.postlink').each(function(){
     if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
@@ -122,8 +144,12 @@ $('a.postlink').each(function(){
         var match = this.href.match(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g);
         if (match !== null)
         {
-            embedCode = RegExp.$1;
-            $(this).replaceWith("<iframe width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/"+embedCode+"\" frameborder=\"0\" allowfullscreen></iframe>");
+            var ytVideoID = RegExp.$1; 
+        
+            var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
+        
+            $(this).after(" "+expandButton+" ");
+            i++;
         }
     }
 });
