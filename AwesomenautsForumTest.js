@@ -107,14 +107,9 @@ function embedYoutube(divID, ytVideoID, element)
 {
     if ($("#yt-"+divID).length !== 0)
     {
-        if ($("#yt-"+divID).css('display') == 'none')
-        {
-            $("#yt-"+divID).slideDown();
-        }
-        else
-        {
-            $("#yt-"+divID).slideUp();
-        }
+        $("#yt-"+divID).slideUp("slow", function(){
+            $(this).remove();
+        });
     }
     else
     {
@@ -122,7 +117,7 @@ function embedYoutube(divID, ytVideoID, element)
         
         $(element).after(embedCode);
         
-        $("#yt-"+divID).slideDown();
+        $("#yt-"+divID).slideDown("slow");
     }
 }
 
