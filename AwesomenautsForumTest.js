@@ -105,7 +105,7 @@ if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 
 function embedYoutube(divID, ytVideoID, element)
 {
-    if ($("#yt-"+divID).exists())
+    if ($("#yt-"+divID).length !== 0)
     {
         if ($("#yt-"+divID).css('display') == 'none')
         {
