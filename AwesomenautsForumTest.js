@@ -114,9 +114,9 @@ $('a').each(function(){
             {
                 $(this).parent().append("<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>");
             }
-        }
+        });
     }
-}
+});
 
 if (GetStorage('extraBBCode'))
 {
