@@ -107,14 +107,15 @@ if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 $('a').each(function(){
     if (GetStorage('strawpollEmbed'))
     {
-        $(this).attr('href').find(":contains('strawpoll.me/')").each(function(){        //find all strawpoll links
-            link = this.href;
+        if (this.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
+		{
+        //$(this).attr('href').find(":contains('strawpoll.me/')").each(function(){        //find all strawpoll links
             pollCode = this.href.substring(this.href.indexOf("strawpoll.me/")+13,this.href.length);
             if (pollCode.length > 0) //Did we find a poll or just a link?
             {
                 $(this).parent().append("<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>");
             }
-        });
+        }
     }
 });
 
