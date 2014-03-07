@@ -252,7 +252,8 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"HideForumsCheck\" onchange=\"SetStorage('HideForums',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Allows you to hide forums.</span>\
+									<span class=\"genmed\">Allows you to hide forums.<br />\
+                                    <a href=\"#\" onclick=\"SetStorage('hiddenForums', new Array()); return false;\">reset hidden forums</a></span>\
 								</td>\
 							</tr>\
                             <tr>\
@@ -261,7 +262,8 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"HideTopicsCheck\" onchange=\"SetStorage('HideTopics',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Allows you to hide topics.<br />&nbsp;</span>\
+									<span class=\"genmed\">Allows you to hide topics.<br />\
+                                    <a href=\"#\" onclick=\"SetStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a><br />&nbsp;</span>\
 								</td>\
 							</tr>\
 							<tr>\
