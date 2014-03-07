@@ -162,7 +162,7 @@ if (GetStorage('extraBBCode'))
 
 function showAllTopics()
 {
-    $('.topictitle').parent().parent().show("slow");
+    $('.topictitle').parent().parent().finish().show("slow");
 }
 
 function showAllForums()
@@ -170,11 +170,11 @@ function showAllForums()
     $('.forumlink').parent().parent().each(function(){
         if ($(this).is('tr')) //needed if a picture is included in the forum, like the forum homepage
         {
-            $(this).show("slow");
+            $(this).finish().show("slow");
         }
         else
         {
-            $(this).parent().show("slow");
+            $(this).parent().finish().show("slow");
         }
     });
 }
@@ -188,7 +188,7 @@ function hideHiddenTopics()
         {
             row = this.parentNode.parentNode;
         
-            $(row).hide("slow", function(){
+            $(row).finish().hide("slow", function(){
                 $(this).css('opacity', 0.5);
                 $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
             });
@@ -210,7 +210,7 @@ function hideHiddenForums()
                 row = $(row).parent();
             }
             
-            $(row).hide("slow", function(){
+            $(row).finish().hide("slow", function(){
                 $(this).css('opacity', 0.5);
                 $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
             });
@@ -225,13 +225,13 @@ function hideTopic(element)
     if (hiddenTopics[topic] == true) //Is the element hidden?
     {
         delete hiddenTopics[topic];
-        $(element).parent().animate({opacity: 1}, 500);
+        $(element).parent().finish().animate({opacity: 1}, 500);
         $(element).html("<a href=\"#\" onclick=\"return false;\">Hide</a>");
     }
     else
     {
         hiddenTopics[topic] = true;
-        $(element).parent().hide("slow", function(){
+        $(element).parent().finish().hide("slow", function(){
             $(this).css('opacity', 0.5);
             $(element).html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
         });
@@ -246,13 +246,13 @@ function hideForum(element)
     if (hiddenForums[forum] == true) //Is the element hidden?
     {
         delete hiddenForums[forum];
-        $(element).parent().animate({opacity: 1}, 500);
+        $(element).parent().finish().animate({opacity: 1}, 500);
         $(element).html("<a href=\"#\" onclick=\"return false;\">Hide</a>");
     }
     else
     {
         hiddenForums[forum] = true;
-        $(element).parent().hide("slow", function(){
+        $(element).parent().finish().hide("slow", function(){
             $(this).css('opacity', 0.5);
             $(element).html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
         });
@@ -268,16 +268,24 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     $('.row3').attr('colspan', 7);
     $('.cat').attr('colspan', 7);
     $('.cat-bottom').attr('colspan', 7);
-    $("th:contains('Last post')").after("<th>&nbsp;Hide&nbsp;</th>");
 
     //Add "hide" button to topics
     if (GetStorage('hideTopics'))
     {
+        $(".cat").find($("td[align=\"right\"")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
+            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
+        
+        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
         $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
         hideHiddenTopics();
     }
+    
+    //Add "hide" button to forums
     if (GetStorage('hideForums'))
     {
+        $('.tablebg').find($("th:contains('Forum')")).parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
         $('.forumlink').parent().parent().each(function(){
             if ($(this).is('tr')) //needed if a picture is included in the forum, like the forum homepage
             {
@@ -393,7 +401,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Hide Topics:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetStorage('hideTopics',this.checked)\" /> NOTE: no easy way to unhide yet!</b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetStorage('hideTopics',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Allows you to hide topics.<br />\
                                     <a href=\"#\" onclick=\"SetStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a><br />&nbsp;</span>\
 								</td>\
