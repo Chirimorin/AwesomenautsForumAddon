@@ -189,7 +189,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Current version:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\">" + currentVersion +"</b>\
+									<b class=\"gen\">" + currentVersion +"</b><br />&nbsp;\
 								</td>\
 							</tr>\
                             <tr>\
@@ -207,7 +207,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetStorage('imageMarkingColor',this.value)\" /></b><br />\
-									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
+									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)<br />&nbsp;</span>\
 								</td>\
 							</tr>\
 							<tr>\
@@ -216,7 +216,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetStorage('settingsLink',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
+									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.<br />&nbsp;</span>\
 								</td>\
 							</tr>\
 							<tr>\
@@ -225,7 +225,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetStorage('extraSmilies',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
+									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.<br />&nbsp;</span>\
 								</td>\
 							</tr>\
 							<tr>\
@@ -243,7 +243,25 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetStorage('youtubeEmbed',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post!</span>\
+									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post.<br />&nbsp;</span>\
+								</td>\
+							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Hide Forums:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"HideForumsCheck\" onchange=\"SetStorage('HideForums',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Allows you to hide forums.</span>\
+								</td>\
+							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Hide Topics:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"HideTopicsCheck\" onchange=\"SetStorage('HideTopics',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Allows you to hide topics.<br />&nbsp;</span>\
 								</td>\
 							</tr>\
 							<tr>\
@@ -274,7 +292,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetStorage('postMarkingText',this.value)\" /></b><br />\
-									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
+									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.<br />&nbsp;</span>\
 								</td>\
 							</tr>\
 							<tr>\
@@ -283,7 +301,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetStorage('extraBBCode',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
+									<span class=\"genmed\">Extra buttons for BBCode in posts.<br />&nbsp;</span>\
 								</td>\
 							</tr>\
 							<tr>\
