@@ -199,7 +199,7 @@ function hideHiddenTopics(animate)
             {
                 $(row).css('display', 'none');
                 $(row).css('opacity', 0.5);
-                $(row)..find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+                $(row).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
             }
         }
     });
@@ -230,7 +230,7 @@ function hideHiddenForums(animate)
             {
                 $(row).css('display', 'none');
                 $(row).css('opacity', 0.5);
-                $(row)..find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+                $(row).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
             }
             
         }
