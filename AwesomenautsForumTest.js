@@ -139,7 +139,7 @@ $('a.postlink').each(function(){
         var match = this.href.match(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g);
         if (match !== null)
         {
-            if ((match.indexOf("user/") != 0) && (match.indexOf("channel/") != 0)) //Channels should not be found
+            if ((RegExp.$1.indexOf("user/") != 0) && (RegExp.$1.indexOf("channel/") != 0)) //Channels should not be found
             {
                 var ytVideoID = RegExp.$1; 
             
