@@ -236,6 +236,15 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
 								</td>\
 							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Youtube embed button:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetStorage('youtubeEmbed',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post!</span>\
+								</td>\
+							</tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Post marking type:</b>\
@@ -297,6 +306,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
+            document.getElementById('youtubeEmbedCheck').checked = GetStorage('youtubeEmbed');
 			document.getElementById('postMarkingModeSelect').value = GetStorage('postMarkingMode');
 			document.getElementById('postMarkingColorBox').value = GetStorage('postMarkingColor');
 			document.getElementById('postMarkingTextBox').value = GetStorage('postMarkingText');
