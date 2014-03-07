@@ -251,7 +251,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Hide Forums:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetStorage('HideForums',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetStorage('hideForums',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Allows you to hide forums.<br />\
                                     <a href=\"#\" onclick=\"SetStorage('hiddenForums', new Array()); return false;\">reset hidden forums</a></span>\
 								</td>\
@@ -261,7 +261,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Hide Topics:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetStorage('HideTopics',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetStorage('hideTopics',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Allows you to hide topics.<br />\
                                     <a href=\"#\" onclick=\"SetStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a><br />&nbsp;</span>\
 								</td>\
