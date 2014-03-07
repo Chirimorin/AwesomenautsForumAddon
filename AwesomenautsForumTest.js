@@ -284,6 +284,18 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     //Add "hide" button to forums
     if (GetStorage('hideForums'))
     {
+        $('.tablebg').find($("th:contains('Forum')")).parent().parent().prepend("<tr>\
+                <td class=\"cat\" colspan=\"7\">\
+                    <table width=\"100%\" cellspacing=\"0\">\
+                        <tbody><tr class=\"nav\">\
+                            <td valign=\"middle\">&nbsp;</td>\
+                            <td align=\"right\" class=\"hideAllForumsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenForums(); $('.hideAllForumsButton').finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden forums</a></td>\
+                            <td align=\"right\"><a href=\"#\" onclick=\"showAllForums(); $('.hideAllForumsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden forums</a></td>\
+                        </tr></tbody>\
+                    </table>\
+                </td>\
+            </tr>");
+        
         $('.tablebg').find($("th:contains('Forum')")).parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
         
         $('.forumlink').parent().parent().each(function(){
@@ -391,7 +403,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Hide Forums:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetStorage('hideForums',this.checked)\" /> NOTE: no easy way to unhide yet! Reset before use.</b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetStorage('hideForums',this.checked)\" /> NOTE: Reset before use.</b><br />\
 									<span class=\"genmed\">Allows you to hide forums.<br />\
                                     <a href=\"#\" onclick=\"SetStorage('hiddenForums', new Array()); return false;\">reset hidden forums</a></span>\
 								</td>\
