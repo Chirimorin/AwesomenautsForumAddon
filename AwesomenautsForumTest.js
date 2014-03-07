@@ -179,7 +179,7 @@ function showAllForums()
     });
 }
 
-function hideHiddenTopics()
+function hideHiddenTopics(animate)
 {
     var hiddenTopics = GetStorage('hiddenTopics');
     $('.topictitle').each(function(){
@@ -187,16 +187,25 @@ function hideHiddenTopics()
         if (hiddenTopics[topic] == true) //should the element be Hidden?
         {
             row = this.parentNode.parentNode;
-        
-            $(row).finish().hide("slow", function(){
-                $(this).css('opacity', 0.5);
-                $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
-            });
+            
+            if (animate)
+            {
+                $(row).finish().hide("slow", function(){
+                    $(this).css('opacity', 0.5);
+                    $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+                });
+            }
+            else
+            {
+                $(row).css('display', 'none');
+                $(row).css('opacity', 0.5);
+                $(row)..find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+            }
         }
     });
 }
 
-function hideHiddenForums()
+function hideHiddenForums(animate)
 {
     var hiddenForums = GetStorage('hiddenForums');
     $('.forumlink').each(function(){
@@ -210,10 +219,20 @@ function hideHiddenForums()
                 row = $(row).parent();
             }
             
-            $(row).finish().hide("slow", function(){
-                $(this).css('opacity', 0.5);
-                $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
-            });
+            if (animate)
+            {
+                $(row).finish().hide("slow", function(){
+                    $(this).css('opacity', 0.5);
+                    $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+                });
+            }
+            else
+            {
+                $(row).css('display', 'none');
+                $(row).css('opacity', 0.5);
+                $(row)..find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+            }
+            
         }
     });
 }
@@ -272,13 +291,13 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     //Add "hide" button to topics
     if (GetStorage('hideTopics'))
     {
-        $(".cat").find($("td[align=\"right\"")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
+        $(".cat").find($("td[align=\"right\"")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
             <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
         
         $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
         
         $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
-        hideHiddenTopics();
+        hideHiddenTopics(false);
     }
     
     //Add "hide" button to forums
@@ -289,7 +308,7 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
                     <table width=\"100%\" cellspacing=\"0\">\
                         <tbody><tr class=\"nav\">\
                             <td valign=\"middle\">&nbsp;</td>\
-                            <td align=\"right\" class=\"hideAllForumsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenForums(); $('.hideAllForumsButton').finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden forums</a></td>\
+                            <td align=\"right\" class=\"hideAllForumsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenForums(true); $('.hideAllForumsButton').finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden forums</a></td>\
                             <td align=\"right\"><a href=\"#\" onclick=\"showAllForums(); $('.hideAllForumsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden forums</a></td>\
                         </tr></tbody>\
                     </table>\
@@ -308,7 +327,7 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
                 $(this).parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideForum(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
             }
         });
-        hideHiddenForums();
+        hideHiddenForums(false);
     }
 
 }
