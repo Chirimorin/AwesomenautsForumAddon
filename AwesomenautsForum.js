@@ -95,6 +95,10 @@ if (supports_local_storage()) //Local storage supported, good!
         if (GetStorage('version')<3.0)
         {
             SetStorage('youtubeEmbed',true); //Adds embed button to all youtube videos
+            SetStorage('hideTopics', true); //Allows the hiding of specific topics
+            SetStorage('hiddenTopics', new Array()); //An array containing all hidden topics
+            SetStorage('hideForums', true); //Allows the hiding of specific forums
+            SetStorage('hiddenForums', new Array()); //An array containing all hidden forums
         }
 		
 		SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
