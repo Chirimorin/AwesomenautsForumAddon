@@ -121,6 +121,7 @@ function embedYoutube(divID, ytVideoID, element)
     }
 }
 
+i = 0;
 $('a.postlink').each(function(){
     if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
     {
@@ -136,18 +137,15 @@ $('a.postlink').each(function(){
     
     if (GetStorage('youtubeEmbed')) //Youtube link embedding
     {
-        var match = this.href.match(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g);
-        if (match !== null)
-        {
-            if ((RegExp.$1.indexOf("user/") != 0) && (RegExp.$1.indexOf("channel/") != 0)) //Channels should not be found
-            {
-                var ytVideoID = RegExp.$1; 
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = this.href.match(regExp);
+        if (match&&match[2].length==11){
+            var ytVideoID = match[2]; 
             
-                var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
+            var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
             
-                $(this).after(" "+expandButton+" ");
-                i++;
-            }
+            $(this).after(" "+expandButton+" ");
+            i++;
         }
     }
 });
