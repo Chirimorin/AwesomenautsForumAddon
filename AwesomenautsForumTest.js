@@ -139,12 +139,15 @@ $('a.postlink').each(function(){
         var match = this.href.match(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g);
         if (match !== null)
         {
-            var ytVideoID = RegExp.$1; 
-        
-            var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
-        
-            $(this).after(" "+expandButton+" ");
-            i++;
+            if ((match.indexOf("user/") != 0) && (match.indexOf("channel/") != 0)) //Channels should not be found
+            {
+                var ytVideoID = RegExp.$1; 
+            
+                var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
+            
+                $(this).after(" "+expandButton+" ");
+                i++;
+            }
         }
     }
 });
