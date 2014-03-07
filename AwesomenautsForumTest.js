@@ -134,7 +134,7 @@ $('a.postlink').each(function(){
         }
     }
     
-    if (true) //Youtube link testing
+    if (GetStorage('youtubeEmbed')) //Youtube link testing
     {
         var match = this.href.match(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g);
         if (match !== null)
