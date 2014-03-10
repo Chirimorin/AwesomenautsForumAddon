@@ -528,20 +528,20 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			
 			//Load all the saved values into the menu
             
-            document.getElementById('imageMarkingCheck').checked = GetStorage('imageMarking');
-			document.getElementById('imageMarkingColorBox').value = GetStorage('imageMarkingColor');
-			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
-			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
-			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
-            document.getElementById('youtubeEmbedCheck').checked = GetStorage('youtubeEmbed');
-            document.getElementById('magnifyTextCheck').checked = GetStorage('magnifyText');
-            document.getElementById('hideForumsCheck').checked = GetStorage('hideForums');
-            document.getElementById('hideTopicsCheck').checked = GetStorage('hideTopics');
-			document.getElementById('postMarkingModeSelect').value = GetStorage('postMarkingMode');
-			document.getElementById('postMarkingColorBox').value = GetStorage('postMarkingColor');
-			document.getElementById('postMarkingTextBox').value = GetStorage('postMarkingText');
-			document.getElementById('extraBBCodeCheck').checked = GetStorage('extraBBCode');
-			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
+            $('#imageMarkingCheck').checked = GetStorage('imageMarking');
+			$('#imageMarkingColorBox').value = GetStorage('imageMarkingColor');
+			$('#settingsLinkCheck').checked = GetStorage('settingsLink');
+			$('#extraSmiliesCheck').checked = GetStorage('extraSmilies');
+			$('#strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
+            $('#youtubeEmbedCheck').checked = GetStorage('youtubeEmbed');
+            $('#magnifyTextCheck').checked = GetStorage('magnifyText');
+            $('#hideForumsCheck').checked = GetStorage('hideForums');
+            $('#hideTopicsCheck').checked = GetStorage('hideTopics');
+			$('#postMarkingModeSelect').value = GetStorage('postMarkingMode');
+			$('#postMarkingColorBox').value = GetStorage('postMarkingColor');
+			$('#postMarkingTextBox').value = GetStorage('postMarkingText');
+			$('#extraBBCodeCheck').checked = GetStorage('extraBBCode');
+			$('#testScriptCheck').checked = GetStorage('testScript');
 		}
 	}
 }

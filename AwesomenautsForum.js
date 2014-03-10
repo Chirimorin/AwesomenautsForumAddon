@@ -99,6 +99,7 @@ if (supports_local_storage()) //Local storage supported, good!
             SetStorage('hiddenTopics', new Array()); //An array containing all hidden topics
             SetStorage('hideForums', true); //Allows the hiding of specific forums
             SetStorage('hiddenForums', new Array()); //An array containing all hidden forums
+            SetStorage('magnifyText', true); //Magnifies tiny text when hovering over it
         }
 		
 		SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
