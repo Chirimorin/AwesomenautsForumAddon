@@ -329,8 +329,25 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
         });
         hideHiddenForums(false);
     }
-
 }
+
+if (GetStorage('magnifyText'))
+{
+    $("span").filter(function() {
+        return (parseInt($(this).css('fontSize')) < 10);
+    }).each(function(){
+        $(this).data('original-size', $(this).css('font-size'));
+        
+        $(this).hover(function(){
+            $(this).css('font-size', "100%");
+        },
+        function()
+        {
+            $(this).css('font-size', $(this).data('original-size'));
+        });
+    });
+}
+
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
@@ -360,9 +377,10 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Current version:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\">" + currentVersion +"</b><br />&nbsp;\
+									<b class=\"gen\">" + currentVersion +"</b>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
                             <tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Image marking:</b>\
@@ -378,27 +396,30 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetStorage('imageMarkingColor',this.value)\" /></b><br />\
-									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)<br />&nbsp;</span>\
+									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Settings link:</b>\
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetStorage('settingsLink',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.<br />&nbsp;</span>\
+									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Extra smilies:</b>\
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetStorage('extraSmilies',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.<br />&nbsp;</span>\
+									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
@@ -414,9 +435,20 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetStorage('youtubeEmbed',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post.<br />&nbsp;</span>\
+									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Magnify text:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"magnifyTextCheck\" onchange=\"SetStorage('magnifyText',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Magnifies tiny text when you mouse over it.</span>\
+								</td>\
+							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
                             <tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Hide Forums:</b>\
@@ -434,9 +466,10 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetStorage('hideTopics',this.checked)\" /> NOTE: Reset before use.</b><br />\
 									<span class=\"genmed\">Allows you to hide topics.<br />\
-                                    <a href=\"#\" onclick=\"SetStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a><br />&nbsp;</span>\
+                                    <a href=\"#\" onclick=\"SetStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a></span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Post marking type:</b>\
@@ -465,18 +498,20 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetStorage('postMarkingText',this.value)\" /></b><br />\
-									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.<br />&nbsp;</span>\
+									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Extra BB code buttons:</b>\
 								</td>\
 								<td width=\"100%\">\
 									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetStorage('extraBBCode',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Extra buttons for BBCode in posts.<br />&nbsp;</span>\
+									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Use test script:</b>\
@@ -499,6 +534,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
 			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
             document.getElementById('youtubeEmbedCheck').checked = GetStorage('youtubeEmbed');
+            document.getElementById('magnifyTextCheck').checked = GetStorage('magnifyText');
             document.getElementById('hideForumsCheck').checked = GetStorage('hideForums');
             document.getElementById('hideTopicsCheck').checked = GetStorage('hideTopics');
 			document.getElementById('postMarkingModeSelect').value = GetStorage('postMarkingMode');
