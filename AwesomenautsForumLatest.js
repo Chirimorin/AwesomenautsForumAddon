@@ -1,3 +1,149 @@
+//Function definitions
+function showAllTopics()
+{
+    $('.topictitle').parent().parent().finish().show("slow");
+}
+
+function showAllForums()
+{
+    $('.forumlink').parent().parent().each(function(){
+        if ($(this).is('tr')) //needed if a picture is included in the forum, like the forum homepage
+        {
+            $(this).finish().show("slow");
+        }
+        else
+        {
+            $(this).parent().finish().show("slow");
+        }
+    });
+}
+
+function hideHiddenTopics(animate)
+{
+    var hiddenTopics = GetStorage('hiddenTopics');
+    $('.topictitle').each(function(){
+        var topic = this.href.split("&t=")[1];
+        if (hiddenTopics[topic] == true) //should the element be Hidden?
+        {
+            row = this.parentNode.parentNode;
+            
+            if (animate)
+            {
+                $(row).finish().hide("slow", function(){
+                    $(this).css('opacity', 0.5);
+                    $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+                });
+            }
+            else
+            {
+                $(row).css({
+                    'display': 'none',
+                    'opacity': 0.5
+                });
+                $(row).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+            }
+        }
+    });
+}
+
+function hideHiddenForums(animate)
+{
+    var hiddenForums = GetStorage('hiddenForums');
+    $('.forumlink').each(function(){
+        var forum = this.href.split("?f=")[1];
+        if (hiddenForums[forum] == true) //should the element be Hidden?
+        {
+            row = this.parentNode.parentNode;
+            
+            if (!($(row).is('tr')))
+            {
+                row = $(row).parent();
+            }
+            
+            if (animate)
+            {
+                $(row).finish().hide("slow", function(){
+                    $(this).css('opacity', 0.5);
+                    $(this).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+                });
+            }
+            else
+            {
+                $(row).css({
+                    'display': 'none',
+                    'opacity': 0.5
+                });
+                $(row).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+            }
+            
+        }
+    });
+}
+
+function hideTopic(element)
+{
+    var hiddenTopics = GetStorage('hiddenTopics');
+    var topic = element.parentNode.getElementsByClassName('topictitle')[0].href.split("&t=")[1];
+    if (hiddenTopics[topic] == true) //Is the element hidden?
+    {
+        delete hiddenTopics[topic];
+        $(element).parent().finish().animate({opacity: 1}, 500);
+        $(element).html("<a href=\"#\" onclick=\"return false;\">Hide</a>");
+    }
+    else
+    {
+        hiddenTopics[topic] = true;
+        $(element).parent().finish().hide("slow", function(){
+            $(this).css('opacity', 0.5);
+            $(element).html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+        });
+    }
+    SetStorage('hiddenTopics',hiddenTopics);
+}
+
+function hideForum(element)
+{
+    var hiddenForums = GetStorage('hiddenForums');
+    var forum = element.parentNode.getElementsByClassName('forumlink')[0].href.split("?f=")[1];
+    if (hiddenForums[forum] == true) //Is the element hidden?
+    {
+        delete hiddenForums[forum];
+        $(element).parent().finish().animate({opacity: 1}, 500);
+        $(element).html("<a href=\"#\" onclick=\"return false;\">Hide</a>");
+    }
+    else
+    {
+        hiddenForums[forum] = true;
+        $(element).parent().finish().hide("slow", function(){
+            $(this).css('opacity', 0.5);
+            $(element).html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
+        });
+    }
+    SetStorage('hiddenForums',hiddenForums);
+}
+
+function embedYoutube(divID, ytVideoID, element)
+{
+    if ($("#yt-"+divID).length !== 0)
+    {
+        $("#yt-"+divID).slideUp("slow", function(){
+            $(this).remove();
+        });
+    }
+    else
+    {
+        var embedCode = '<div id="yt-'+divID+'" class="ytembbed" style="display:none;"><iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/'+ytVideoID+'"frameborder="0" allowFullScreen></iframe></div>'
+        
+        $(element).after(embedCode);
+        
+        $("#yt-"+divID).slideDown("slow");
+    }
+}
+
+
+//Functionality starts here
+$(document).ready(function(){ //run after page fully loaded
+
 //Menu edit + find username
 var UserName;
 $('.forum-buttons').each(function(){
@@ -52,8 +198,10 @@ for (i=0; i<allClickables.length; i++)
 
 //Fix oversized images and mark them
 $('.postbody').each(function(){
-    $(this).css("max-width","764px");
-    $(this).css("word-wrap","break-word");
+    $(this).css({
+        "max-width": "764px",
+        "word-wrap": "break-word"
+    });
     
     $(this).find('img').each(function(){
         var maxWidth = $(this).parent().width()-6
@@ -62,24 +210,29 @@ $('.postbody').each(function(){
             $(this).css("max-width", maxWidth + "px");
             if (GetStorage('imageMarking'))
             {
-                $(this).css("border-style","dashed");
-                $(this).css("border-color",GetStorage('imageMarkingColor'));
+                $(this).css({"border-style": "dashed",
+                            "border-color": GetStorage('imageMarkingColor')
+                            });
             }
             
             $(this).click(function(){
                 if ($(this).css("max-width") == maxWidth + "px")
                 {
-                    $(this).css("max-width","");
-                    $(this).css("border-style","");
-                    $(this).css("border-color","");
+                    $(this).css({
+                        "max-width": "",
+                        "border-style": "",
+                        "border-color": ""
+                    });
                 }
                 else
                 {
                     $(this).css("max-width", maxWidth + "px");
                     if (GetStorage('imageMarking'))
                     {
-                        $(this).css("border-style","dashed");
-                        $(this).css("border-color",GetStorage('imageMarkingColor'));
+                        $(this).css({
+                            "border-style": "dashed",
+                            "border-color": GetStorage('imageMarkingColor')
+                        });
                     }
                 }
             });
@@ -95,22 +248,34 @@ if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 	document.body.appendChild(script);
 }
 
-if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
-{
-	var links = document.links;
-	for (var i=0; i < links.length; i++)
-	{ 
-		var thisLink = links[i]
-		if (thisLink.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
+i = 0;
+$('a.postlink').each(function(){
+    if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
+    {
+        if (this.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
 		{
-			pollCode = thisLink.href.substring(thisLink.href.indexOf("strawpoll.me/")+13,thisLink.href.length);
-			if (pollCode.length > 0) //Did we find a poll or just a link?
-			{
-				thisLink.parentNode.innerHTML += "<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>";
-			}
-		}
-	}
-}
+            pollCode = this.href.substring(this.href.indexOf("strawpoll.me/")+13,this.href.length);
+            if (pollCode.length > 0) //Did we find a poll or just a link?
+            {
+                $(this).parent().append("<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>");
+            }
+        }
+    }
+    
+    if (GetStorage('youtubeEmbed')) //Youtube link embedding
+    {
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = this.href.match(regExp);
+        if (match&&match[2].length==11){
+            var ytVideoID = match[2]; 
+            
+            var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
+            
+            $(this).after(" "+expandButton+" ");
+            i++;
+        }
+    }
+});
 
 if (GetStorage('extraBBCode'))
 {
@@ -120,6 +285,73 @@ if (GetStorage('extraBBCode'))
 		var table = document.getElementsByName('addbbcode22')[0].parentNode;
 		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
 	}
+}
+
+if (GetStorage('hideForums') || GetStorage('hideTopics'))
+{
+    //Fix table layout to fit the extra elements
+    $('.row3').attr('colspan', 7);
+    $('.cat').attr('colspan', 7);
+    $('.cat-bottom').attr('colspan', 7);
+
+    //Add "hide" button to topics
+    if (GetStorage('hideTopics'))
+    {
+        $(".cat").find($("td[align=\"right\"")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
+            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
+        
+        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
+        $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+        hideHiddenTopics(false);
+    }
+    
+    //Add "hide" button to forums
+    if (GetStorage('hideForums'))
+    {
+        $('.tablebg').find($("th:contains('Forum')")).parent().parent().prepend("<tr>\
+                <td class=\"cat\" colspan=\"7\">\
+                    <table width=\"100%\" cellspacing=\"0\">\
+                        <tbody><tr class=\"nav\">\
+                            <td valign=\"middle\">&nbsp;</td>\
+                            <td align=\"right\" class=\"hideAllForumsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenForums(true); $('.hideAllForumsButton').finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden forums</a></td>\
+                            <td align=\"right\"><a href=\"#\" onclick=\"showAllForums(); $('.hideAllForumsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden forums</a></td>\
+                        </tr></tbody>\
+                    </table>\
+                </td>\
+            </tr>");
+        
+        $('.tablebg').find($("th:contains('Forum')")).parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
+        $('.forumlink').parent().parent().each(function(){
+            if ($(this).is('tr')) //needed if a picture is included in the forum, like the forum homepage
+            {
+                $(this).append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideForum(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+            }
+            else
+            {
+                $(this).parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideForum(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+            }
+        });
+        hideHiddenForums(false);
+    }
+}
+
+if (GetStorage('magnifyText'))
+{
+    $("span").filter(function() {
+        return (parseInt($(this).css('fontSize')) < 10);
+    }).each(function(){
+        $(this).data('original-size', $(this).css('font-size'));
+        
+        $(this).hover(function(){
+            $(this).css('font-size', "100%");
+        },
+        function()
+        {
+            $(this).css('font-size', $(this).data('original-size'));
+        });
+    });
 }
 
 //Options menu
@@ -154,6 +386,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"gen\">" + currentVersion +"</b>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
                             <tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Image marking:</b>\
@@ -172,6 +405,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Settings link:</b>\
@@ -181,6 +415,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Extra smilies:</b>\
@@ -190,6 +425,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
@@ -199,6 +435,47 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
 								</td>\
 							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Youtube embed button:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetStorage('youtubeEmbed',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post.</span>\
+								</td>\
+							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Magnify text:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"magnifyTextCheck\" onchange=\"SetStorage('magnifyText',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Magnifies tiny text when you mouse over it.</span>\
+								</td>\
+							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Hide Forums:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetStorage('hideForums',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Allows you to hide forums.<br />\
+                                    <a href=\"#\" onclick=\"SetStorage('hiddenForums', new Array()); return false;\">reset hidden forums</a></span>\
+								</td>\
+							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Hide Topics:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetStorage('hideTopics',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Allows you to hide topics.<br />\
+                                    <a href=\"#\" onclick=\"SetStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a></span>\
+								</td>\
+							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Post marking type:</b>\
@@ -230,6 +507,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Extra BB code buttons:</b>\
@@ -239,6 +517,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
 								</td>\
 							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Use test script:</b>\
@@ -255,17 +534,23 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			
 			//Load all the saved values into the menu
             
-            document.getElementById('imageMarkingCheck').checked = GetStorage('imageMarking');
-			document.getElementById('imageMarkingColorBox').value = GetStorage('imageMarkingColor');
-			document.getElementById('settingsLinkCheck').checked = GetStorage('settingsLink');
-			document.getElementById('extraSmiliesCheck').checked = GetStorage('extraSmilies');
-			document.getElementById('strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
-			document.getElementById('postMarkingModeSelect').value = GetStorage('postMarkingMode');
-			document.getElementById('postMarkingColorBox').value = GetStorage('postMarkingColor');
-			document.getElementById('postMarkingTextBox').value = GetStorage('postMarkingText');
-			document.getElementById('extraBBCodeCheck').checked = GetStorage('extraBBCode');
-			document.getElementById('testScriptCheck').checked = GetStorage('testScript');
+            $('#imageMarkingCheck').attr('checked', GetStorage('imageMarking'));
+			$('#imageMarkingColorBox').attr('value', GetStorage('imageMarkingColor'));
+			$('#settingsLinkCheck').attr('checked', GetStorage('settingsLink'));
+			$('#extraSmiliesCheck').attr('checked', GetStorage('extraSmilies'));
+			$('#strawpollEmbedCheck').attr('checked', GetStorage('strawpollEmbed'));
+            $('#youtubeEmbedCheck').attr('checked', GetStorage('youtubeEmbed'));
+            $('#magnifyTextCheck').attr('checked', GetStorage('magnifyText'));
+            $('#hideForumsCheck').attr('checked', GetStorage('hideForums'));
+            $('#hideTopicsCheck').attr('checked', GetStorage('hideTopics'));
+			$('#postMarkingModeSelect').attr('value', GetStorage('postMarkingMode'));
+			$('#postMarkingColorBox').attr('value', GetStorage('postMarkingColor'));
+			$('#postMarkingTextBox').attr('value', GetStorage('postMarkingText'));
+			$('#extraBBCodeCheck').attr('checked', GetStorage('extraBBCode'));
+			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
 		}
 	}
 }
+
+}); //document ready
 

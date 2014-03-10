@@ -1,3 +1,9 @@
+v3.0
+* New: Embed youtube videos. 
+* New: Hide forums and Topics. 
+* New: Magnify tiny text.
+* Changed: Script now waits until the page is fully loaded.
+
 v2.9
 * New: Don't like the dashed line around images? There's a setting for that!
 
