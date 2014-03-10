@@ -297,7 +297,7 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     //Add "hide" button to topics
     if (GetStorage('hideTopics'))
     {
-        $(".cat").find($("td[align=\"right\"")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
+        $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
             <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
         
         $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
