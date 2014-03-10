@@ -44,9 +44,10 @@ function hideHiddenTopics(animate)
             }
             else
             {
-                $(row).css({'display': 'none',
-                            'opacity': 0.5
-                            });
+                $(row).css({
+                    'display': 'none',
+                    'opacity': 0.5
+                });
                 $(row).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
             }
         }
@@ -76,9 +77,10 @@ function hideHiddenForums(animate)
             }
             else
             {
-                $(row).css({'display': 'none',
-                            'opacity': 0.5
-                            });
+                $(row).css({
+                    'display': 'none',
+                    'opacity': 0.5
+                });
                 $(row).find('.hidebutton').html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
             }
             
@@ -203,9 +205,10 @@ for (i=0; i<allClickables.length; i++)
 
 //Fix oversized images and mark them
 $('.postbody').each(function(){
-    $(this).css("max-width": "764px",
-                "word-wrap": "break-word"
-                });
+    $(this).css({
+        "max-width": "764px",
+        "word-wrap": "break-word"
+    });
     
     $(this).find('img').each(function(){
         var maxWidth = $(this).parent().width()-6
@@ -222,19 +225,21 @@ $('.postbody').each(function(){
             $(this).click(function(){
                 if ($(this).css("max-width") == maxWidth + "px")
                 {
-                    $(this).css({"max-width": "",
-                                "border-style": "",
-                                "border-color": ""
-                                });
+                    $(this).css({
+                        "max-width": "",
+                        "border-style": "",
+                        "border-color": ""
+                    });
                 }
                 else
                 {
                     $(this).css("max-width", maxWidth + "px");
                     if (GetStorage('imageMarking'))
                     {
-                        $(this).css("border-style": "dashed",
-                                    "border-color": GetStorage('imageMarkingColor')
-                                    });
+                        $(this).css({
+                            "border-style": "dashed",
+                            "border-color": GetStorage('imageMarkingColor')
+                        });
                     }
                 }
             });
