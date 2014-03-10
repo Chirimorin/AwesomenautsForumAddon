@@ -528,20 +528,20 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			
 			//Load all the saved values into the menu
             
-            $('#imageMarkingCheck').checked = GetStorage('imageMarking');
-			$('#imageMarkingColorBox').value = GetStorage('imageMarkingColor');
-			$('#settingsLinkCheck').checked = GetStorage('settingsLink');
-			$('#extraSmiliesCheck').checked = GetStorage('extraSmilies');
-			$('#strawpollEmbedCheck').checked = GetStorage('strawpollEmbed');
-            $('#youtubeEmbedCheck').checked = GetStorage('youtubeEmbed');
-            $('#magnifyTextCheck').checked = GetStorage('magnifyText');
-            $('#hideForumsCheck').checked = GetStorage('hideForums');
-            $('#hideTopicsCheck').checked = GetStorage('hideTopics');
-			$('#postMarkingModeSelect').value = GetStorage('postMarkingMode');
-			$('#postMarkingColorBox').value = GetStorage('postMarkingColor');
-			$('#postMarkingTextBox').value = GetStorage('postMarkingText');
-			$('#extraBBCodeCheck').checked = GetStorage('extraBBCode');
-			$('#testScriptCheck').checked = GetStorage('testScript');
+            $('#imageMarkingCheck').attr('checked', GetStorage('imageMarking'));
+			$('#imageMarkingColorBox').attr('value', GetStorage('imageMarkingColor'));
+			$('#settingsLinkCheck').attr('checked', GetStorage('settingsLink'));
+			$('#extraSmiliesCheck').attr('checked', GetStorage('extraSmilies'));
+			$('#strawpollEmbedCheck').attr('checked', GetStorage('strawpollEmbed'));
+            $('#youtubeEmbedCheck').attr('checked', GetStorage('youtubeEmbed'));
+            $('#magnifyTextCheck').attr('checked', GetStorage('magnifyText'));
+            $('#hideForumsCheck').attr('checked', GetStorage('hideForums'));
+            $('#hideTopicsCheck').attr('checked', GetStorage('hideTopics'));
+			$('#postMarkingModeSelect').attr('value', GetStorage('postMarkingMode'));
+			$('#postMarkingColorBox').attr('value', GetStorage('postMarkingColor'));
+			$('#postMarkingTextBox').attr('value', GetStorage('postMarkingText'));
+			$('#extraBBCodeCheck').attr('checked', GetStorage('extraBBCode'));
+			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
 		}
 	}
 }
