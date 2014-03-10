@@ -548,5 +548,5 @@ if (window.location.href.indexOf("ucp.php") != -1)
 	}
 }
 
-}; //document ready
+}); //document ready
 
