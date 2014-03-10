@@ -1,3 +1,6 @@
+v3.01
+* Fix: Script should now work properly on Opera and Firefox.
+
 v3.0
 * New: Embed youtube videos. 
 * New: Hide forums and Topics. 
