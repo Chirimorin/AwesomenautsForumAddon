@@ -6,6 +6,8 @@
 
 //Test functionality starts here
 
+$(document).ready(function(){ //run after page fully loaded
+
 //Menu edit + find username
 var UserName;
 $('.forum-buttons').each(function(){
@@ -545,4 +547,6 @@ if (window.location.href.indexOf("ucp.php") != -1)
 		}
 	}
 }
+
+}; //document ready
 
