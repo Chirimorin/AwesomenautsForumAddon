@@ -6,162 +6,7 @@
 
 //Test functionality starts here
 
-$(document).ready(function(){ //run after page fully loaded
-
-//Menu edit + find username
-var UserName;
-$('.forum-buttons').each(function(){
-    //Find the username of the person who is logged in.
-    //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
-    UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
-    
-    if (GetStorage('settingsLink'))
-    {
-        var html = $(this).html();
-        $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
-        $(this).css("background-size", "1px 40px");
-	}
-	else //white line in menu fix
-	{
-        $(this).css("background-size", "1px 30px");
-	}
-});
-
-
-//Marking users posts
-if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
-{
-	var PostAuthors = $('.postauthor');
-	var PostBodys = $('.row-post-body');
-	for (i=0; i<PostAuthors.length; i++)
-	{
-		if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
-		{
-			if (GetStorage('postMarkingMode') == 1) //Outline avatar. 
-			{
-				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetStorage('postMarkingColor') + "'");
-			}
-			if (GetStorage('postMarkingMode') == 2) //Background color.
-			{
-				PostBodys[((i+1)*2)-2].style.background=GetStorage('postMarkingColor');
-				var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
-				PostDetails[0].style.color=GetStorage('postMarkingText');
-			}
-		}
-	}
-}
-
-//new tab fix
-var allClickables = $('.row1.clickable');
-for (i=0; i<allClickables.length; i++)
-{
-    var onclick = $(allClickables[i]).attr("onclick");
-    $(allClickables[i]).attr("onclick", "if (event.button == 0 && event.ctrlKey == false) " + onclick);
-}
-
-
-//Fix oversized images and mark them
-$('.postbody').each(function(){
-    $(this).css("max-width","764px");
-    $(this).css("word-wrap","break-word");
-    
-    $(this).find('img').each(function(){
-        var maxWidth = $(this).parent().width()-6
-        if ($(this).width() > $(this).parent().width())
-        {
-            $(this).css("max-width", maxWidth + "px");
-            if (GetStorage('imageMarking'))
-            {
-                $(this).css("border-style","dashed");
-                $(this).css("border-color",GetStorage('imageMarkingColor'));
-            }
-            
-            $(this).click(function(){
-                if ($(this).css("max-width") == maxWidth + "px")
-                {
-                    $(this).css("max-width","");
-                    $(this).css("border-style","");
-                    $(this).css("border-color","");
-                }
-                else
-                {
-                    $(this).css("max-width", maxWidth + "px");
-                    if (GetStorage('imageMarking'))
-                    {
-                        $(this).css("border-style","dashed");
-                        $(this).css("border-color",GetStorage('imageMarkingColor'));
-                    }
-                }
-            });
-        }
-    });
-});
-
-if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
-{
-	var script = document.createElement("script");
-	script.type = "text/javascript";
-	script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
-	document.body.appendChild(script);
-}
-
-function embedYoutube(divID, ytVideoID, element)
-{
-    if ($("#yt-"+divID).length !== 0)
-    {
-        $("#yt-"+divID).slideUp("slow", function(){
-            $(this).remove();
-        });
-    }
-    else
-    {
-        var embedCode = '<div id="yt-'+divID+'" class="ytembbed" style="display:none;"><iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/'+ytVideoID+'"frameborder="0" allowFullScreen></iframe></div>'
-        
-        $(element).after(embedCode);
-        
-        $("#yt-"+divID).slideDown("slow");
-    }
-}
-
-i = 0;
-$('a.postlink').each(function(){
-    if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
-    {
-        if (this.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
-		{
-            pollCode = this.href.substring(this.href.indexOf("strawpoll.me/")+13,this.href.length);
-            if (pollCode.length > 0) //Did we find a poll or just a link?
-            {
-                $(this).parent().append("<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>");
-            }
-        }
-    }
-    
-    if (GetStorage('youtubeEmbed')) //Youtube link embedding
-    {
-        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        var match = this.href.match(regExp);
-        if (match&&match[2].length==11){
-            var ytVideoID = match[2]; 
-            
-            var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
-            
-            $(this).after(" "+expandButton+" ");
-            i++;
-        }
-    }
-});
-
-if (GetStorage('extraBBCode'))
-{
-	if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
-	{
-		help_line['trans'] = 'Makes text transparent';
-		var table = document.getElementsByName('addbbcode22')[0].parentNode;
-		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
-	}
-}
-
+//Function definitions
 function showAllTopics()
 {
     $('.topictitle').parent().parent().finish().show("slow");
@@ -281,7 +126,162 @@ function hideForum(element)
     SetStorage('hiddenForums',hiddenForums);
 }
 
+function embedYoutube(divID, ytVideoID, element)
+{
+    if ($("#yt-"+divID).length !== 0)
+    {
+        $("#yt-"+divID).slideUp("slow", function(){
+            $(this).remove();
+        });
+    }
+    else
+    {
+        var embedCode = '<div id="yt-'+divID+'" class="ytembbed" style="display:none;"><iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/'+ytVideoID+'"frameborder="0" allowFullScreen></iframe></div>'
+        
+        $(element).after(embedCode);
+        
+        $("#yt-"+divID).slideDown("slow");
+    }
+}
 
+
+$(document).ready(function(){ //run after page fully loaded
+
+//Menu edit + find username
+var UserName;
+$('.forum-buttons').each(function(){
+    //Find the username of the person who is logged in.
+    //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
+    UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
+    
+    if (GetStorage('settingsLink'))
+    {
+        var html = $(this).html();
+        $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
+        $(this).css("background-size", "1px 40px");
+	}
+	else //white line in menu fix
+	{
+        $(this).css("background-size", "1px 30px");
+	}
+});
+
+
+//Marking users posts
+if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
+{
+	var PostAuthors = $('.postauthor');
+	var PostBodys = $('.row-post-body');
+	for (i=0; i<PostAuthors.length; i++)
+	{
+		if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
+		{
+			if (GetStorage('postMarkingMode') == 1) //Outline avatar. 
+			{
+				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetStorage('postMarkingColor') + "'");
+			}
+			if (GetStorage('postMarkingMode') == 2) //Background color.
+			{
+				PostBodys[((i+1)*2)-2].style.background=GetStorage('postMarkingColor');
+				var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
+				PostDetails[0].style.color=GetStorage('postMarkingText');
+			}
+		}
+	}
+}
+
+//new tab fix
+var allClickables = $('.row1.clickable');
+for (i=0; i<allClickables.length; i++)
+{
+    var onclick = $(allClickables[i]).attr("onclick");
+    $(allClickables[i]).attr("onclick", "if (event.button == 0 && event.ctrlKey == false) " + onclick);
+}
+
+
+//Fix oversized images and mark them
+$('.postbody').each(function(){
+    $(this).css("max-width","764px");
+    $(this).css("word-wrap","break-word");
+    
+    $(this).find('img').each(function(){
+        var maxWidth = $(this).parent().width()-6
+        if ($(this).width() > $(this).parent().width())
+        {
+            $(this).css("max-width", maxWidth + "px");
+            if (GetStorage('imageMarking'))
+            {
+                $(this).css("border-style","dashed");
+                $(this).css("border-color",GetStorage('imageMarkingColor'));
+            }
+            
+            $(this).click(function(){
+                if ($(this).css("max-width") == maxWidth + "px")
+                {
+                    $(this).css("max-width","");
+                    $(this).css("border-style","");
+                    $(this).css("border-color","");
+                }
+                else
+                {
+                    $(this).css("max-width", maxWidth + "px");
+                    if (GetStorage('imageMarking'))
+                    {
+                        $(this).css("border-style","dashed");
+                        $(this).css("border-color",GetStorage('imageMarkingColor'));
+                    }
+                }
+            });
+        }
+    });
+});
+
+if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
+{
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
+	document.body.appendChild(script);
+}
+
+i = 0;
+$('a.postlink').each(function(){
+    if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
+    {
+        if (this.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
+		{
+            pollCode = this.href.substring(this.href.indexOf("strawpoll.me/")+13,this.href.length);
+            if (pollCode.length > 0) //Did we find a poll or just a link?
+            {
+                $(this).parent().append("<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>");
+            }
+        }
+    }
+    
+    if (GetStorage('youtubeEmbed')) //Youtube link embedding
+    {
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = this.href.match(regExp);
+        if (match&&match[2].length==11){
+            var ytVideoID = match[2]; 
+            
+            var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
+            
+            $(this).after(" "+expandButton+" ");
+            i++;
+        }
+    }
+});
+
+if (GetStorage('extraBBCode'))
+{
+	if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
+	{
+		help_line['trans'] = 'Makes text transparent';
+		var table = document.getElementsByName('addbbcode22')[0].parentNode;
+		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
+	}
+}
 
 if (GetStorage('hideForums') || GetStorage('hideTopics'))
 {
