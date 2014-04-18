@@ -204,8 +204,14 @@ $('.postbody').each(function(){
     });
     
     $(this).find('img').each(function(){
-        var maxWidth = $(this).parent().width()-6
-        if ($(this).width() > $(this).parent().width())
+        var parent = $(this).parent();
+        while (!($(parent).is("div")))
+        {
+            parent = $(parent).parent();
+        }
+        
+        var maxWidth = $(parent).width()-6
+        if ($(this).width() > $(parent).width())
         {
             $(this).css("max-width", maxWidth + "px");
             if (GetStorage('imageMarking'))
