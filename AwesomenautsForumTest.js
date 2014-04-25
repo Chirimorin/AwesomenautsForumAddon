@@ -6,3 +6,4 @@ document.body.appendChild(script);
 
 //Test functionality starts here
 
+$("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="200" width="930" frameborder="0"></iframe>');
