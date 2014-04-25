@@ -140,12 +140,13 @@ function embedYoutube(divID, ytVideoID, element)
     }
 }
 
+//Variables
+var UserName;
 
 //Functionality starts here
 $(document).ready(function(){ //run after page fully loaded
 
 //Menu edit + find username
-var UserName;
 $('.forum-buttons').each(function(){
     //Find the username of the person who is logged in.
     //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
