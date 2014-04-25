@@ -11,6 +11,9 @@ $(document).ready(function(){
     
     if (window.location.hash.substr(1) == "unread") //If unread, scroll back down to the anchor
     {
-        $(window).scrollTop($("[name=unread]").offset().top);
+        if ($("[name=unread]").is("a"))
+        {
+            $(window).scrollTop($("[name=unread]").offset().top);
+        }
     }
 });
