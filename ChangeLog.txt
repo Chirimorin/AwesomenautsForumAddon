@@ -1,3 +1,6 @@
+v3.1
+* New: Shoutbox at the top of the forums
+
 v3.01
 * Fix: Script should now work properly on Opera and Firefox.
 
