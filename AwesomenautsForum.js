@@ -37,7 +37,7 @@ script.type = "text/javascript";
 
 if (supports_local_storage()) //Local storage supported, good!
 {
-	var currentVersion = 3.01;
+	var currentVersion = 3.1;
 
 	GetStorage = function(item)
 	{
@@ -101,6 +101,13 @@ if (supports_local_storage()) //Local storage supported, good!
             SetStorage('hiddenForums', new Array()); //An array containing all hidden forums
             SetStorage('magnifyText', true); //Magnifies tiny text when hovering over it
         }
+        
+        if (GetStorage('version')<3.1)
+        {
+            SetStorage('shoutbox',true); //Adds a shoutbox to the forum
+        }
+        
+        SetStorage('testScript',false); //Disable the test script if an update is found. 
 		
 		SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
 		alert("Awesomenauts Forum UserScript updated! Current version: " + currentVersion); //Alert the user that an update has happened.

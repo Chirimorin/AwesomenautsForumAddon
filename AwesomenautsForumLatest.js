@@ -361,6 +361,19 @@ if (GetStorage('magnifyText'))
     });
 }
 
+if (GetStorage('shoutbox'))
+{
+    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="200" width="930" frameborder="0"></iframe>');
+    
+    if (window.location.hash.substr(1) == "unread") //If unread, scroll back down to the anchor
+    {
+        if ($("[name=unread]").is("a"))
+        {
+            $(window).scrollTop($("[name=unread]").offset().top);
+        }
+    }
+}
+
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
@@ -525,6 +538,16 @@ if (window.location.href.indexOf("ucp.php") != -1)
 								</td>\
 							</tr>\
                             <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Shoutbox:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"shoutboxCheck\" onchange=\"SetStorage('shoutbox',this.checked)\" /></b><br />\
+									<span class=\"genmed\">Adds a shoutbox to the top of the page.</span>\
+								</td>\
+							</tr>\
+                            <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
 									<b class=\"genmed\">Use test script:</b>\
@@ -554,6 +577,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			$('#postMarkingColorBox').attr('value', GetStorage('postMarkingColor'));
 			$('#postMarkingTextBox').attr('value', GetStorage('postMarkingText'));
 			$('#extraBBCodeCheck').attr('checked', GetStorage('extraBBCode'));
+            $('#shoutboxCheck').attr('checked', GetStorage('shoutbox'));
 			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
 		}
 	}
