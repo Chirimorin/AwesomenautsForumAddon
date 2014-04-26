@@ -37,7 +37,7 @@ script.type = "text/javascript";
 
 if (supports_local_storage()) //Local storage supported, good!
 {
-	var currentVersion = 3.1;
+	var currentVersion = 3.11;
 
 	GetStorage = function(item)
 	{
@@ -105,6 +105,11 @@ if (supports_local_storage()) //Local storage supported, good!
         if (GetStorage('version')<3.1)
         {
             SetStorage('shoutbox',true); //Adds a shoutbox to the forum
+        }
+        
+        if (GetStorage('version')<3.11)
+        {
+            SetStorage('shoutboxHeight',200); //Height of the shoutbox.
         }
         
         SetStorage('testScript',false); //Disable the test script if an update is found. 

@@ -363,7 +363,7 @@ if (GetStorage('magnifyText'))
 
 if (GetStorage('shoutbox'))
 {
-    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="200" width="930" frameborder="0"></iframe>');
+    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
     
     if (window.location.hash.substr(1) == "unread") //If unread, scroll back down to the anchor
     {
@@ -547,6 +547,15 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<span class=\"genmed\">Adds a shoutbox to the top of the page.</span>\
 								</td>\
 							</tr>\
+                            <tr>\
+								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+									<b class=\"genmed\">Shoutbox height:</b>\
+								</td>\
+								<td width=\"100%\">\
+									<b class=\"gen\"><input type=\"number\" id=\"shoutboxHeightBox\" onchange=\"SetStorage('shoutboxHeight',this.value)\" /></b><br />\
+									<span class=\"genmed\">The height of the shoutbox, in pixels. Default: 200</span>\
+								</td>\
+							</tr>\
                             <tr><td>&nbsp;</td></tr>\
 							<tr>\
 								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
@@ -578,6 +587,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			$('#postMarkingTextBox').attr('value', GetStorage('postMarkingText'));
 			$('#extraBBCodeCheck').attr('checked', GetStorage('extraBBCode'));
             $('#shoutboxCheck').attr('checked', GetStorage('shoutbox'));
+            $('#shoutboxHeightBox').attr('checked', GetStorage('shoutboxHeight'));
 			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
 		}
 	}
