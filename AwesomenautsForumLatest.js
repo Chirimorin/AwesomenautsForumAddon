@@ -146,6 +146,69 @@ var UserName;
 //Functionality starts here
 $(document).ready(function(){ //run after page fully loaded
 
+if (GetStorage('shoutbox'))
+{
+    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
+    
+    if (window.location.hash.substr(1) == "unread") //If unread, scroll back down to the anchor
+    {
+        if ($("[name=unread]").is("a"))
+        {
+            $(window).scrollTop($("[name=unread]").offset().top);
+        }
+    }
+}
+
+if (GetStorage('hideForums') || GetStorage('hideTopics'))
+{
+    //Fix table layout to fit the extra elements
+    $('.row3').attr('colspan', 7);
+    $('.cat').attr('colspan', 7);
+    $('.cat-bottom').attr('colspan', 7);
+
+    //Add "hide" button to topics
+    if (GetStorage('hideTopics'))
+    {
+        $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
+            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
+        
+        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
+        $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+        hideHiddenTopics(false);
+    }
+    
+    //Add "hide" button to forums
+    if (GetStorage('hideForums'))
+    {
+        $('.tablebg').find($("th:contains('Forum')")).parent().parent().prepend("<tr>\
+                <td class=\"cat\" colspan=\"7\">\
+                    <table width=\"100%\" cellspacing=\"0\">\
+                        <tbody><tr class=\"nav\">\
+                            <td valign=\"middle\">&nbsp;</td>\
+                            <td align=\"right\" class=\"hideAllForumsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenForums(true); $('.hideAllForumsButton').finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden forums</a></td>\
+                            <td align=\"right\"><a href=\"#\" onclick=\"showAllForums(); $('.hideAllForumsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden forums</a></td>\
+                        </tr></tbody>\
+                    </table>\
+                </td>\
+            </tr>");
+        
+        $('.tablebg').find($("th:contains('Forum')")).parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
+        $('.forumlink').parent().parent().each(function(){
+            if ($(this).is('tr')) //needed if a picture is included in the forum, like the forum homepage
+            {
+                $(this).append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideForum(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+            }
+            else
+            {
+                $(this).parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideForum(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+            }
+        });
+        hideHiddenForums(false);
+    }
+}
+
 //Menu edit + find username
 $('.forum-buttons').each(function(){
     //Find the username of the person who is logged in.
@@ -294,56 +357,6 @@ if (GetStorage('extraBBCode'))
 	}
 }
 
-if (GetStorage('hideForums') || GetStorage('hideTopics'))
-{
-    //Fix table layout to fit the extra elements
-    $('.row3').attr('colspan', 7);
-    $('.cat').attr('colspan', 7);
-    $('.cat-bottom').attr('colspan', 7);
-
-    //Add "hide" button to topics
-    if (GetStorage('hideTopics'))
-    {
-        $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
-            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
-        
-        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
-        
-        $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
-        hideHiddenTopics(false);
-    }
-    
-    //Add "hide" button to forums
-    if (GetStorage('hideForums'))
-    {
-        $('.tablebg').find($("th:contains('Forum')")).parent().parent().prepend("<tr>\
-                <td class=\"cat\" colspan=\"7\">\
-                    <table width=\"100%\" cellspacing=\"0\">\
-                        <tbody><tr class=\"nav\">\
-                            <td valign=\"middle\">&nbsp;</td>\
-                            <td align=\"right\" class=\"hideAllForumsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenForums(true); $('.hideAllForumsButton').finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden forums</a></td>\
-                            <td align=\"right\"><a href=\"#\" onclick=\"showAllForums(); $('.hideAllForumsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden forums</a></td>\
-                        </tr></tbody>\
-                    </table>\
-                </td>\
-            </tr>");
-        
-        $('.tablebg').find($("th:contains('Forum')")).parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
-        
-        $('.forumlink').parent().parent().each(function(){
-            if ($(this).is('tr')) //needed if a picture is included in the forum, like the forum homepage
-            {
-                $(this).append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideForum(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
-            }
-            else
-            {
-                $(this).parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideForum(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
-            }
-        });
-        hideHiddenForums(false);
-    }
-}
-
 if (GetStorage('magnifyText'))
 {
     $("span").filter(function() {
@@ -359,19 +372,6 @@ if (GetStorage('magnifyText'))
             $(this).css('font-size', $(this).data('original-size'));
         });
     });
-}
-
-if (GetStorage('shoutbox'))
-{
-    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
-    
-    if (window.location.hash.substr(1) == "unread") //If unread, scroll back down to the anchor
-    {
-        if ($("[name=unread]").is("a"))
-        {
-            $(window).scrollTop($("[name=unread]").offset().top);
-        }
-    }
 }
 
 //Options menu
