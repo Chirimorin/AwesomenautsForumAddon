@@ -587,7 +587,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			$('#postMarkingTextBox').attr('value', GetStorage('postMarkingText'));
 			$('#extraBBCodeCheck').attr('checked', GetStorage('extraBBCode'));
             $('#shoutboxCheck').attr('checked', GetStorage('shoutbox'));
-            $('#shoutboxHeightBox').attr('checked', GetStorage('shoutboxHeight'));
+            $('#shoutboxHeightBox').attr('value', GetStorage('shoutboxHeight'));
 			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
 		}
 	}
