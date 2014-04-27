@@ -217,8 +217,14 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
 //Menu edit + find username
 $('.forum-buttons').each(function(){
     //Find the username of the person who is logged in.
-    //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
-    UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
+    if (($(this).html().indexOf("Logout [ ")) >= 0)
+    {
+        UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
+    }
+    else //"Logout" not found, nobody logged in.
+    {
+        UserName = "";
+    }
     
     console.log("Username '" + UserName + "' found");
     
