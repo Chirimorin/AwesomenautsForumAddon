@@ -251,13 +251,13 @@ for (i=0; i<allClickables.length; i++)
 console.log("Onclick fix loaded");
 
 //Marking users posts
-if (GetStorage('postMarkingMode') != 0 && UserName != "") //Do we want to mark the users posts? 
+if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
 {
 	var PostAuthors = $('.postauthor');
 	var PostBodys = $('.row-post-body');
 	for (i=0; i<PostAuthors.length; i++)
 	{
-		if (PostAuthors[i].innerHTML.indexOf(UserName) != -1 && window.location.href.indexOf("posting.php") == -1)
+		if (PostAuthors[i].innerHTML == UserName && window.location.href.indexOf("posting.php") == -1)
 		{
 			if (GetStorage('postMarkingMode') == 1) //Outline avatar. 
 			{

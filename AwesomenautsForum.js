@@ -23,8 +23,8 @@ String.prototype.insert = function (index, string)
 };
 
 var checker = 0;
-var currentVersion = 3.15;
-var updateMessage = "Various fixes to the script. The script should now run better!";
+var currentVersion = 3.16;
+var updateMessage = "No more false positives on marking posts.";
  
 function jqueryLoaded() {
     clearInterval(checker);
