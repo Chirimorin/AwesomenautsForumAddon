@@ -1,4 +1,4 @@
-console.log("Extra smilies loaded!");
+console.log("Extra smilies loaded");
 
 //Thanks to Nodja for this code.
 

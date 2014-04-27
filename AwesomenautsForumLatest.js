@@ -1,4 +1,4 @@
-console.log("Live script loaded!");
+console.log("Live script loaded");
 
 //Function definitions
 function showAllTopics()
@@ -147,7 +147,7 @@ var UserName;
 
 //Functionality starts here
 $(document).ready(function(){ //run after page fully loaded
-console.log("Document ready, running script.");
+console.log("Document ready; running script");
 if (GetStorage('shoutbox'))
 {
     $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
@@ -159,7 +159,7 @@ if (GetStorage('shoutbox'))
             $(window).scrollTop($("[name=unread]").offset().top);
         }
     }
-    console.log("Shoutbox loaded.");
+    console.log("Shoutbox loaded");
 }
 
 if (GetStorage('hideForums') || GetStorage('hideTopics'))
@@ -197,7 +197,7 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
             }
         });
         hideHiddenForums(false);
-        console.log("Hide forums loaded.");
+        console.log("Hide forums loaded");
     }
     
     //Add "hide" button to topics
@@ -210,7 +210,7 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
         
         $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
         hideHiddenTopics(false);
-        console.log("Hide topics loaded.");
+        console.log("Hide topics loaded");
     }
 }
 
@@ -220,14 +220,14 @@ $('.forum-buttons').each(function(){
     //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
     UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
     
-    console.log("Username '" + UserName + "' found.");
+    console.log("Username '" + UserName + "' found");
     
     if (GetStorage('settingsLink'))
     {
         var html = $(this).html();
         $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
         $(this).css("background-size", "1px 40px");
-        console.log("Settings link loaded.");
+        console.log("Settings link loaded");
 	}
 	else //white line in menu fix
 	{
@@ -242,7 +242,7 @@ for (i=0; i<allClickables.length; i++)
     var onclick = $(allClickables[i]).attr("onclick");
     $(allClickables[i]).attr("onclick", "if (event.button == 0 && event.ctrlKey == false) " + onclick);
 }
-console.log("Onclick fix loaded.");
+console.log("Onclick fix loaded");
 
 //Marking users posts
 if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
@@ -265,7 +265,7 @@ if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts?
 			}
 		}
 	}
-    console.log("User posts marked.");
+    console.log("User posts marked");
 }
 
 //Fix oversized images and mark them
@@ -317,7 +317,7 @@ $('.postbody').each(function(){
         }
     });
 });
-console.log("Oversized images shrunk.");
+console.log("Oversized images shrunk");
 
 if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
@@ -357,7 +357,7 @@ $('a.postlink').each(function(){
     }
 });
 
-console.log("Strawpoll and youtube embeds loaded.");
+console.log("Strawpoll and youtube embeds loaded");
 
 if (GetStorage('extraBBCode'))
 {
@@ -367,7 +367,7 @@ if (GetStorage('extraBBCode'))
 		var table = document.getElementsByName('addbbcode22')[0].parentNode;
 		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
 	}
-    console.log("Extra BB code loaded.");
+    console.log("Extra BB code loaded");
 }
 
 if (GetStorage('magnifyText'))
@@ -385,7 +385,7 @@ if (GetStorage('magnifyText'))
             $(this).css('font-size', $(this).data('original-size'));
         });
     });
-    console.log("Magnify text loaded.");
+    console.log("Magnify text loaded");
 }
 
 //Options menu
@@ -605,7 +605,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
 		}
 	}
-    console.log("Options menu loaded.");
+    console.log("Options menu loaded");
 }
 
 }); //document ready

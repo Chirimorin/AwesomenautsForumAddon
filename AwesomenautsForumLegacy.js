@@ -1,4 +1,4 @@
-console.log("Legacy script loaded!");
+console.log("Legacy script loaded");
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
 {

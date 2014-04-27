@@ -26,7 +26,7 @@ var checker = 0;
  
 function jqueryLoaded() {
     clearInterval(checker);
-    console.log("jQuery found! loading script.");
+    console.log("jQuery found; loading script");
     
     //Find the banner at the top of the page
     var banner;
@@ -35,7 +35,7 @@ function jqueryLoaded() {
     {
         if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
         {
-            console.log("Banner found!");
+            console.log("Banner found");
             banner = imgs[i];
         }
     }
@@ -47,7 +47,6 @@ function jqueryLoaded() {
     {
         var currentVersion = 3.15;
         var updateMessage = "Various fixes to the script. The script should now run better!";
-        console.log("Localstorage suppported, loading script version " + currentVersion);
         
         GetStorage = function(item)
         {
@@ -67,7 +66,7 @@ function jqueryLoaded() {
 
         if (GetStorage('version') < currentVersion)
         {
-            console.log("Settings for version " + GetStorage('version') + " detected. Updating settings.");
+            console.log("Settings for version " + GetStorage('version') + " detected; Updating settings...");
             if (GetStorage('version')<2.5)
             {
                 SetStorage('testScript',false);
@@ -126,7 +125,7 @@ function jqueryLoaded() {
             SetStorage('testScript',false); //Disable the test script if an update is found. 
             
             SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
-            console.log("All settings updated!");
+            console.log("All settings updated");
             alert("Awesomenauts Forum UserScript updated! \n"+updateMessage+"\nCurrent version: " + currentVersion); //Alert the user that an update has happened.
         }
 
@@ -135,7 +134,7 @@ function jqueryLoaded() {
             if (banner != undefined)
             {
                 banner.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBannerTest.png";
-                console.log("Banner replaced!");
+                console.log("Banner replaced");
             }
             console.log("Loading test script...");
             script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumTest.js?v=" + currentVersion;
@@ -145,7 +144,7 @@ function jqueryLoaded() {
             if (banner != undefined)
             {
                 banner.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBanner.png";
-                console.log("Banner replaced!");
+                console.log("Banner replaced");
             }
             console.log("Loading live script...");
             script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumLatest.js?v=" + currentVersion;
@@ -156,7 +155,7 @@ function jqueryLoaded() {
         if (banner != undefined)
         {
             banner.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBanner.png";
-            console.log("Banner replaced!");
+            console.log("Banner replaced");
         }
         console.log("LocalStorage not supported. Loading legacy script...");
         script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumLegacy.js";
