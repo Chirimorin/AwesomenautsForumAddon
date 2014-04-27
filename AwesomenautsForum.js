@@ -3,6 +3,25 @@ jquery.type = "text/javascript";
 jquery.src = "http://code.jquery.com/jquery-latest.min.js";
 document.head.appendChild(jquery);
 
+var checker = 0;
+ 
+function jqueryLoaded() {
+    clearInterval(checker);
+    console.log("jQuery found! loading script.");
+}
+
+function checkJquery() {
+    if (window.jQuery) {
+            jqueryLoaded();
+    } 
+        if(checker == 0) {
+            console.log("Starting jQuery check");
+            checker = window.setInterval(checkJquery, 100);
+        }
+}	
+
+checkJquery();
+
 function supports_local_storage() {
   try {
     return 'localStorage' in window && window['localStorage'] !== null;
@@ -37,7 +56,7 @@ script.type = "text/javascript";
 
 if (supports_local_storage()) //Local storage supported, good!
 {
-	var currentVersion = 3.12;
+	var currentVersion = 3.13;
 
 	GetStorage = function(item)
 	{
