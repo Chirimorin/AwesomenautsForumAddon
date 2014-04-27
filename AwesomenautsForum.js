@@ -23,6 +23,8 @@ String.prototype.insert = function (index, string)
 };
 
 var checker = 0;
+var currentVersion = 3.15;
+var updateMessage = "Various fixes to the script. The script should now run better!";
  
 function jqueryLoaded() {
     clearInterval(checker);
@@ -45,9 +47,6 @@ function jqueryLoaded() {
 
     if (supports_local_storage()) //Local storage supported, good!
     {
-        var currentVersion = 3.15;
-        var updateMessage = "Various fixes to the script. The script should now run better!";
-        
         GetStorage = function(item)
         {
             return JSON.parse(localStorage.getItem(item));
