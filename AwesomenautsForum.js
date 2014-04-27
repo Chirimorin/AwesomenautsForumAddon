@@ -46,6 +46,7 @@ function jqueryLoaded() {
     if (supports_local_storage()) //Local storage supported, good!
     {
         var currentVersion = 3.15;
+        var updateMessage = "Various fixes to the script. The script should now run better!";
         console.log("Localstorage suppported, loading script version " + currentVersion);
         
         GetStorage = function(item)
@@ -126,7 +127,7 @@ function jqueryLoaded() {
             
             SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
             console.log("All settings updated!");
-            alert("Awesomenauts Forum UserScript updated! Current version: " + currentVersion); //Alert the user that an update has happened.
+            alert("Awesomenauts Forum UserScript updated! \n"+updateMessage+"\nCurrent version: " + currentVersion); //Alert the user that an update has happened.
         }
 
         if ( GetStorage('testScript') == true ) //Load test script?
