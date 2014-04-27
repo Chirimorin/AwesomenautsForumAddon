@@ -251,7 +251,7 @@ for (i=0; i<allClickables.length; i++)
 console.log("Onclick fix loaded");
 
 //Marking users posts
-if (GetStorage('postMarkingMode') != 0 && Username != "") //Do we want to mark the users posts? 
+if (GetStorage('postMarkingMode') != 0 && UserName != "") //Do we want to mark the users posts? 
 {
 	var PostAuthors = $('.postauthor');
 	var PostBodys = $('.row-post-body');
