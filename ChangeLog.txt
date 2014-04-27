@@ -1,14 +1,18 @@
+v3.15
+~ Fix: Various issues fixed
+& Changed: Script will now output data to the console log. This will help me with fixing issues.
+
 v3.1
 * New: Shoutbox at the top of the forums
 
 v3.01
-* Fix: Script should now work properly on Opera and Firefox.
+~ Fix: Script should now work properly on Opera and Firefox.
 
 v3.0
 * New: Embed youtube videos. 
 * New: Hide forums and Topics. 
 * New: Magnify tiny text.
-* Changed: Script now waits until the page is fully loaded.
+& Changed: Script now waits until the page is fully loaded.
 
 v2.9
 * New: Don't like the dashed line around images? There's a setting for that!

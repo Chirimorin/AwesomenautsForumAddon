@@ -1,15 +1,4 @@
-//Replace the banner at the top of the page
-var imgs = document.getElementsByTagName ('img');
-for (i=0; i<imgs.length ; i++) 
-{
-    if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
-    {
-        imgs[i].src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/Resources/ReplaceBanner.png";
-    }
-}
-
-//NORMAL SCRIPT STARTS HERE
-
+console.log("Legacy script loaded!");
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
 {

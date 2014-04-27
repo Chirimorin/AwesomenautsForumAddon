@@ -1,3 +1,5 @@
+console.log("Extra smilies loaded!");
+
 //Thanks to Nodja for this code.
 
 var smilieslist = new Array();

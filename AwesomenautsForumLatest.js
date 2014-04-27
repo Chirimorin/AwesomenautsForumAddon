@@ -1,3 +1,5 @@
+console.log("Live script loaded!");
+
 //Function definitions
 function showAllTopics()
 {
@@ -145,7 +147,7 @@ var UserName;
 
 //Functionality starts here
 $(document).ready(function(){ //run after page fully loaded
-
+console.log("Document ready, running script.");
 if (GetStorage('shoutbox'))
 {
     $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
@@ -157,6 +159,7 @@ if (GetStorage('shoutbox'))
             $(window).scrollTop($("[name=unread]").offset().top);
         }
     }
+    console.log("Shoutbox loaded.");
 }
 
 if (GetStorage('hideForums') || GetStorage('hideTopics'))
@@ -166,18 +169,6 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     $('.cat').attr('colspan', 7);
     $('.cat-bottom').attr('colspan', 7);
 
-    //Add "hide" button to topics
-    if (GetStorage('hideTopics'))
-    {
-        $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
-            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
-        
-        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
-        
-        $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
-        hideHiddenTopics(false);
-    }
-    
     //Add "hide" button to forums
     if (GetStorage('hideForums'))
     {
@@ -206,6 +197,20 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
             }
         });
         hideHiddenForums(false);
+        console.log("Hide forums loaded.");
+    }
+    
+    //Add "hide" button to topics
+    if (GetStorage('hideTopics'))
+    {
+        $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
+            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
+        
+        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
+        $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+        hideHiddenTopics(false);
+        console.log("Hide topics loaded.");
     }
 }
 
@@ -215,11 +220,14 @@ $('.forum-buttons').each(function(){
     //Will return random stuff if nobody is logged in, but this is just used for searching so no harm is done.
     UserName = $(this).html().substring($(this).html().indexOf("Logout [ ") + 9, $(this).html().indexOf(" ]"));
     
+    console.log("Username '" + UserName + "' found.");
+    
     if (GetStorage('settingsLink'))
     {
         var html = $(this).html();
         $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
         $(this).css("background-size", "1px 40px");
+        console.log("Settings link loaded.");
 	}
 	else //white line in menu fix
 	{
@@ -227,6 +235,14 @@ $('.forum-buttons').each(function(){
 	}
 });
 
+//new tab fix
+var allClickables = $('.row1.clickable');
+for (i=0; i<allClickables.length; i++)
+{
+    var onclick = $(allClickables[i]).attr("onclick");
+    $(allClickables[i]).attr("onclick", "if (event.button == 0 && event.ctrlKey == false) " + onclick);
+}
+console.log("Onclick fix loaded.");
 
 //Marking users posts
 if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
@@ -249,16 +265,8 @@ if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts?
 			}
 		}
 	}
+    console.log("User posts marked.");
 }
-
-//new tab fix
-var allClickables = $('.row1.clickable');
-for (i=0; i<allClickables.length; i++)
-{
-    var onclick = $(allClickables[i]).attr("onclick");
-    $(allClickables[i]).attr("onclick", "if (event.button == 0 && event.ctrlKey == false) " + onclick);
-}
-
 
 //Fix oversized images and mark them
 $('.postbody').each(function(){
@@ -309,9 +317,11 @@ $('.postbody').each(function(){
         }
     });
 });
+console.log("Oversized images shrunk.");
 
 if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
+    console.log("Loading extra smilies...");
 	var script = document.createElement("script");
 	script.type = "text/javascript";
 	script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
@@ -347,6 +357,8 @@ $('a.postlink').each(function(){
     }
 });
 
+console.log("Strawpoll and youtube embeds loaded.");
+
 if (GetStorage('extraBBCode'))
 {
 	if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
@@ -355,6 +367,7 @@ if (GetStorage('extraBBCode'))
 		var table = document.getElementsByName('addbbcode22')[0].parentNode;
 		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
 	}
+    console.log("Extra BB code loaded.");
 }
 
 if (GetStorage('magnifyText'))
@@ -372,6 +385,7 @@ if (GetStorage('magnifyText'))
             $(this).css('font-size', $(this).data('original-size'));
         });
     });
+    console.log("Magnify text loaded.");
 }
 
 //Options menu
@@ -591,6 +605,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
 		}
 	}
+    console.log("Options menu loaded.");
 }
 
 }); //document ready
