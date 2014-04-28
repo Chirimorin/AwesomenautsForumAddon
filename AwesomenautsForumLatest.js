@@ -169,6 +169,19 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     $('.cat').attr('colspan', 7);
     $('.cat-bottom').attr('colspan', 7);
 
+    //Add "hide" button to topics
+    if (GetStorage('hideTopics'))
+    {
+        $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
+            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
+        
+        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
+        
+        $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
+        hideHiddenTopics(false);
+        console.log("Hide topics loaded");
+    }
+    
     //Add "hide" button to forums
     if (GetStorage('hideForums'))
     {
@@ -198,19 +211,6 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
         });
         hideHiddenForums(false);
         console.log("Hide forums loaded");
-    }
-    
-    //Add "hide" button to topics
-    if (GetStorage('hideTopics'))
-    {
-        $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
-            <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
-        
-        $('.topictitle:first').parent().parent().parent().find($("th:contains('Last post')")).after("<th>&nbsp;Hide&nbsp;</th>");
-        
-        $('.topictitle').parent().parent().append("<td class=\"row2 hidebutton\" align=\"center\" nowrap=\"nowrap\" onclick=\"hideTopic(this);\"><a href=\"#\" onclick=\"return false;\">Hide</a></td>");
-        hideHiddenTopics(false);
-        console.log("Hide topics loaded");
     }
 }
 
