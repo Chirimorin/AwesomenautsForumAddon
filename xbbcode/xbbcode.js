@@ -112,15 +112,6 @@ var XBBCODE = (function() {
                 return '';
             }
         },
-        "code": {
-            openTag: function(params,content) {
-                return '<span class="xbbcode-code">';
-            },
-            closeTag: function(params,content) {
-                return '</span>';
-            },
-            noParse: true
-        },
         "color": {
             openTag: function(params,content) {
             
@@ -151,32 +142,6 @@ var XBBCODE = (function() {
                 return '</span>';
             }
         },
-        "img": {
-            openTag: function(params,content) {
-            
-                var myUrl = content;
-                
-                urlPattern.lastIndex = 0;
-                if ( !urlPattern.test( myUrl ) ) {
-                    myUrl = "";
-                }
-            
-                return '<img src="' + myUrl + '" />';
-            },
-            closeTag: function(params,content) {
-                return '';
-            },
-            displayContent: false
-        },
-        "list": {
-            openTag: function(params,content) {
-                return '<ul>';
-            },
-            closeTag: function(params,content) {
-                return '</ul>';
-            },
-            restrictChildrenTo: ["*", "li"]
-        },
         "noparse": {
             openTag: function(params,content) {
                 return '';
@@ -186,23 +151,6 @@ var XBBCODE = (function() {
             },
             noParse: true
         },
-        "php": {
-            openTag: function(params,content) {
-                return '<span class="xbbcode-code">';
-            },
-            closeTag: function(params,content) {
-                return '</span>';
-            },
-            noParse: true
-        },
-        "quote": {
-            openTag: function(params,content) {
-                return '<blockquote class="xbbcode-blockquote">';
-            },
-            closeTag: function(params,content) {
-                return '</blockquote>';
-            }
-        },
         "s": {
             openTag: function(params,content) {
                 return '<span class="xbbcode-s">';
@@ -211,86 +159,13 @@ var XBBCODE = (function() {
                 return '</span>';
             }
         },
-        "size": {
+        "strike": {
             openTag: function(params,content) {
-            
-                var mySize = parseInt(params.substr(1),10) || 0;
-                if (mySize < 4 || mySize > 40) {
-                    mySize = 14;
-                }
-            
-                return '<span class="xbbcode-size-' + mySize + '">';
+                return '<span class="xbbcode-s">';
             },
             closeTag: function(params,content) {
                 return '</span>';
             }
-        },
-        "table": {
-            openTag: function(params,content) {
-                return '<table class="xbbcode-table">';
-            },
-            closeTag: function(params,content) {
-                return '</table>';
-            },
-            restrictChildrenTo: ["tbody","thead", "tfoot", "tr"]
-        },
-        "tbody": {
-            openTag: function(params,content) {
-                return '<tbody>';
-            },
-            closeTag: function(params,content) {
-                return '</tbody>';
-            },
-            restrictChildrenTo: ["tr"],
-            restrictParentsTo: ["table"]
-        },
-        "tfoot": {
-            openTag: function(params,content) {
-                return '<tfoot>';
-            },
-            closeTag: function(params,content) {
-                return '</tfoot>';
-            },
-            restrictChildrenTo: ["tr"],
-            restrictParentsTo: ["table"]
-        },
-        "thead": {
-            openTag: function(params,content) {
-                return '<thead class="xbbcode-thead">';
-            },
-            closeTag: function(params,content) {
-                return '</thead>';
-            },
-            restrictChildrenTo: ["tr"],
-            restrictParentsTo: ["table"]
-        },
-        "td": {
-            openTag: function(params,content) {
-                return '<td class="xbbcode-td">';
-            },
-            closeTag: function(params,content) {
-                return '</td>';
-            },
-            restrictParentsTo: ["tr"]
-        },
-        "th": {
-            openTag: function(params,content) {
-                return '<td class="xbbcode-th">';
-            },
-            closeTag: function(params,content) {
-                return '</td>';
-            },
-            restrictParentsTo: ["tr"]
-        },
-        "tr": {
-            openTag: function(params,content) {
-                return '<tr class="xbbcode-tr">';
-            },
-            closeTag: function(params,content) {
-                return '</tr>';
-            },
-            restrictChildrenTo: ["td","th"],
-            restrictParentsTo: ["table","tbody","tfoot","thead"]
         },
         "u": {
             openTag: function(params,content) {
@@ -299,43 +174,176 @@ var XBBCODE = (function() {
             closeTag: function(params,content) {
                 return '</span>';
             }
-        },
-        "url": {
-            openTag: function(params,content) {
-            
-                var myUrl;
-            
-                if (!params) {
-                    myUrl = content.replace(/<.*?>/g,"");
-                } else {
-                    myUrl = params.substr(1);
-                }
-                
-                urlPattern.lastIndex = 0;
-                if ( !urlPattern.test( myUrl ) ) {
-                    myUrl = "#";
-                }
-            
-                return '<a href="' + myUrl + '">';
-            },
-            closeTag: function(params,content) {
-                return '</a>';
-            }
-        },
+        }
+        //"code": {
+        //    openTag: function(params,content) {
+        //        return '<span class="xbbcode-code">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</span>';
+        //    },
+        //    noParse: true
+        //},
+        //"img": {
+        //    openTag: function(params,content) {
+        //    
+        //        var myUrl = content;
+        //        
+        //        urlPattern.lastIndex = 0;
+        //        if ( !urlPattern.test( myUrl ) ) {
+        //            myUrl = "";
+        //        }
+        //    
+        //        return '<img src="' + myUrl + '" />';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '';
+        //    },
+        //    displayContent: false
+        //},
+        //"list": {
+        //    openTag: function(params,content) {
+        //        return '<ul>';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</ul>';
+        //    },
+        //    restrictChildrenTo: ["*", "li"]
+        //},
+        //"php": {
+        //    openTag: function(params,content) {
+        //        return '<span class="xbbcode-code">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</span>';
+        //    },
+        //    noParse: true
+        //},
+        //"quote": {
+        //    openTag: function(params,content) {
+        //        return '<blockquote class="xbbcode-blockquote">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</blockquote>';
+        //    }
+        //},
+        //"size": {
+        //    openTag: function(params,content) {
+        //    
+        //        var mySize = parseInt(params.substr(1),10) || 0;
+        //        if (mySize < 4 || mySize > 40) {
+        //            mySize = 14;
+        //        }
+        //    
+        //        return '<span class="xbbcode-size-' + mySize + '">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</span>';
+        //    }
+        //},
+        //"table": {
+        //    openTag: function(params,content) {
+        //        return '<table class="xbbcode-table">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</table>';
+        //    },
+        //    restrictChildrenTo: ["tbody","thead", "tfoot", "tr"]
+        //},
+        //"tbody": {
+        //    openTag: function(params,content) {
+        //        return '<tbody>';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</tbody>';
+        //    },
+        //    restrictChildrenTo: ["tr"],
+        //    restrictParentsTo: ["table"]
+        //},
+        //"tfoot": {
+        //    openTag: function(params,content) {
+        //        return '<tfoot>';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</tfoot>';
+        //    },
+        //    restrictChildrenTo: ["tr"],
+        //    restrictParentsTo: ["table"]
+        //},
+        //"thead": {
+        //    openTag: function(params,content) {
+        //        return '<thead class="xbbcode-thead">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</thead>';
+        //    },
+        //    restrictChildrenTo: ["tr"],
+        //    restrictParentsTo: ["table"]
+        //},
+        //"td": {
+        //    openTag: function(params,content) {
+        //        return '<td class="xbbcode-td">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</td>';
+        //    },
+        //    restrictParentsTo: ["tr"]
+        //},
+        //"th": {
+        //    openTag: function(params,content) {
+        //        return '<td class="xbbcode-th">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</td>';
+        //    },
+        //    restrictParentsTo: ["tr"]
+        //},
+        //"tr": {
+        //    openTag: function(params,content) {
+        //        return '<tr class="xbbcode-tr">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</tr>';
+        //    },
+        //    restrictChildrenTo: ["td","th"],
+        //    restrictParentsTo: ["table","tbody","tfoot","thead"]
+        //},
+        //"url": {
+        //    openTag: function(params,content) {
+        //    
+        //        var myUrl;
+        //    
+        //        if (!params) {
+        //            myUrl = content.replace(/<.*?>/g,"");
+        //        } else {
+        //            myUrl = params.substr(1);
+        //        }
+        //        
+        //        urlPattern.lastIndex = 0;
+        //        if ( !urlPattern.test( myUrl ) ) {
+        //            myUrl = "#";
+        //        }
+        //    
+        //        return '<a href="' + myUrl + '">';
+        //    },
+        //    closeTag: function(params,content) {
+        //        return '</a>';
+        //    }
+        //},
         /*
             The [*] tag is special since the user does not define a closing [/*] tag when writing their bbcode.
             Instead this module parses the code and adds the closing [/*] tag in for them. None of the tags you
             add will act like this and this tag is an exception to the others.
         */
-        "*": {
-            openTag: function(params,content) {
-                return "<li>";
-            },
-            closeTag: function(params,content) {
-                return "</li>";
-            },
-            restrictParentsTo: ["list"]
-        }
+        //"*": {
+        //    openTag: function(params,content) {
+        //        return "<li>";
+        //    },
+        //    closeTag: function(params,content) {
+        //        return "</li>";
+        //    },
+        //    restrictParentsTo: ["list"]
+        //}
     };
     
     // create tag list and lookup fields
