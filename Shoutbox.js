@@ -1,14 +1,15 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.03;
+var currentVersion = 0.4;
 
 function postEdits() //Changes to posts, should be called for every load. 
 {
     $(document).ready(function(){
         console.log("Refreshing post edits...");
         
-        //Smilies!
-        $(".postbody", $("#contentarea")).each(function(){
+        $(".postbody", $("#contentarea")).each(function(){ //Loop through all posts
+        
+            //Smilies!
             $(this).html($(this).html().replace(/:monkey:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Monkey.gif" alt=":monkey:" title="Happy monkey">'));
             $(this).html($(this).html().replace(/:ayla:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Ayla.gif" alt=":ayla:" title="happy">'));
             $(this).html($(this).html().replace(/:aylaroll:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_AylaRoll.gif" alt=":aylaroll:" title="roll">'));
@@ -34,6 +35,12 @@ function postEdits() //Changes to posts, should be called for every load.
             $(this).html($(this).html().replace(/:clap:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_VinnieClapping.gif" alt=":clap:" title="clapping">'));
             $(this).html($(this).html().replace(/:shady:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_VoltarLook.gif" alt=":shady:" title="shady">'));
             $(this).html($(this).html().replace(/:party:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_PartyPenny.gif" alt=":party:" title="party">'));
+            
+            
+            //Find moderators and make them orange
+            $("i", $("u" , $("b", this))).each(function(){ $(this).parent().parent().wrap("<span style='color:#FF9900'></span>") });
+            
+            //TODO: bad word filter.
         });
     });
 }
@@ -52,7 +59,7 @@ function jqueryLoaded() {
         
         postEdits();
         
-        $( document ).ajaxComplete(function() { postEdits() });
+        $( document ).ajaxComplete(function() { postEdits() }); //Shouldn't be needed, but somehow the socket function below fails when you're a mod.
         socket.on('newPost', function(mess) { postEdits(); });
     });
 }
