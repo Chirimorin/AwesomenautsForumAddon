@@ -8,6 +8,7 @@ function postEdits() //Changes to posts, should be called for every load.
     
     //Smilies!
     $(".postbody", $("#contentarea")).each(function(){
+        $(this).html($(this).html().replace(/:monkey:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Monkey.gif" alt=":monkey:" title="Happy monkey">'));
         $(this).html($(this).html().replace(/:ayla:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Ayla.gif" alt=":ayla:" title="happy">'));
         $(this).html($(this).html().replace(/:aylaroll:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_AylaRoll.gif" alt=":aylaroll:" title="roll">'));
         $(this).html($(this).html().replace(/:voltarroll:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_VoltarRoll.gif" alt=":voltarroll:" title="roll eyes">'));
