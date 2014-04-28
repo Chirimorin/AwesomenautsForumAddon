@@ -73,7 +73,7 @@ customSmilieslist.push({name: "Clunk", url: "http://cdn.steamcommunity.com/econo
 customSmilieslist.push({name: "Lonestar", url: "http://cdn.steamcommunity.com/economy/emoticon/lonestar", code: ":lonestar:"});
 customSmilieslist.push({name: "Froggy G", url: "http://cdn.steamcommunity.com/economy/emoticon/froggy", code: ":froggy:"});
 customSmilieslist.push({name: "Creep", url: "http://cdn.steamcommunity.com/economy/emoticon/creep", code: ":creep:"});
-customSmilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/", code: ":awesome:"});
+customSmilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/awesome", code: ":awesome:"});
 
 var secretSmilieslist = new Array();
 secretSmilieslist.push({name: "o.O", url: "http://cdn.steamcommunity.com/economy/emoticon/spazdunno", code: ":spazdunno:"});
