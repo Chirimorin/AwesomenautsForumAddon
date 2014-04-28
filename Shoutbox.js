@@ -95,16 +95,23 @@ function postEdits() //Changes to posts, should be called for every load.
             });
             
             //TODO: parse bbcode?
+            $(this).html(XBBCODE.process({text: $(this).html()}).html);
             
             //TODO: bad word filter.
         });
     });
 } 
 
+$(".postbody", $("#contentarea")).each(function(){
+    $(this).html(XBBCODE.process({text: $(this).html()}).html);
+});
+
 var checker = 0;
 function jqueryLoaded() {
     clearInterval(checker);
     console.log("Shoutbox jQuery found; running shoutbox script version " + currentVersion);
+    
+    $('head').append('<link rel="stylesheet" href="http://chirimorin.github.io/AwesomenautsForumAddon/xbbcode/xbbcode.css" type="text/css" />');
     
     $(document).ready(function(){
         //Remove pesky ads
@@ -155,7 +162,6 @@ function checkJquery() {
         }
 }	
 
-$('head').append('<link rel="stylesheet" href="http://chirimorin.github.io/AwesomenautsForumAddon/xbbcode/xbbcode.css" type="text/css" />');
 checkJquery();
 
 
