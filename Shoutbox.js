@@ -95,16 +95,12 @@ function postEdits() //Changes to posts, should be called for every load.
             });
             
             //TODO: parse bbcode?
-            $(this).html(XBBCODE.process({text: $(this).html()}).html);
+            //$(this).html(XBBCODE.process({text: $(this).html()}).html);
             
             //TODO: bad word filter.
         });
     });
 } 
-
-$(".postbody", $("#contentarea")).each(function(){
-    $(this).html(XBBCODE.process({text: $(this).html()}).html);
-});
 
 var checker = 0;
 function jqueryLoaded() {
