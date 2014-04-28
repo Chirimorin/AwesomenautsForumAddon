@@ -75,8 +75,11 @@ function jqueryLoaded() {
         
         postEdits();
         
-        $( document ).ajaxComplete(function() { postEdits() }); //Shouldn't be needed, but somehow the socket function below fails when you're a mod.
-        socket.on('newPost', function(mess) { postEdits(); });
+        if (socket) //First page, autorefresh enabled. 
+        {
+            $( document ).ajaxComplete(function() { postEdits() }); //Shouldn't be needed, but somehow the socket function below fails when you're a mod.
+            socket.on('newPost', function(mess) { postEdits(); });
+        }
     });
 }
 
