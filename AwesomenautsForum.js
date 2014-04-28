@@ -28,7 +28,7 @@ var updateMessage = "No more false positives on marking posts.";
  
 function jqueryLoaded() {
     clearInterval(checker);
-    console.log("jQuery found; loading script");
+    console.log("jQuery found; loading script version " + currentVersion);
     
     //Find the banner at the top of the page
     var banner;
