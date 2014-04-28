@@ -68,6 +68,15 @@ customSmilieslist.push({name: "Headbanging Swiggins (by Muffel)", url: "http://i
 customSmilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/iqKzH2e.gif", code: ":reddroid:"});
 customSmilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/8TJJRjx.gif", code: ":bluedroid:"});
 customSmilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});
+customSmilieslist.push({name: "Solar", url: "http://cdn.steamcommunity.com/economy/emoticon/solar", code: ":solar:"});
+customSmilieslist.push({name: "Clunk", url: "http://cdn.steamcommunity.com/economy/emoticon/clunk", code: ":clunk:"});
+customSmilieslist.push({name: "Lonestar", url: "http://cdn.steamcommunity.com/economy/emoticon/lonestar", code: ":lonestar:"});
+customSmilieslist.push({name: "Froggy G", url: "http://cdn.steamcommunity.com/economy/emoticon/froggy", code: ":froggy:"});
+customSmilieslist.push({name: "Creep", url: "http://cdn.steamcommunity.com/economy/emoticon/creep", code: ":creep:"});
+customSmilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/", code: ":awesome:"});
+
+auts emoticons?  http://cdn.steamcommunity.com/economy/emoticon/clunk  http://cdn.steamcommunity.com/economy/emoticon/lonestar  http://cdn.steamcommunity.com/economy/emoticon/creep 
+22:58 - Chiri
 
 var secretSmilieslist = new Array();
 secretSmilieslist.push({name: "o.O", url: "http://cdn.steamcommunity.com/economy/emoticon/spazdunno", code: ":spazdunno:"});
