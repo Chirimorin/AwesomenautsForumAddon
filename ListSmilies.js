@@ -38,7 +38,7 @@ smilieslist.push({name: "Clunk", url: "http://cdn.steamcommunity.com/economy/emo
 smilieslist.push({name: "Lonestar", url: "http://cdn.steamcommunity.com/economy/emoticon/lonestar", code: ":lonestar:"});
 smilieslist.push({name: "Froggy G", url: "http://cdn.steamcommunity.com/economy/emoticon/froggy", code: ":froggy:"});
 smilieslist.push({name: "Creep", url: "http://cdn.steamcommunity.com/economy/emoticon/creep", code: ":creep:"});
-smilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/", code: ":awesome:"});
+smilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/awesome", code: ":awesome:"});
 
 
 
