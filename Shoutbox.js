@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.02;
+var currentVersion = 1.03;
 
 function postEdits() //Changes to posts, should be called for every load. 
 {
@@ -52,8 +52,7 @@ function jqueryLoaded() {
         
         postEdits();
         
-        //$( document ).ajaxComplete(function() { postEdits() });
-        
+        $( document ).ajaxComplete(function() { postEdits() });
         socket.on('newPost', function(mess) { postEdits(); });
     });
 }
