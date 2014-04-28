@@ -30,6 +30,8 @@ function jqueryLoaded() {
     clearInterval(checker);
     console.log("jQuery found; loading script");
     
+    $("#wrapcentre").prepend('<span style="font-size: 150%; line-height: normal"><strong>Old main script detected! Please update the main script. For more info, <a href="http://www.awesomenauts.com/forum/viewtopic.php?p=364799#p364799">click here</a></strong></span>');
+    
     //Find the banner at the top of the page
     var banner;
     var imgs = document.getElementsByTagName ('img');
