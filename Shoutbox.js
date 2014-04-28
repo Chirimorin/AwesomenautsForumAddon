@@ -94,6 +94,8 @@ function postEdits() //Changes to posts, should be called for every load.
                 if (jQuery.inArray(name, Specials) != -1) { $(this).wrap("<span style='color:#0000AA'></span>") }
             });
             
+            //TODO: parse bbcode?
+            
             //TODO: bad word filter.
         });
     });
@@ -153,7 +155,7 @@ function checkJquery() {
         }
 }	
 
+$('head').append('<link rel="stylesheet" href="http://chirimorin.github.io/AwesomenautsForumAddon/xbbcode/xbbcode.css" type="text/css" />');
 checkJquery();
-
 
 

@@ -585,6 +585,9 @@ var XBBCODE = (function() {
         ret.html = ret.html.replace("&#91;", "["); // put ['s back in
         ret.html = ret.html.replace("&#93;", "]"); // put ['s back in
         
+        ret.html = ret.html.replace(/&lt;/g, "<");
+        ret.html = ret.html.replace(/&gt;/g, ">");
+        
         ret.error = (errQueue.length === 0) ? false : true;
         ret.errorQueue = errQueue;
         
