@@ -1,5 +1,7 @@
 console.log("Shoutbox script loaded");
 
+var currentVersion = 1.0;
+
 function postEdits() //Changes to posts, should be called for every load. 
 {
     console.log("Refreshing posts edits...");
@@ -36,7 +38,7 @@ function postEdits() //Changes to posts, should be called for every load.
 var checker = 0;
 function jqueryLoaded() {
     clearInterval(checker);
-    console.log("Shoutbox jQuery found; running script...");
+    console.log("Shoutbox jQuery found; running shoutbox script version " + currentVersion);
     
     $(document).ready(function(){
         //Remove pesky ads
