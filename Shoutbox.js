@@ -95,7 +95,7 @@ function postEdits() //Changes to posts, should be called for every load.
                 $(post).html($(post).html().replace(new RegExp(this.code, "gi"), '<img src="' + this.url + '" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" />'));
             });
             $.each(secretSmilieslist, function() {
-                $(post).html($(post).html().replace(new RegExp(this.code, "gi"), '<img src="' + this.url + '" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" />'));
+                $(post).html($(post).html().replace(new RegExp(this.code, "gi"), '<img src="' + this.url + '" alt="secret" title="'+this.name+'" />'));
             });
             
             //Find moderators and make them orange
