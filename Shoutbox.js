@@ -69,6 +69,9 @@ customSmilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/
 customSmilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/8TJJRjx.gif", code: ":bluedroid:"});
 customSmilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});
 
+var secretSmilieslist = new Array();
+secretSmilieslist.push({name: "o.O", url: "http://cdn.steamcommunity.com/economy/emoticon/spazdunno", code: ":spazdunno:"});
+
 function postEdits() //Changes to posts, should be called for every load. 
 {
     $(document).ready(function(){
@@ -82,6 +85,9 @@ function postEdits() //Changes to posts, should be called for every load.
                 $(post).html($(post).html().replace(new RegExp(this.code, "gi"), '<img src="' + this.url + '" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" />'));
             });
             $.each(customSmilieslist, function() {
+                $(post).html($(post).html().replace(new RegExp(this.code, "gi"), '<img src="' + this.url + '" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" />'));
+            });
+            $.each(secretSmilieslist, function() {
                 $(post).html($(post).html().replace(new RegExp(this.code, "gi"), '<img src="' + this.url + '" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" />'));
             });
             
