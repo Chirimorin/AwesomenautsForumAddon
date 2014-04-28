@@ -3,7 +3,7 @@ console.log("Test script loaded");
 console.log("Loading live script...");
 var script = document.createElement("script");
 script.type = "text/javascript";
-script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/AwesomenautsForumLatest.js?v=" + currentVersion;
+script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/AwesomenautsForumLatest.js?v=" + currentVersion;
 document.body.appendChild(script);
 
 //Test functionality starts here

@@ -330,7 +330,7 @@ if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
     console.log("Loading extra smilies...");
 	var script = document.createElement("script");
 	script.type = "text/javascript";
-	script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
+	script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
 	document.body.appendChild(script);
 }
 
