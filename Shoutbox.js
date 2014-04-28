@@ -5,6 +5,13 @@ function jqueryLoaded() {
     clearInterval(checker);
     console.log("Shoutbox jQuery found; running script...");
     
+    $(document).ready(function(){
+        //Remove pesky ads
+        $("div[id^=div-gpt-ad]").each(function() { $(this).remove(); });
+        
+        //Hide MOTD bar (used for loading this script)
+        $("#ShoutboxScript").parent().parent().parent().parent().parent().hide();
+    });
 }
 
 function checkJquery() {
