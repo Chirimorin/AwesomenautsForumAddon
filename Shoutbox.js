@@ -75,9 +75,6 @@ customSmilieslist.push({name: "Froggy G", url: "http://cdn.steamcommunity.com/ec
 customSmilieslist.push({name: "Creep", url: "http://cdn.steamcommunity.com/economy/emoticon/creep", code: ":creep:"});
 customSmilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/", code: ":awesome:"});
 
-auts emoticons?  http://cdn.steamcommunity.com/economy/emoticon/clunk  http://cdn.steamcommunity.com/economy/emoticon/lonestar  http://cdn.steamcommunity.com/economy/emoticon/creep 
-22:58 - Chiri
-
 var secretSmilieslist = new Array();
 secretSmilieslist.push({name: "o.O", url: "http://cdn.steamcommunity.com/economy/emoticon/spazdunno", code: ":spazdunno:"});
 secretSmilieslist.push({name: "mantis", url: "http://cdn.steamcommunity.com/economy/emoticon/ftlmantis", code: ":ftlmantis:"});
