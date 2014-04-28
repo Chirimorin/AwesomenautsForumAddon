@@ -51,7 +51,7 @@ function postEdits() //Changes to posts, should be called for every load.
                 
                 if (jQuery.inArray(name, Ronimo) != -1) { $(this).wrap("<span style='color:#AA0000'></span>") }
                 if (jQuery.inArray(name, Adminauts) != -1) { $(this).wrap("<span style='color:#FF9900'></span>") }
-                if (jQuery.inArray(name, Specials) != -1) { $(this).wrap("<span style='color:#0000FF'></span>") }
+                if (jQuery.inArray(name, Specials) != -1) { $(this).wrap("<span style='color:#0000AA'></span>") }
             });
             
             //TODO: bad word filter.
