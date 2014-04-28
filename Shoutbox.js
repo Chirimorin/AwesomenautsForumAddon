@@ -11,6 +11,34 @@ function jqueryLoaded() {
         
         //Hide MOTD bar (used for loading this script)
         $("#ShoutboxScript").parent().parent().parent().parent().parent().hide();
+        
+        //Smilies!
+        $(".postbody", $("#contentarea")).each(function(){
+            $(this).html($(this).html().replace(/:ayla:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Ayla.gif" alt=":ayla:" title="happy">'));
+            $(this).html($(this).html().replace(/:aylaroll:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_AylaRoll.gif" alt=":aylaroll:" title="roll">'));
+            $(this).html($(this).html().replace(/:voltarroll:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_VoltarRoll.gif" alt=":voltarroll:" title="roll eyes">'));
+            $(this).html($(this).html().replace(/:drool:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_DerplDrool.gif" alt=":drool:" title="drool">'));
+            $(this).html($(this).html().replace(/:thumb:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_FroggyThumb.gif" alt=":thumb:" title="thumb">'));
+            $(this).html($(this).html().replace(/:leoneyes:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_LeonEyes.gif" alt=":leoneyes:" title="leonEyes">'));
+            $(this).html($(this).html().replace(/:shrug:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_FrogShrug.gif" alt=":shrug:" title="shrug">'));
+            $(this).html($(this).html().replace(/:GnawShock:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_GnawSurprise.gif" alt=":GnawShock:" title="shock">'));
+            $(this).html($(this).html().replace(/:huh:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_YuriHuh.gif" alt=":huh:" title="huh">'));
+            $(this).html($(this).html().replace(/:lolstar:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_lolstar.gif" alt=":lolstar:" title="laughing">'));
+            $(this).html($(this).html().replace(/:derp:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/SpikeDerp.gif" alt=":derp:" title="derp">'));
+            $(this).html($(this).html().replace(/:kiss:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_CocoKiss.gif" alt=":kiss:" title="kiss">'));
+            $(this).html($(this).html().replace(/:worship:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_GenjiWorship.gif" alt=":worship:" title="worship">'));
+            $(this).html($(this).html().replace(/:rae:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Raelynn.gif" alt=":rae:" title="Raelynn">'));
+            $(this).html($(this).html().replace(/:blabl:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Derpl.gif" alt=":blabl:" title="baffled">'));
+            $(this).html($(this).html().replace(/:drone:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_Drone.gif" alt=":drone:" title="mind_blown">'));
+            $(this).html($(this).html().replace(/:chew:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_ClunkBite.gif" alt=":chew:" title="Chew">'));
+            $(this).html($(this).html().replace(/:sleep:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_ClunkNose.gif" alt=":sleep:" title="sleep">'));
+            $(this).html($(this).html().replace(/:think:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_SentryThinking.gif" alt=":think:" title="think">'));
+            $(this).html($(this).html().replace(/:facepalm:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_SwigginsFacepalm.gif" alt=":facepalm:" title="facepalm">'));
+            $(this).html($(this).html().replace(/:tear:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_TedTear.gif" alt=":tear:" title="tear">'));
+            $(this).html($(this).html().replace(/:clap:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_VinnieClapping.gif" alt=":clap:" title="clapping">'));
+            $(this).html($(this).html().replace(/:shady:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_VoltarLook.gif" alt=":shady:" title="shady">'));
+            $(this).html($(this).html().replace(/:party:/g, '<img src="http://www.awesomenauts.com/forum/images/smilies/Smiley_PartyPenny.gif" alt=":party:" title="party">'));
+        });
     });
 }
 
