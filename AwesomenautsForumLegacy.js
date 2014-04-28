@@ -74,7 +74,7 @@ for (i=0; i<postBodys.length ; i++)
 //Append the smilies code
 var script = document.createElement("script");
 script.type = "text/javascript";
-script.src = "https://github.com/Chirimorin/AwesomenautsForumAddon/raw/master/ListSmilies.js"
+script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
 document.body.appendChild(script);
 
 //strawpoll auto embed poll
