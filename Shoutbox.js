@@ -71,6 +71,7 @@ customSmilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.
 
 var secretSmilieslist = new Array();
 secretSmilieslist.push({name: "o.O", url: "http://cdn.steamcommunity.com/economy/emoticon/spazdunno", code: ":spazdunno:"});
+secretSmilieslist.push({name: "mantis", url: "http://cdn.steamcommunity.com/economy/emoticon/ftlmantis", code: ":ftlmantis:"});
 
 function postEdits() //Changes to posts, should be called for every load. 
 {
