@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.02;
+var currentVersion = 1.03;
 
 var Ronimo = new Array();
 
@@ -169,16 +169,13 @@ function jqueryLoaded() {
         //Edit all posts
         postEdits();
         
-        if (socket) //First page, autorefresh enabled. 
-        {
-            var renderShoutboxOld = renderShoutbox;
-            renderShoutbox = function(data) {
-                renderShoutboxOld(data);
-                postEdits();
-            }
-            //$( document ).ajaxComplete(function() { postEdits() }); //Shouldn't be needed, but somehow the socket function below fails when you're a mod.
-            //socket.on('newPost', function(mess) { postEdits(); });
+        //Make sure editing the posts is part of re-rendering the shoutbox (This is always called, no matter your user-level or loading method)
+        var renderShoutboxOld = renderShoutbox;
+        renderShoutbox = function(data) {
+            renderShoutboxOld(data);
+            postEdits();
         }
+            
     });
 }
 
