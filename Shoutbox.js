@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.01;
+var currentVersion = 1.02;
 
 var Ronimo = new Array();
 
