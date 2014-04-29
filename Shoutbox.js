@@ -111,7 +111,7 @@ function postEdits() //Changes to posts, should be called for every load.
             $("b", this).each(function(){
                 name = $(this).html().replace(/(<([^>]+)>)/ig,"").replace(":","");
                 
-                if (jQuery.inArray(name, Ronimo) != -1) { $(this).wrap("<span style='color:#AA0000'></span>") }
+                if (jQuery.inArray(name, Ronimo) != -1) { $(this).prepend("<img src=\"http://img4.wikia.nocookie.net/__cb20131011154248/awesomenauts/images/f/f2/UI_PrestigeRonimo.png\" height=\"17px\" /> "); $(this).wrap("<span style='color:#AA0000'></span>") }
                 if (jQuery.inArray(name, Adminauts) != -1) { $(this).wrap("<span style='color:#FF9900'></span>") }
                 if (jQuery.inArray(name, Specials) != -1) { $(this).wrap("<span style='color:#0000AA'></span>") }
             });
