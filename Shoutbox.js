@@ -90,6 +90,11 @@ function postEdits() //Changes to posts, should be called for every load.
         $(".postbody", $("#contentarea")).each(function(){ //Loop through all posts
             var post = this;
             
+            //Word filter
+            $.each(filteredWords, function() {
+                $(post).html($(post).html().replace(new RegExp(this, "gi"), '*'));
+            });
+            
             //Smilies!
             $.each(smilieslist, function() {
                 $(post).html($(post).html().replace(new RegExp(this.code, "gi"), '<img src="' + this.url + '" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" />'));
@@ -113,10 +118,15 @@ function postEdits() //Changes to posts, should be called for every load.
             //Parse BBcode, external library. 
             $(this).html(XBBCODE.process({text: $(this).html()}).html);
             
-            //Word filter
-            $.each(filteredWords, function() {
-                $(post).html($(post).html().replace(new RegExp(this, "gi"), '*'));
-            });
+            //Time fix Soon
+            //var wrapper = $(this).parent()
+            //if (!$(wrapper).hasClass("wrapie")) { wrapper = $(wrapper).parent(); }
+            //var time = $(wrapper).attr("title").split("@ ")[1].split(" UTC")[0].split(":");
+            //dt = new Date();
+            //dt.setUTCHours(time[0]);
+            //var hours = dt.getHours(); //Javascript date will automatically convert to the right timezone.
+            //var minutes = time[1];
+            //$(post).prepend(hours + ":" + minutes + " ");
         });
     });
 } 
