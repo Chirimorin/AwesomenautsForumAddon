@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.0;
+var currentVersion = 1.01;
 
 var Ronimo = new Array();
 
@@ -80,7 +80,7 @@ var secretSmilieslist = new Array();
 var _0xd3d0=["\x6F\x2E\x4F","\x68\x74\x74\x70\x3A\x2F\x2F\x63\x64\x6E\x2E\x73\x74\x65\x61\x6D\x63\x6F\x6D\x6D\x75\x6E\x69\x74\x79\x2E\x63\x6F\x6D\x2F\x65\x63\x6F\x6E\x6F\x6D\x79\x2F\x65\x6D\x6F\x74\x69\x63\x6F\x6E\x2F\x73\x70\x61\x7A\x64\x75\x6E\x6E\x6F","\x3A\x73\x70\x61\x7A\x64\x75\x6E\x6E\x6F\x3A","\x70\x75\x73\x68","\x6D\x61\x6E\x74\x69\x73","\x68\x74\x74\x70\x3A\x2F\x2F\x63\x64\x6E\x2E\x73\x74\x65\x61\x6D\x63\x6F\x6D\x6D\x75\x6E\x69\x74\x79\x2E\x63\x6F\x6D\x2F\x65\x63\x6F\x6E\x6F\x6D\x79\x2F\x65\x6D\x6F\x74\x69\x63\x6F\x6E\x2F\x66\x74\x6C\x6D\x61\x6E\x74\x69\x73","\x3A\x66\x74\x6C\x6D\x61\x6E\x74\x69\x73\x3A","\x43\x6F\x66\x66\x65\x65","\x68\x74\x74\x70\x3A\x2F\x2F\x63\x64\x6E\x2E\x73\x74\x65\x61\x6D\x63\x6F\x6D\x6D\x75\x6E\x69\x74\x79\x2E\x63\x6F\x6D\x2F\x65\x63\x6F\x6E\x6F\x6D\x79\x2F\x65\x6D\x6F\x74\x69\x63\x6F\x6E\x2F\x62\x72\x65\x61\x6B","\x3A\x63\x6F\x66\x66\x62\x72\x65\x61\x6B\x3A"];secretSmilieslist[_0xd3d0[3]]({name:_0xd3d0[0],url:_0xd3d0[1],code:_0xd3d0[2]});secretSmilieslist[_0xd3d0[3]]({name:_0xd3d0[4],url:_0xd3d0[5],code:_0xd3d0[6]});secretSmilieslist[_0xd3d0[3]]({name:_0xd3d0[7],url:_0xd3d0[8],code:_0xd3d0[9]});
 
 var filteredWords = new Array();
-filteredWords.push("fuck", "dick", "cunt", "shit", "ass", "bitch", "blowjob", "cock", "cum", "faggot");
+filteredWords.push("fuck", "dick", "cunt", "shit", "ass", "bitch", "blowjob", "cock", "cum", "faggot", "porn");
 
 function postEdits() //Changes to posts, should be called for every load. 
 {
@@ -92,7 +92,7 @@ function postEdits() //Changes to posts, should be called for every load.
             
             //Word filter
             $.each(filteredWords, function() {
-                $(post).html($(post).html().replace(new RegExp(" " + this + " ", "gi"), '*'));
+                $(post).html($(post).html().replace(new RegExp(" " + this + " ", "gi"), ' * '));
             });
             
             //Smilies!
@@ -171,8 +171,13 @@ function jqueryLoaded() {
         
         if (socket) //First page, autorefresh enabled. 
         {
-            $( document ).ajaxComplete(function() { postEdits() }); //Shouldn't be needed, but somehow the socket function below fails when you're a mod.
-            socket.on('newPost', function(mess) { postEdits(); });
+            var renderShoutboxOld = renderShoutbox;
+            function renderShoutbox(data) {
+                renderShoutboxOld(data);
+                postEdits();
+            }
+            //$( document ).ajaxComplete(function() { postEdits() }); //Shouldn't be needed, but somehow the socket function below fails when you're a mod.
+            //socket.on('newPost', function(mess) { postEdits(); });
         }
     });
 }
