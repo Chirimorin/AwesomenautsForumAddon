@@ -150,12 +150,12 @@ function jqueryLoaded() {
         $("#divOptions").prepend("<table cellspacing=\"5\" cellpadding=\"0\" border=\"0\" align=\"center\"> \
                                     <tbody> \
                                         <tr> \
-                                            <td class=\"gensmall\" align=\"center\"><b>Default Smilies</b></td> \
-                                            <td class=\"gensmall\" align=\"center\"><b>Custom Smilies</b></td> \
+                                            <td align=\"center\"><b>Default Smilies</b></td> \
+                                            <td align=\"center\"><b>Custom Smilies</b></td> \
                                         </tr> \
                                         <tr> \
-                                            <td width=\"187\" align=\"center\" id=\"defaultsmilies\"></td> \
-                                            <td width=\"187\" align=\"center\" id=\"customsmilies\"></td> \
+                                            <td align=\"center\" id=\"defaultsmilies\"></td> \
+                                            <td align=\"center\" id=\"customsmilies\"></td> \
                                         </tr> \
                                     </tbody> \
                                 </table>");
