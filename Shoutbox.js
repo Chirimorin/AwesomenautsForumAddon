@@ -172,7 +172,7 @@ function jqueryLoaded() {
         if (socket) //First page, autorefresh enabled. 
         {
             var renderShoutboxOld = renderShoutbox;
-            function renderShoutbox(data) {
+            renderShoutbox = function(data) {
                 renderShoutboxOld(data);
                 postEdits();
             }
