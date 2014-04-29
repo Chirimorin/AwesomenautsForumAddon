@@ -3,6 +3,7 @@ console.log("Shoutbox script loaded");
 var currentVersion = 1.03;
 
 var Ronimo = new Array();
+Ronimo.push("Jasper");
 
 var Adminauts = new Array();
 Adminauts.push("Fish");
