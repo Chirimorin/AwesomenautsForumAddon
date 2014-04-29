@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 0.7;
+var currentVersion = 0.8;
 
 var Ronimo = new Array();
 
@@ -118,15 +118,15 @@ function postEdits() //Changes to posts, should be called for every load.
             //Parse BBcode, external library. 
             $(this).html(XBBCODE.process({text: $(this).html()}).html);
             
-            //Time fix Soon
-            //var wrapper = $(this).parent()
-            //if (!$(wrapper).hasClass("wrapie")) { wrapper = $(wrapper).parent(); }
-            //var time = $(wrapper).attr("title").split("@ ")[1].split(" UTC")[0].split(":");
-            //dt = new Date();
-            //dt.setUTCHours(time[0]);
-            //var hours = dt.getHours(); //Javascript date will automatically convert to the right timezone.
-            //var minutes = time[1];
-            //$(post).prepend(hours + ":" + minutes + " ");
+            //Time fix
+            var wrapper = $(this).parent()
+            if (!$(wrapper).hasClass("wrapie")) { wrapper = $(wrapper).parent(); }
+            var time = $(wrapper).attr("title").split("@ ")[1].split(" UTC")[0].split(":");
+            dt = new Date();
+            dt.setUTCHours(time[0]);
+            var hours = dt.getHours(); //Javascript date will automatically convert to the right timezone.
+            var minutes = time[1];
+            $(post).prepend("[" + hours + ":" + minutes + "] ");
         });
     });
 } 
