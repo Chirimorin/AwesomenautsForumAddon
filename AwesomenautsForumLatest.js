@@ -234,11 +234,11 @@ $('.forum-buttons').each(function(){
         $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
         $(this).css("background-size", "1px 40px");
         console.log("Settings link loaded");
-	}
-	else //white line in menu fix
-	{
+    }
+    else //white line in menu fix
+    {
         $(this).css("background-size", "1px 30px");
-	}
+    }
 });
 
 //new tab fix
@@ -253,24 +253,24 @@ console.log("Onclick fix loaded");
 //Marking users posts
 if (GetUSStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
 {
-	var PostAuthors = $('.postauthor');
-	var PostBodys = $('.row-post-body');
-	for (i=0; i<PostAuthors.length; i++)
-	{
-		if (PostAuthors[i].innerHTML == UserName && window.location.href.indexOf("posting.php") == -1)
-		{
-			if (GetUSStorage('postMarkingMode') == 1) //Outline avatar. 
-			{
-				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetUSStorage('postMarkingColor') + "'");
-			}
-			if (GetUSStorage('postMarkingMode') == 2) //Background color.
-			{
-				PostBodys[((i+1)*2)-2].style.background=GetUSStorage('postMarkingColor');
-				var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
-				PostDetails[0].style.color=GetUSStorage('postMarkingText');
-			}
-		}
-	}
+    var PostAuthors = $('.postauthor');
+    var PostBodys = $('.row-post-body');
+    for (i=0; i<PostAuthors.length; i++)
+    {
+        if (PostAuthors[i].innerHTML == UserName && window.location.href.indexOf("posting.php") == -1)
+        {
+            if (GetUSStorage('postMarkingMode') == 1) //Outline avatar. 
+            {
+                PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetUSStorage('postMarkingColor') + "'");
+            }
+            if (GetUSStorage('postMarkingMode') == 2) //Background color.
+            {
+                PostBodys[((i+1)*2)-2].style.background=GetUSStorage('postMarkingColor');
+                var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
+                PostDetails[0].style.color=GetUSStorage('postMarkingText');
+            }
+        }
+    }
     console.log("User posts marked");
 }
 
@@ -328,10 +328,10 @@ console.log("Oversized images shrunk");
 if (GetUSStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
     console.log("Loading extra smilies...");
-	var script = document.createElement("script");
-	script.type = "text/javascript";
-	script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
-	document.body.appendChild(script);
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
+    document.body.appendChild(script);
 }
 
 i = 0;
@@ -339,7 +339,7 @@ $('a.postlink').each(function(){
     if (GetUSStorage('strawpollEmbed')) //Auto embedding Strawpoll links
     {
         if (this.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
-		{
+        {
             pollCode = this.href.substring(this.href.indexOf("strawpoll.me/")+13,this.href.length);
             if (pollCode.length > 0) //Did we find a poll or just a link?
             {
@@ -367,12 +367,12 @@ console.log("Strawpoll and youtube embeds loaded");
 
 if (GetUSStorage('extraBBCode'))
 {
-	if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
-	{
-		help_line['trans'] = 'Makes text transparent';
-		var table = document.getElementsByName('addbbcode22')[0].parentNode;
-		table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
-	}
+    if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
+    {
+        help_line['trans'] = 'Makes text transparent';
+        var table = document.getElementsByName('addbbcode22')[0].parentNode;
+        table.innerHTML += "<input type=\"button\" class=\"btnbbcode\" name=\"addbbcodetrans\" value=\"transparent\" onclick=\"bbfontstyle('[color=transparent]','[/color]')\" onmouseover=\"helpline('trans')\" onmouseout=\"helpline('tip')\" />";
+    }
     console.log("Extra BB code loaded");
 }
 
@@ -400,217 +400,217 @@ if (window.location.href.indexOf("ucp.php") != -1)
     table = $('.tablebg');
     for (i=0; i<table.length; i++)
     {
-		if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
-		{
-			table[i].innerHTML = table[i].innerHTML.insert(8,"\
-				<tr>\
-					<th colspan=\"3\">Forum Userscript Settings</th>\
-				</tr>\
-				<tr>\
-					<td class=\"row1\" colspan=\"3\" align=\"center\">\
-						<table width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
-							<tr>\
-								<td class=\"row1\" colspan=\"3\" align=\"center\">\
-									<p class=\"genmed\">\
-										Here you can change the settings for Chirimorin's forum userscript.<br />\
-										All settings are applied automatically.<br />\
-										For more info, please visit <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
-									</p>\
-								</td>\
-							</tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Current version:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\">" + currentVersion +"</b>\
-								</td>\
-							</tr>\
+        if (table[i].innerHTML.indexOf('Welcome to the User Control Panel.') != -1) //Check if this is the right panel for injecting code into. 
+        {
+            table[i].innerHTML = table[i].innerHTML.insert(8,"\
+                <tr>\
+                    <th colspan=\"3\">Forum Userscript Settings</th>\
+                </tr>\
+                <tr>\
+                    <td class=\"row1\" colspan=\"3\" align=\"center\">\
+                        <table width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
+                            <tr>\
+                                <td class=\"row1\" colspan=\"3\" align=\"center\">\
+                                    <p class=\"genmed\">\
+                                        Here you can change the settings for Chirimorin's forum userscript.<br />\
+                                        All settings are applied automatically.<br />\
+                                        For more info, please visit <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
+                                    </p>\
+                                </td>\
+                            </tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Current version:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\">" + currentVersion +"</b>\
+                                </td>\
+                            </tr>\
                             <tr><td>&nbsp;</td></tr>\
                             <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Image marking:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"imageMarkingCheck\" onchange=\"SetUSStorage('imageMarking',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Puts a dashed line around resized images.</span>\
-								</td>\
-							</tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Image marking:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"imageMarkingCheck\" onchange=\"SetUSStorage('imageMarking',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Puts a dashed line around resized images.</span>\
+                                </td>\
+                            </tr>\
                             <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Image marking color:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetUSStorage('imageMarkingColor',this.value)\" /></b><br />\
-									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
-								</td>\
-							</tr>\
-                            <tr><td>&nbsp;</td></tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Settings link:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetUSStorage('settingsLink',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
-								</td>\
-							</tr>\
-                            <tr><td>&nbsp;</td></tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Extra smilies:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetUSStorage('extraSmilies',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
-								</td>\
-							</tr>\
-                            <tr><td>&nbsp;</td></tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetUSStorage('strawpollEmbed',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
-								</td>\
-							</tr>\
-                            <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Youtube embed button:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetUSStorage('youtubeEmbed',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post.</span>\
-								</td>\
-							</tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Image marking color:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetUSStorage('imageMarkingColor',this.value)\" /></b><br />\
+                                    <span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
+                                </td>\
+                            </tr>\
                             <tr><td>&nbsp;</td></tr>\
                             <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Magnify text:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"magnifyTextCheck\" onchange=\"SetUSStorage('magnifyText',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Magnifies tiny text when you mouse over it.</span>\
-								</td>\
-							</tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Settings link:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetUSStorage('settingsLink',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
+                                </td>\
+                            </tr>\
                             <tr><td>&nbsp;</td></tr>\
                             <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Hide Forums:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetUSStorage('hideForums',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Allows you to hide forums.<br />\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Extra smilies:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetUSStorage('extraSmilies',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
+                                </td>\
+                            </tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetUSStorage('strawpollEmbed',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
+                                </td>\
+                            </tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Youtube embed button:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetUSStorage('youtubeEmbed',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post.</span>\
+                                </td>\
+                            </tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Magnify text:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"magnifyTextCheck\" onchange=\"SetUSStorage('magnifyText',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Magnifies tiny text when you mouse over it.</span>\
+                                </td>\
+                            </tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Hide Forums:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetUSStorage('hideForums',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Allows you to hide forums.<br />\
                                     <a href=\"#\" onclick=\"SetUSStorage('hiddenForums', new Array()); return false;\">reset hidden forums</a></span>\
-								</td>\
-							</tr>\
+                                </td>\
+                            </tr>\
                             <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Hide Topics:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetUSStorage('hideTopics',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Allows you to hide topics.<br />\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Hide Topics:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetUSStorage('hideTopics',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Allows you to hide topics.<br />\
                                     <a href=\"#\" onclick=\"SetUSStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a></span>\
-								</td>\
-							</tr>\
-                            <tr><td>&nbsp;</td></tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Post marking type:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetUSStorage('postMarkingMode',this.value)\">\
-										<option value=\"0\">No marking</option>\
-										<option value=\"1\">Avatar outline</option>\
-										<option value=\"2\">Avatar panel background</option>\
-									</select></b><br />\
-									<span class=\"genmed\">Choose the type of marking your own posts.</span>\
-								</td>\
-							</tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Post marking color:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetUSStorage('postMarkingColor',this.value)\" /></b><br />\
-									<span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
-								</td>\
-							</tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Post text color:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetUSStorage('postMarkingText',this.value)\" /></b><br />\
-									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
-								</td>\
-							</tr>\
-                            <tr><td>&nbsp;</td></tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Extra BB code buttons:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetUSStorage('extraBBCode',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
-								</td>\
-							</tr>\
+                                </td>\
+                            </tr>\
                             <tr><td>&nbsp;</td></tr>\
                             <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Shoutbox:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"shoutboxCheck\" onchange=\"SetUSStorage('shoutbox',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Adds a shoutbox to the top of the page.</span>\
-								</td>\
-							</tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Post marking type:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetUSStorage('postMarkingMode',this.value)\">\
+                                        <option value=\"0\">No marking</option>\
+                                        <option value=\"1\">Avatar outline</option>\
+                                        <option value=\"2\">Avatar panel background</option>\
+                                    </select></b><br />\
+                                    <span class=\"genmed\">Choose the type of marking your own posts.</span>\
+                                </td>\
+                            </tr>\
                             <tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Shoutbox height:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"number\" id=\"shoutboxHeightBox\" onchange=\"SetUSStorage('shoutboxHeight',this.value)\" /></b><br />\
-									<span class=\"genmed\">The height of the shoutbox, in pixels. Default: 200</span>\
-								</td>\
-							</tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Post marking color:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetUSStorage('postMarkingColor',this.value)\" /></b><br />\
+                                    <span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
+                                </td>\
+                            </tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Post text color:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetUSStorage('postMarkingText',this.value)\" /></b><br />\
+                                    <span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
+                                </td>\
+                            </tr>\
                             <tr><td>&nbsp;</td></tr>\
-							<tr>\
-								<td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-									<b class=\"genmed\">Use test script:</b>\
-								</td>\
-								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetUSStorage('testScript',this.checked)\" /></b><br />\
-									<span class=\"genmed\">Loads the test version of this script, see the main topic for more info.</span>\
-								</td>\
-							</tr>\
-						</table>\
-					</td>\
-				</tr>\
-				");
-			
-			//Load all the saved values into the menu
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Extra BB code buttons:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetUSStorage('extraBBCode',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
+                                </td>\
+                            </tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Shoutbox:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"shoutboxCheck\" onchange=\"SetUSStorage('shoutbox',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Adds a shoutbox to the top of the page.</span>\
+                                </td>\
+                            </tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Shoutbox height:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"number\" id=\"shoutboxHeightBox\" onchange=\"SetUSStorage('shoutboxHeight',this.value)\" /></b><br />\
+                                    <span class=\"genmed\">The height of the shoutbox, in pixels. Default: 200</span>\
+                                </td>\
+                            </tr>\
+                            <tr><td>&nbsp;</td></tr>\
+                            <tr>\
+                                <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                                    <b class=\"genmed\">Use test script:</b>\
+                                </td>\
+                                <td width=\"100%\">\
+                                    <b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetUSStorage('testScript',this.checked)\" /></b><br />\
+                                    <span class=\"genmed\">Loads the test version of this script, see the main topic for more info.</span>\
+                                </td>\
+                            </tr>\
+                        </table>\
+                    </td>\
+                </tr>\
+                ");
+            
+            //Load all the saved values into the menu
             
             $('#imageMarkingCheck').attr('checked', GetUSStorage('imageMarking'));
-			$('#imageMarkingColorBox').attr('value', GetUSStorage('imageMarkingColor'));
-			$('#settingsLinkCheck').attr('checked', GetUSStorage('settingsLink'));
-			$('#extraSmiliesCheck').attr('checked', GetUSStorage('extraSmilies'));
-			$('#strawpollEmbedCheck').attr('checked', GetUSStorage('strawpollEmbed'));
+            $('#imageMarkingColorBox').attr('value', GetUSStorage('imageMarkingColor'));
+            $('#settingsLinkCheck').attr('checked', GetUSStorage('settingsLink'));
+            $('#extraSmiliesCheck').attr('checked', GetUSStorage('extraSmilies'));
+            $('#strawpollEmbedCheck').attr('checked', GetUSStorage('strawpollEmbed'));
             $('#youtubeEmbedCheck').attr('checked', GetUSStorage('youtubeEmbed'));
             $('#magnifyTextCheck').attr('checked', GetUSStorage('magnifyText'));
             $('#hideForumsCheck').attr('checked', GetUSStorage('hideForums'));
             $('#hideTopicsCheck').attr('checked', GetUSStorage('hideTopics'));
-			$('#postMarkingModeSelect').attr('value', GetUSStorage('postMarkingMode'));
-			$('#postMarkingColorBox').attr('value', GetUSStorage('postMarkingColor'));
-			$('#postMarkingTextBox').attr('value', GetUSStorage('postMarkingText'));
-			$('#extraBBCodeCheck').attr('checked', GetUSStorage('extraBBCode'));
+            $('#postMarkingModeSelect').attr('value', GetUSStorage('postMarkingMode'));
+            $('#postMarkingColorBox').attr('value', GetUSStorage('postMarkingColor'));
+            $('#postMarkingTextBox').attr('value', GetUSStorage('postMarkingText'));
+            $('#extraBBCodeCheck').attr('checked', GetUSStorage('extraBBCode'));
             $('#shoutboxCheck').attr('checked', GetUSStorage('shoutbox'));
             $('#shoutboxHeightBox').attr('value', GetUSStorage('shoutboxHeight'));
-			$('#testScriptCheck').attr('checked', GetUSStorage('testScript'));
-		}
-	}
+            $('#testScriptCheck').attr('checked', GetUSStorage('testScript'));
+        }
+    }
     console.log("Options menu loaded");
 }
 
