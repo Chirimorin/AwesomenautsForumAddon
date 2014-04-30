@@ -272,70 +272,58 @@ if (window.location.href.indexOf("posting.php") == -1){
 }
 
 //Fix oversized images and mark them
-$('.postbody').each(function(){
-    $(this).css({
-        "max-width": "764px",
-        "word-wrap": "break-word"
-    });
-    
-    $(this).find('img').each(function(){
-        var parent = $(this).parent();
-        while (!($(parent).is("div")))
-        {
-            parent = $(parent).parent();
-        }
-        
-        var maxWidth = $(parent).width()-6
-        var ownWidth = $(this).width();
-        var ownHeight = $(this).height();
-        if ($(this).width() > $(parent).width())
-        {
-            $(this).css("max-width", maxWidth + "px");
-            //if (GetUSStorage('imageMarking'))
-            //{
-            //    $(this).css({"border-style": "dashed",
-            //                "border-color": GetUSStorage('imageMarkingColor')
-            //                });
-            //}
-            
-            $(this).wrap('<div class="image scaler"></div>');
-            $(this).after('<div class="scaletutorial"><small>&nbsp; Original size: '+ownWidth+'x'+ownHeight+'. Click to see full size</small></div>');
-            $(this).parent('div').css({"border": "1px solid #1c666f",
-                                       "background": "#fff",
-                                       "width": $(this).width() + "px",
-            });
-            
-            $(this).click(function(){
-                if ($(this).css("max-width") == maxWidth + "px")
-                {
-                    $(this).css({
-                        "max-width": "",
-                        "border-style": "",
-                        "border-color": ""
-                    });
-                    $(this).parent('div').css({"width": $(this).width() + "px"});
-                    $(this).nextAll().remove();
-                    $(this).after("<div class='scaletutorial'><small>&nbsp; Original size: "+ownWidth+"x"+ownHeight+". Click to return to scaled.</small></div>");
-                }
-                else
-                {
-                    $(this).css("max-width", maxWidth + "px");
-                    $(this).parent('div').css({"width": $(this).width() + "px"});
-                    $(this).nextAll().remove();
-                    $(this).after("<div class='scaletutorial'><small>&nbsp; Original size: "+ownWidth+"x"+ownHeight+". Click to see full size</small></div>");
-                    //if (GetUSStorage('imageMarking'))
-                    //{
-                    //    $(this).css({
-                    //        "border-style": "dashed",
-                    //        "border-color": GetUSStorage('imageMarkingColor')
-                    //    });
-                    //}
-                }
-            });
-        }
-    });
-});
-console.log("Oversized images shrunk");
+//$('.postbody').each(function(){
+//    $(this).css({
+//        "max-width": "764px",
+//        "word-wrap": "break-word"
+//    });
+//    
+//    $(this).find('img').each(function(){
+//        var parent = $(this).parent();
+//        var image = this;
+//        while (!($(parent).is("div")))
+//        {
+//            parent = $(parent).parent();
+//            image = $(image).parent();
+//        }
+//        
+//        var maxWidth = $(parent).width()-6
+//        var ownWidth = $(this).width();
+//        var ownHeight = $(this).height();
+//        if ($(this).width() > $(parent).width())
+//        {
+//            $(this).css("max-width", maxWidth + "px");
+//            $(this).wrap('<div class="image scaler"></div>');
+//            $(this).after('<div class="scaletutorial"><small>&nbsp; Original size: '+ownWidth+'x'+ownHeight+'. Click here to see full size</small></div>');
+//            $(this).parent('div').css({"border": "1px solid #1c666f",
+//                                       "background": "#fff",
+//                                       "width": $(this).width() + "px",
+//            });
+//            
+//            $(this).click(function(){
+//                if ($(this).css("max-width") == maxWidth + "px")
+//                {
+//                    $(this).css({
+//                        "max-width": "",
+//                        "border-style": "",
+//                        "border-color": ""
+//                    });
+//                    $(this).parent('div').css({"width": $(this).width() + "px"});
+//                    $(this).nextAll().remove();
+//                    $(this).after("<div class='scaletutorial'><small>&nbsp; Original size: "+ownWidth+"x"+ownHeight+". Click here to return to scaled.</small></div>");
+//                }
+//                else
+//                {
+//                    $(this).css("max-width", maxWidth + "px");
+//                    $(this).parent('div').css({"width": $(this).width() + "px"});
+//                    $(this).nextAll().remove();
+//                    $(this).after("<div class='scaletutorial'><small>&nbsp; Original size: "+ownWidth+"x"+ownHeight+". Click here to see full size</small></div>");
+//                }
+//            });
+//        }
+//    });
+//});
+//console.log("Oversized images shrunk");
 
 if (GetUSStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
