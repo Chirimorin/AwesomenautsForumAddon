@@ -23,7 +23,7 @@ String.prototype.insert = function (index, string)
 };
 
 var checker = 0;
-var currentVersion = 3.17;
+var currentVersion = 3.18;
 var updateMessage = "No more false update messages.\nYour settings have been reset. I'm sorry for this.";
  
 function jqueryLoaded() {
@@ -47,12 +47,12 @@ function jqueryLoaded() {
 
     if (supports_local_storage()) //Local storage supported, good!
     {
-        GetStorage = function(item)
+        GetUSStorage = function(item)
         {
             return JSON.parse(localStorage.getItem("UserScipt" + item));
         }
 
-        SetStorage = function(item, value)
+        SetUSStorage = function(item, value)
         {
             localStorage.setItem("UserScript" + item, JSON.stringify(value));
         }
