@@ -1,3 +1,7 @@
+v3.17
+~ Fix: No more false update messages
+& Changed: Compatibility with the native forum script increased. 
+
 v3.15
 ~ Fix: Various issues fixed
 & Changed: Script will now output data to the console log. This will help me with fixing issues.

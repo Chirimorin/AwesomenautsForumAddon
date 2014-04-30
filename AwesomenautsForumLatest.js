@@ -22,7 +22,7 @@ function showAllForums()
 
 function hideHiddenTopics(animate)
 {
-    var hiddenTopics = GetStorage('hiddenTopics');
+    var hiddenTopics = GetUSStorage('hiddenTopics');
     $('.topictitle').each(function(){
         var topic = this.href.split("&t=")[1];
         if (hiddenTopics[topic] == true) //should the element be Hidden?
@@ -50,7 +50,7 @@ function hideHiddenTopics(animate)
 
 function hideHiddenForums(animate)
 {
-    var hiddenForums = GetStorage('hiddenForums');
+    var hiddenForums = GetUSStorage('hiddenForums');
     $('.forumlink').each(function(){
         var forum = this.href.split("?f=")[1];
         if (hiddenForums[forum] == true) //should the element be Hidden?
@@ -84,7 +84,7 @@ function hideHiddenForums(animate)
 
 function hideTopic(element)
 {
-    var hiddenTopics = GetStorage('hiddenTopics');
+    var hiddenTopics = GetUSStorage('hiddenTopics');
     var topic = element.parentNode.getElementsByClassName('topictitle')[0].href.split("&t=")[1];
     if (hiddenTopics[topic] == true) //Is the element hidden?
     {
@@ -100,12 +100,12 @@ function hideTopic(element)
             $(element).html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
         });
     }
-    SetStorage('hiddenTopics',hiddenTopics);
+    SetUSStorage('hiddenTopics',hiddenTopics);
 }
 
 function hideForum(element)
 {
-    var hiddenForums = GetStorage('hiddenForums');
+    var hiddenForums = GetUSStorage('hiddenForums');
     var forum = element.parentNode.getElementsByClassName('forumlink')[0].href.split("?f=")[1];
     if (hiddenForums[forum] == true) //Is the element hidden?
     {
@@ -121,7 +121,7 @@ function hideForum(element)
             $(element).html("<a href=\"#\" onclick=\"return false;\">Unhide</a>");
         });
     }
-    SetStorage('hiddenForums',hiddenForums);
+    SetUSStorage('hiddenForums',hiddenForums);
 }
 
 function embedYoutube(divID, ytVideoID, element)
@@ -148,9 +148,9 @@ var UserName;
 //Functionality starts here
 $(document).ready(function(){ //run after page fully loaded
 console.log("Document ready; running script");
-if (GetStorage('shoutbox'))
+if (GetUSStorage('shoutbox'))
 {
-    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
+    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetUSStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
     
     if (window.location.hash.substr(1) == "unread") //If unread, scroll back down to the anchor
     {
@@ -162,7 +162,7 @@ if (GetStorage('shoutbox'))
     console.log("Shoutbox loaded");
 }
 
-if (GetStorage('hideForums') || GetStorage('hideTopics'))
+if (GetUSStorage('hideForums') || GetUSStorage('hideTopics'))
 {
     //Fix table layout to fit the extra elements
     $('.row3').attr('colspan', 7);
@@ -170,7 +170,7 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     $('.cat-bottom').attr('colspan', 7);
 
     //Add "hide" button to topics
-    if (GetStorage('hideTopics'))
+    if (GetUSStorage('hideTopics'))
     {
         $(".cat").find($("td[align=\"right\"]")).before("<td align=\"right\" class=\"hideAllTopicsButton\" style=\"opacity: 0;\"><a href=\"#\" onclick=\"hideHiddenTopics(true); $(this).parent().finish().animate({opacity: 0}, 500);; return false;\">Re-hide hidden topics</a></td>\
             <td align=\"right\"><a href=\"#\" onclick=\"showAllTopics(); $('.hideAllTopicsButton').finish().animate({opacity: 1}, 500); return false;\">Show hidden topics</a></td>");
@@ -183,7 +183,7 @@ if (GetStorage('hideForums') || GetStorage('hideTopics'))
     }
     
     //Add "hide" button to forums
-    if (GetStorage('hideForums'))
+    if (GetUSStorage('hideForums'))
     {
         $('.tablebg').find($("th:contains('Forum')")).parent().parent().prepend("<tr>\
                 <td class=\"cat\" colspan=\"7\">\
@@ -228,7 +228,7 @@ $('.forum-buttons').each(function(){
     
     console.log("Username '" + UserName + "' found");
     
-    if (GetStorage('settingsLink'))
+    if (GetUSStorage('settingsLink'))
     {
         var html = $(this).html();
         $(this).html(html.insert((html.indexOf('>Forum</a>')+91),"<a href=\"./ucp.php?i=main&mode=front\">Userscript Settings</a><br />"));
@@ -251,7 +251,7 @@ for (i=0; i<allClickables.length; i++)
 console.log("Onclick fix loaded");
 
 //Marking users posts
-if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
+if (GetUSStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
 {
 	var PostAuthors = $('.postauthor');
 	var PostBodys = $('.row-post-body');
@@ -259,15 +259,15 @@ if (GetStorage('postMarkingMode') != 0) //Do we want to mark the users posts?
 	{
 		if (PostAuthors[i].innerHTML == UserName && window.location.href.indexOf("posting.php") == -1)
 		{
-			if (GetStorage('postMarkingMode') == 1) //Outline avatar. 
+			if (GetUSStorage('postMarkingMode') == 1) //Outline avatar. 
 			{
-				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetStorage('postMarkingColor') + "'");
+				PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetUSStorage('postMarkingColor') + "'");
 			}
-			if (GetStorage('postMarkingMode') == 2) //Background color.
+			if (GetUSStorage('postMarkingMode') == 2) //Background color.
 			{
-				PostBodys[((i+1)*2)-2].style.background=GetStorage('postMarkingColor');
+				PostBodys[((i+1)*2)-2].style.background=GetUSStorage('postMarkingColor');
 				var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
-				PostDetails[0].style.color=GetStorage('postMarkingText');
+				PostDetails[0].style.color=GetUSStorage('postMarkingText');
 			}
 		}
 	}
@@ -292,10 +292,10 @@ $('.postbody').each(function(){
         if ($(this).width() > $(parent).width())
         {
             $(this).css("max-width", maxWidth + "px");
-            if (GetStorage('imageMarking'))
+            if (GetUSStorage('imageMarking'))
             {
                 $(this).css({"border-style": "dashed",
-                            "border-color": GetStorage('imageMarkingColor')
+                            "border-color": GetUSStorage('imageMarkingColor')
                             });
             }
             
@@ -311,11 +311,11 @@ $('.postbody').each(function(){
                 else
                 {
                     $(this).css("max-width", maxWidth + "px");
-                    if (GetStorage('imageMarking'))
+                    if (GetUSStorage('imageMarking'))
                     {
                         $(this).css({
                             "border-style": "dashed",
-                            "border-color": GetStorage('imageMarkingColor')
+                            "border-color": GetUSStorage('imageMarkingColor')
                         });
                     }
                 }
@@ -325,7 +325,7 @@ $('.postbody').each(function(){
 });
 console.log("Oversized images shrunk");
 
-if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
+if (GetUSStorage('extraSmilies')) //Do we want to load the extra smilies?
 {
     console.log("Loading extra smilies...");
 	var script = document.createElement("script");
@@ -336,7 +336,7 @@ if (GetStorage('extraSmilies')) //Do we want to load the extra smilies?
 
 i = 0;
 $('a.postlink').each(function(){
-    if (GetStorage('strawpollEmbed')) //Auto embedding Strawpoll links
+    if (GetUSStorage('strawpollEmbed')) //Auto embedding Strawpoll links
     {
         if (this.href.search('strawpoll.me/') != -1) //did we find a strawpoll link?
 		{
@@ -348,7 +348,7 @@ $('a.postlink').each(function(){
         }
     }
     
-    if (GetStorage('youtubeEmbed')) //Youtube link embedding
+    if (GetUSStorage('youtubeEmbed')) //Youtube link embedding
     {
         var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var match = this.href.match(regExp);
@@ -365,7 +365,7 @@ $('a.postlink').each(function(){
 
 console.log("Strawpoll and youtube embeds loaded");
 
-if (GetStorage('extraBBCode'))
+if (GetUSStorage('extraBBCode'))
 {
 	if (typeof help_line != 'undefined') //figure out if bbcode help texts are loaded (aka, are we posting?)
 	{
@@ -376,7 +376,7 @@ if (GetStorage('extraBBCode'))
     console.log("Extra BB code loaded");
 }
 
-if (GetStorage('magnifyText'))
+if (GetUSStorage('magnifyText'))
 {
     $("span").filter(function() {
         return (parseInt($(this).css('fontSize')) < 10);
@@ -432,7 +432,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Image marking:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"imageMarkingCheck\" onchange=\"SetStorage('imageMarking',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"imageMarkingCheck\" onchange=\"SetUSStorage('imageMarking',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Puts a dashed line around resized images.</span>\
 								</td>\
 							</tr>\
@@ -441,7 +441,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Image marking color:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetStorage('imageMarkingColor',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetUSStorage('imageMarkingColor',this.value)\" /></b><br />\
 									<span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
 								</td>\
 							</tr>\
@@ -451,7 +451,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Settings link:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetStorage('settingsLink',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetUSStorage('settingsLink',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
 								</td>\
 							</tr>\
@@ -461,7 +461,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Extra smilies:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetStorage('extraSmilies',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"extraSmiliesCheck\" onchange=\"SetUSStorage('extraSmilies',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Allows you to use more smilies in your post. These will be seen by everyone.</span>\
 								</td>\
 							</tr>\
@@ -471,7 +471,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Auto embed Strawpoll.me polls:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetStorage('strawpollEmbed',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"strawpollEmbedCheck\" onchange=\"SetUSStorage('strawpollEmbed',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Automatically embeds strawpoll.me polls in the post where they are linked.</span>\
 								</td>\
 							</tr>\
@@ -480,7 +480,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Youtube embed button:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetStorage('youtubeEmbed',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"youtubeEmbedCheck\" onchange=\"SetUSStorage('youtubeEmbed',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Adds a button to youtube links so you can easily embed them in the post.</span>\
 								</td>\
 							</tr>\
@@ -490,7 +490,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Magnify text:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"magnifyTextCheck\" onchange=\"SetStorage('magnifyText',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"magnifyTextCheck\" onchange=\"SetUSStorage('magnifyText',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Magnifies tiny text when you mouse over it.</span>\
 								</td>\
 							</tr>\
@@ -500,9 +500,9 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Hide Forums:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetStorage('hideForums',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideForumsCheck\" onchange=\"SetUSStorage('hideForums',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Allows you to hide forums.<br />\
-                                    <a href=\"#\" onclick=\"SetStorage('hiddenForums', new Array()); return false;\">reset hidden forums</a></span>\
+                                    <a href=\"#\" onclick=\"SetUSStorage('hiddenForums', new Array()); return false;\">reset hidden forums</a></span>\
 								</td>\
 							</tr>\
                             <tr>\
@@ -510,9 +510,9 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Hide Topics:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetStorage('hideTopics',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetUSStorage('hideTopics',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Allows you to hide topics.<br />\
-                                    <a href=\"#\" onclick=\"SetStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a></span>\
+                                    <a href=\"#\" onclick=\"SetUSStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a></span>\
 								</td>\
 							</tr>\
                             <tr><td>&nbsp;</td></tr>\
@@ -521,7 +521,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Post marking type:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetStorage('postMarkingMode',this.value)\">\
+									<b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetUSStorage('postMarkingMode',this.value)\">\
 										<option value=\"0\">No marking</option>\
 										<option value=\"1\">Avatar outline</option>\
 										<option value=\"2\">Avatar panel background</option>\
@@ -534,7 +534,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Post marking color:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetStorage('postMarkingColor',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetUSStorage('postMarkingColor',this.value)\" /></b><br />\
 									<span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
 								</td>\
 							</tr>\
@@ -543,7 +543,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Post text color:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetStorage('postMarkingText',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetUSStorage('postMarkingText',this.value)\" /></b><br />\
 									<span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
 								</td>\
 							</tr>\
@@ -553,7 +553,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Extra BB code buttons:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetStorage('extraBBCode',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"extraBBCodeCheck\" onchange=\"SetUSStorage('extraBBCode',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Extra buttons for BBCode in posts.</span>\
 								</td>\
 							</tr>\
@@ -563,7 +563,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Shoutbox:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"shoutboxCheck\" onchange=\"SetStorage('shoutbox',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"shoutboxCheck\" onchange=\"SetUSStorage('shoutbox',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Adds a shoutbox to the top of the page.</span>\
 								</td>\
 							</tr>\
@@ -572,7 +572,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Shoutbox height:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"number\" id=\"shoutboxHeightBox\" onchange=\"SetStorage('shoutboxHeight',this.value)\" /></b><br />\
+									<b class=\"gen\"><input type=\"number\" id=\"shoutboxHeightBox\" onchange=\"SetUSStorage('shoutboxHeight',this.value)\" /></b><br />\
 									<span class=\"genmed\">The height of the shoutbox, in pixels. Default: 200</span>\
 								</td>\
 							</tr>\
@@ -582,7 +582,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
 									<b class=\"genmed\">Use test script:</b>\
 								</td>\
 								<td width=\"100%\">\
-									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetStorage('testScript',this.checked)\" /></b><br />\
+									<b class=\"gen\"><input type=\"checkbox\" id=\"testScriptCheck\" onchange=\"SetUSStorage('testScript',this.checked)\" /></b><br />\
 									<span class=\"genmed\">Loads the test version of this script, see the main topic for more info.</span>\
 								</td>\
 							</tr>\
@@ -593,22 +593,22 @@ if (window.location.href.indexOf("ucp.php") != -1)
 			
 			//Load all the saved values into the menu
             
-            $('#imageMarkingCheck').attr('checked', GetStorage('imageMarking'));
-			$('#imageMarkingColorBox').attr('value', GetStorage('imageMarkingColor'));
-			$('#settingsLinkCheck').attr('checked', GetStorage('settingsLink'));
-			$('#extraSmiliesCheck').attr('checked', GetStorage('extraSmilies'));
-			$('#strawpollEmbedCheck').attr('checked', GetStorage('strawpollEmbed'));
-            $('#youtubeEmbedCheck').attr('checked', GetStorage('youtubeEmbed'));
-            $('#magnifyTextCheck').attr('checked', GetStorage('magnifyText'));
-            $('#hideForumsCheck').attr('checked', GetStorage('hideForums'));
-            $('#hideTopicsCheck').attr('checked', GetStorage('hideTopics'));
-			$('#postMarkingModeSelect').attr('value', GetStorage('postMarkingMode'));
-			$('#postMarkingColorBox').attr('value', GetStorage('postMarkingColor'));
-			$('#postMarkingTextBox').attr('value', GetStorage('postMarkingText'));
-			$('#extraBBCodeCheck').attr('checked', GetStorage('extraBBCode'));
-            $('#shoutboxCheck').attr('checked', GetStorage('shoutbox'));
-            $('#shoutboxHeightBox').attr('value', GetStorage('shoutboxHeight'));
-			$('#testScriptCheck').attr('checked', GetStorage('testScript'));
+            $('#imageMarkingCheck').attr('checked', GetUSStorage('imageMarking'));
+			$('#imageMarkingColorBox').attr('value', GetUSStorage('imageMarkingColor'));
+			$('#settingsLinkCheck').attr('checked', GetUSStorage('settingsLink'));
+			$('#extraSmiliesCheck').attr('checked', GetUSStorage('extraSmilies'));
+			$('#strawpollEmbedCheck').attr('checked', GetUSStorage('strawpollEmbed'));
+            $('#youtubeEmbedCheck').attr('checked', GetUSStorage('youtubeEmbed'));
+            $('#magnifyTextCheck').attr('checked', GetUSStorage('magnifyText'));
+            $('#hideForumsCheck').attr('checked', GetUSStorage('hideForums'));
+            $('#hideTopicsCheck').attr('checked', GetUSStorage('hideTopics'));
+			$('#postMarkingModeSelect').attr('value', GetUSStorage('postMarkingMode'));
+			$('#postMarkingColorBox').attr('value', GetUSStorage('postMarkingColor'));
+			$('#postMarkingTextBox').attr('value', GetUSStorage('postMarkingText'));
+			$('#extraBBCodeCheck').attr('checked', GetUSStorage('extraBBCode'));
+            $('#shoutboxCheck').attr('checked', GetUSStorage('shoutbox'));
+            $('#shoutboxHeightBox').attr('value', GetUSStorage('shoutboxHeight'));
+			$('#testScriptCheck').attr('checked', GetUSStorage('testScript'));
 		}
 	}
     console.log("Options menu loaded");

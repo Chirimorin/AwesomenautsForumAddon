@@ -23,8 +23,8 @@ String.prototype.insert = function (index, string)
 };
 
 var checker = 0;
-var currentVersion = 3.16;
-var updateMessage = "No more false positives on marking posts.";
+var currentVersion = 3.17;
+var updateMessage = "No more false update messages.\nYour settings have been reset. I'm sorry for this.";
  
 function jqueryLoaded() {
     clearInterval(checker);
@@ -49,86 +49,96 @@ function jqueryLoaded() {
     {
         GetStorage = function(item)
         {
-            return JSON.parse(localStorage.getItem(item));
+            return JSON.parse(localStorage.getItem("UserScipt" + item));
         }
 
         SetStorage = function(item, value)
         {
-            localStorage.setItem(item, JSON.stringify(value));
+            localStorage.setItem("UserScript" + item, JSON.stringify(value));
         }
 
-        if (GetStorage('version') == undefined)
+        if (GetUSStorage('version') == undefined)
         {
             //Storage version not found, set default values for all variables. 
-            SetStorage('version',0); //Set current version to 0. Will induce all default settings. 
+            SetUSStorage('version',0); //Set current version to 0. Will induce all default settings. 
+        }
+        
+        if (JSON.parse(localStorage.getItem('version') == 3.16))
+        {
+            //Old settings for the userscript found. Clear everything. 
+            //Forum script should load defaults after this.
+            localStorage.clear();
         }
 
-        if (GetStorage('version') < currentVersion)
+        if (GetUSStorage('version') < currentVersion)
         {
-            console.log("Settings for version " + GetStorage('version') + " detected; Updating settings...");
-            if (GetStorage('version')<2.5)
+            var oldStorage = true;
+            console.log("Settings for version " + GetUSStorage('version') + " detected; Updating settings...");
+            if (GetUSStorage('version')<2.5)
             {
-                SetStorage('testScript',false);
-                SetStorage('markingMode',1); //Post marking mode, 0 = none, 1 = avatar outline, 2 = avatar panel background
-                SetStorage('markingColor',"blue"); //Post marking color. 
-                SetStorage('markingText',"white"); //Text color used when markingMode = 2
-                SetStorage('extraSmilies',true); //Extra smilies for posting. 
-                SetStorage('strawpollEmbed',true); //Auto embedding of Strawpoll.me polls. 
+                oldStorage = false;
+                SetUSStorage('postMarkingMode',2); //Post marking mode, 0 = none, 1 = avatar outline, 2 = avatar panel background
+                SetUSStorage('postMarkingColor',"#eee"); //Post marking color. 
+                SetUSStorage('postMarkingTextColor',"black"); //Text color used when markingMode = 2
+                SetUSStorage('testScript',false);
+                SetUSStorage('extraSmilies',true); //Extra smilies for posting. 
+                SetUSStorage('strawpollEmbed',true); //Auto embedding of Strawpoll.me polls. 
             }
             
-            if (GetStorage('version')<2.61)
+            if (GetUSStorage('version')<2.61)
             {
-                SetStorage('settingsLink',true); //Puts a link for the settings in the top menu
+                SetUSStorage('settingsLink',true); //Puts a link for the settings in the top menu
             }
             
-            if (GetStorage('version')<2.7)
+            if (GetUSStorage('version')<2.7)
             {
-                SetStorage('extraBBCode',true); //Adds extra bbcode to the post menu
+                SetUSStorage('extraBBCode',true); //Adds extra bbcode to the post menu
             }
             
-            if (GetStorage('version')<2.9)
+            if (GetUSStorage('version')<2.9)
             {
-                SetStorage('postMarkingMode',GetStorage('markingMode')); //rename saved variable
-                SetStorage('postMarkingColor',GetStorage('markingColor')); //rename saved variable
-                SetStorage('postMarkingTextColor',GetStorage('markingText')); //rename saved variable
+                if (oldStorage)
+                {
+                    SetUSStorage('postMarkingMode',GetUSStorage('markingMode')); //rename saved variable
+                    SetUSStorage('postMarkingColor',GetUSStorage('markingColor')); //rename saved variable
+                    SetUSStorage('postMarkingTextColor',GetUSStorage('markingText')); //rename saved variable
+                    localStorage.removeItem('markingMode');
+                    localStorage.removeItem('markingColor');
+                    localStorage.removeItem('markingText');
+                }
                 
-                localStorage.removeItem('markingMode');
-                localStorage.removeItem('markingColor');
-                localStorage.removeItem('markingText');
-                
-                SetStorage('imageMarking',true); //Marks resized images
-                SetStorage('imageMarkingColor',"red"); //Color of marking resized images
-                
+                SetUSStorage('imageMarking',true); //Marks resized images
+                SetUSStorage('imageMarkingColor',"red"); //Color of marking resized images
             }
             
-            if (GetStorage('version')<3.0)
+            if (GetUSStorage('version')<3.0)
             {
-                SetStorage('youtubeEmbed',true); //Adds embed button to all youtube videos
-                SetStorage('hideTopics', true); //Allows the hiding of specific topics
-                SetStorage('hiddenTopics', new Array()); //An array containing all hidden topics
-                SetStorage('hideForums', true); //Allows the hiding of specific forums
-                SetStorage('hiddenForums', new Array()); //An array containing all hidden forums
-                SetStorage('magnifyText', true); //Magnifies tiny text when hovering over it
+                SetUSStorage('youtubeEmbed',true); //Adds embed button to all youtube videos
+                SetUSStorage('hideTopics', true); //Allows the hiding of specific topics
+                SetUSStorage('hiddenTopics', new Array()); //An array containing all hidden topics
+                SetUSStorage('hideForums', true); //Allows the hiding of specific forums
+                SetUSStorage('hiddenForums', new Array()); //An array containing all hidden forums
+                SetUSStorage('magnifyText', true); //Magnifies tiny text when hovering over it
             }
             
-            if (GetStorage('version')<3.1)
+            if (GetUSStorage('version')<3.1)
             {
-                SetStorage('shoutbox',true); //Adds a shoutbox to the forum
+                SetUSStorage('shoutbox',true); //Adds a shoutbox to the forum
             }
             
-            if (GetStorage('version')<3.11)
+            if (GetUSStorage('version')<3.11)
             {
-                SetStorage('shoutboxHeight',200); //Height of the shoutbox.
+                SetUSStorage('shoutboxHeight',200); //Height of the shoutbox.
             }
             
-            SetStorage('testScript',false); //Disable the test script if an update is found. 
+            SetUSStorage('testScript',false); //Disable the test script if an update is found. 
             
-            SetStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
+            SetUSStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
             console.log("All settings updated");
             alert("Awesomenauts Forum UserScript updated! \n"+updateMessage+"\nCurrent version: " + currentVersion); //Alert the user that an update has happened.
         }
 
-        if ( GetStorage('testScript') == true ) //Load test script?
+        if ( GetUSStorage('testScript') == true ) //Load test script?
         {
             if (banner != undefined)
             {
