@@ -407,8 +407,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
                     <tr>\
                         <td class=\"row1\" colspan=\"3\" align=\"center\">\
                             <p class=\"genmed\">\
-                                Here you can change the settings for Chirimorin's forum userscript.<br />\
-                                All settings are applied automatically.<br />\
+                                Here you can change the settings for Chirimorin's forum userscript. All settings are applied automatically.<br />\
                                 For more info, please visit <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
                             </p>\
                         </td>\
@@ -419,25 +418,6 @@ if (window.location.href.indexOf("ucp.php") != -1)
                         </td>\
                         <td width=\"100%\">\
                             <b class=\"gen\">" + currentVersion +"</b>\
-                        </td>\
-                    </tr>\
-                    <tr><td>&nbsp;</td></tr>\
-                    <tr>\
-                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-                            <b class=\"genmed\">Image marking:</b>\
-                        </td>\
-                        <td width=\"100%\">\
-                            <b class=\"gen\"><input type=\"checkbox\" id=\"imageMarkingCheck\" onchange=\"SetUSStorage('imageMarking',this.checked)\" /></b><br />\
-                            <span class=\"genmed\">Puts a dashed line around resized images.</span>\
-                        </td>\
-                    </tr>\
-                    <tr>\
-                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-                            <b class=\"genmed\">Image marking color:</b>\
-                        </td>\
-                        <td width=\"100%\">\
-                            <b class=\"gen\"><input type=\"text\" id=\"imageMarkingColorBox\" onchange=\"SetUSStorage('imageMarkingColor',this.value)\" /></b><br />\
-                            <span class=\"genmed\">The color of the dashed line around resized images. (in either hex or text, wrong values will result in no marking)</span>\
                         </td>\
                     </tr>\
                     <tr><td>&nbsp;</td></tr>\
@@ -508,38 +488,6 @@ if (window.location.href.indexOf("ucp.php") != -1)
                             <b class=\"gen\"><input type=\"checkbox\" id=\"hideTopicsCheck\" onchange=\"SetUSStorage('hideTopics',this.checked)\" /></b><br />\
                             <span class=\"genmed\">Allows you to hide topics.<br />\
                             <a href=\"#\" onclick=\"SetUSStorage('hiddenTopics', new Array()); return false;\">reset hidden topics</a></span>\
-                        </td>\
-                    </tr>\
-                    <tr><td>&nbsp;</td></tr>\
-                    <tr>\
-                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-                            <b class=\"genmed\">Post marking type:</b>\
-                        </td>\
-                        <td width=\"100%\">\
-                            <b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetUSStorage('postMarkingMode',this.value)\">\
-                                <option value=\"0\">No marking</option>\
-                                <option value=\"1\">Avatar outline</option>\
-                                <option value=\"2\">Avatar panel background</option>\
-                            </select></b><br />\
-                            <span class=\"genmed\">Choose the type of marking your own posts.</span>\
-                        </td>\
-                    </tr>\
-                    <tr>\
-                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-                            <b class=\"genmed\">Post marking color:</b>\
-                        </td>\
-                        <td width=\"100%\">\
-                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetUSStorage('postMarkingColor',this.value)\" /></b><br />\
-                            <span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
-                        </td>\
-                    </tr>\
-                    <tr>\
-                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
-                            <b class=\"genmed\">Post text color:</b>\
-                        </td>\
-                        <td width=\"100%\">\
-                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetUSStorage('postMarkingText',this.value)\" /></b><br />\
-                            <span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
                         </td>\
                     </tr>\
                     <tr><td>&nbsp;</td></tr>\
