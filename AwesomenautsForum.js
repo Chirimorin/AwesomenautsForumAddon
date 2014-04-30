@@ -49,7 +49,7 @@ function jqueryLoaded() {
     {
         GetUSStorage = function(item)
         {
-            return JSON.parse(localStorage.getItem("UserScipt" + item));
+            return JSON.parse(localStorage.getItem("UserScript" + item));
         }
 
         SetUSStorage = function(item, value)
