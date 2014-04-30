@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.03;
+var currentVersion = 1.04;
 
 var Ronimo = new Array();
 Ronimo.push("Jasper");
@@ -166,6 +166,8 @@ function jqueryLoaded() {
         $.each(customSmilieslist, function() {
             $("#customsmilies").append('<a href="#" onclick="addSmiley(\''+this.code+'\')" style="line-height: 20px;"><img src="'+this.url+'" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" hspace="2"></a>');
         });
+        
+        $("input[name='txtMessage']").width(100%);
         
         //Edit all posts
         postEdits();
