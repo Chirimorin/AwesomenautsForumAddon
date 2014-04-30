@@ -167,7 +167,7 @@ function jqueryLoaded() {
             $("#customsmilies").append('<a href="#" onclick="addSmiley(\''+this.code+'\')" style="line-height: 20px;"><img src="'+this.url+'" alt="'+this.code.replace(/:/gi,"")+'" title="'+this.name+'" hspace="2"></a>');
         });
         
-        $("input[name='txtMessage']").width(100%);
+        $("input[name='txtMessage']").width('100%');
         
         //Edit all posts
         postEdits();
