@@ -8,8 +8,6 @@ console.log("Test script loaded");
 
 //Test functionality starts here
 
-console.log("Live script loaded");
-
 //Function definitions
 function showAllTopics()
 {
@@ -158,6 +156,13 @@ var UserName;
 //Functionality starts here
 $(document).ready(function(){ //run after page fully loaded
 console.log("Document ready; running script");
+if (typeof scriptLoaded != 'undefined')
+{
+    console.log("Script already ran! Not running again.");
+    return;
+}
+var scriptLoaded = true;
+
 if (GetUSStorage('shoutbox'))
 {
     $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetUSStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
