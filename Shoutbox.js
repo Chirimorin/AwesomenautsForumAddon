@@ -137,7 +137,11 @@ function jqueryLoaded() {
     clearInterval(checker);
     console.log("Shoutbox jQuery found; running shoutbox script version " + currentVersion);
     
+    $("div[id^=div-gpt-ad]").each(function() { $(this).remove(); });
+    
     $('head').append('<link rel="stylesheet" href="http://chirimorin.github.io/AwesomenautsForumAddon/xbbcode/xbbcode.css" type="text/css" />');
+    
+    
     
     $(document).ready(function(){
         //Remove pesky ads
