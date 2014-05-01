@@ -1,10 +1,5 @@
 console.log("Awesomenauts forum userscript started!");
 
-var jquery = document.createElement("script");
-jquery.type = "text/javascript";
-jquery.src = "http://code.jquery.com/jquery-latest.min.js";
-document.head.appendChild(jquery);
-
 function supports_local_storage() {
   try {
     return 'localStorage' in window && window['localStorage'] !== null;
@@ -180,6 +175,13 @@ function checkJquery() {
         return;
     } 
     if(checker == 0) {
+        //Load jQuery only if not found in the first place. S&SII part of the forum already has it!
+        
+        var jquery = document.createElement("script");
+        jquery.type = "text/javascript";
+        jquery.src = "http://code.jquery.com/jquery-latest.min.js";
+        document.head.appendChild(jquery);
+        
         console.log("Waiting for jQuery to load...");
         checker = window.setInterval(checkJquery, 100);
     }
