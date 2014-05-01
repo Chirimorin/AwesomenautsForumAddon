@@ -156,7 +156,7 @@ var UserName;
 //Functionality starts here
 $(document).ready(function(){ //run after page fully loaded
 console.log("Document ready; running script");
-if (typeof scriptLoaded != 'undefined')
+if (scriptLoaded)
 {
     console.log("Script already ran! Not running again.");
     return;

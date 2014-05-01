@@ -25,6 +25,7 @@ String.prototype.insert = function (index, string)
 var checker = 0;
 var currentVersion = 3.18;
 var updateMessage = "No more false update messages.\nYour settings have been reset. I'm sorry for this.";
+var scriptLoaded = false;
  
 function jqueryLoaded() {
     clearInterval(checker);
