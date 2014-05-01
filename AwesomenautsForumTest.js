@@ -174,7 +174,7 @@ if (GetUSStorage('shoutbox'))
     
     function showShoutbox(){
         loadShoutbox(function() {
-            $("#shoutbox").slideDown(1000, function() {
+            $("#shoutbox").slideDown(500, function() {
                 $("#hideShoutbox").one("click", hideShoutbox);
                 $("#hideShoutboxMessage").html("Click here to hide the shoutbox");
                 SetUSStorage('hideShoutbox', false);
@@ -183,7 +183,7 @@ if (GetUSStorage('shoutbox'))
     };
     
     function hideShoutbox(){
-        $("#shoutbox").slideUp(1000, function() {
+        $("#shoutbox").slideUp(500, function() {
             $(this).html("");
             $("#hideShoutbox").one("click", showShoutbox);
             $("#hideShoutboxMessage").html("Click here to show the shoutbox");
