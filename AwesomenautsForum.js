@@ -18,8 +18,8 @@ String.prototype.insert = function (index, string)
 };
 
 var checker = 0;
-var currentVersion = 3.18;
-var updateMessage = "No more false update messages.\nYour settings have been reset. I'm sorry for this.";
+var currentVersion = 3.2;
+var updateMessage = "Various changes, please visit the userscript topic for more info.";
 var scriptLoaded = false;
  
 function jqueryLoaded() {
@@ -68,14 +68,9 @@ function jqueryLoaded() {
 
         if (GetUSStorage('version') < currentVersion)
         {
-            var oldStorage = true;
             console.log("Settings for version " + GetUSStorage('version') + " detected; Updating settings...");
             if (GetUSStorage('version')<2.5)
             {
-                oldStorage = false;
-                SetUSStorage('postMarkingMode',2); //Post marking mode, 0 = none, 1 = avatar outline, 2 = avatar panel background
-                SetUSStorage('postMarkingColor',"#eee"); //Post marking color. 
-                SetUSStorage('postMarkingTextColor',"black"); //Text color used when markingMode = 2
                 SetUSStorage('testScript',false);
                 SetUSStorage('extraSmilies',true); //Extra smilies for posting. 
                 SetUSStorage('strawpollEmbed',true); //Auto embedding of Strawpoll.me polls. 
@@ -89,22 +84,6 @@ function jqueryLoaded() {
             if (GetUSStorage('version')<2.7)
             {
                 SetUSStorage('extraBBCode',true); //Adds extra bbcode to the post menu
-            }
-            
-            if (GetUSStorage('version')<2.9)
-            {
-                if (oldStorage)
-                {
-                    SetUSStorage('postMarkingMode',GetUSStorage('markingMode')); //rename saved variable
-                    SetUSStorage('postMarkingColor',GetUSStorage('markingColor')); //rename saved variable
-                    SetUSStorage('postMarkingTextColor',GetUSStorage('markingText')); //rename saved variable
-                    localStorage.removeItem('markingMode');
-                    localStorage.removeItem('markingColor');
-                    localStorage.removeItem('markingText');
-                }
-                
-                SetUSStorage('imageMarking',true); //Marks resized images
-                SetUSStorage('imageMarkingColor',"red"); //Color of marking resized images
             }
             
             if (GetUSStorage('version')<3.0)
@@ -125,6 +104,19 @@ function jqueryLoaded() {
             if (GetUSStorage('version')<3.11)
             {
                 SetUSStorage('shoutboxHeight',200); //Height of the shoutbox.
+            }
+            
+            if (GetUSStorage('version')<3.2)
+            {
+                SetUSStorage('hideShoutbox',false); //Hide the shoutbox
+                SetUSStorage('postMarkingMode', 2); 
+                SetUSStorage('postMarkingColor', "#eee");
+                SetUSStorage('postMarkingTextColor', "black");
+                
+                //No longer used
+                localStorage.removeItem('UserScriptimageMarking');
+                localStorage.removeItem('UserScriptimageMarkingColor');
+                localStorage.removeItem('UserScriptpostMarkingText'); //Typod setting 
             }
             
             SetUSStorage('testScript',false); //Disable the test script if an update is found. 
