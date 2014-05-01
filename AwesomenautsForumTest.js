@@ -237,7 +237,7 @@ if (GetUSStorage('hideForums') || GetUSStorage('hideTopics'))
     $('.cat').each(function() {
         if ($(this).attr('align') != "center")
         {
-            attr('colspan', 7);
+            $(this).attr('colspan', 7);
         }
     });
     $('.cat-bottom').attr('colspan', 7);
