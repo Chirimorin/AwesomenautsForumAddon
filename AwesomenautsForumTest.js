@@ -537,6 +537,38 @@ if (window.location.href.indexOf("ucp.php") != -1)
                     <tr><td>&nbsp;</td></tr>\
                     <tr>\
                         <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                            <b class=\"genmed\">Post marking type:</b>\
+                        </td>\
+                        <td width=\"100%\">\
+                            <b class=\"gen\"><select id=\"postMarkingModeSelect\" onchange=\"SetUSStorage('postMarkingMode',this.value)\">\
+                                <option value=\"0\">No marking</option>\
+                                <option value=\"1\">Avatar outline</option>\
+                                <option value=\"2\">Avatar panel background</option>\
+                            </select></b><br />\
+                            <span class=\"genmed\">Choose the type of marking your own posts.</span>\
+                        </td>\
+                    </tr>\
+                    <tr>\
+                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                            <b class=\"genmed\">Post marking color:</b>\
+                        </td>\
+                        <td width=\"100%\">\
+                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingColorBox\" onchange=\"SetUSStorage('postMarkingColor',this.value)\" /></b><br />\
+                            <span class=\"genmed\">The color of your post marking. (in either hex or text, wrong values will result in no marking)</span>\
+                        </td>\
+                    </tr>\
+                    <tr>\
+                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                            <b class=\"genmed\">Post text color:</b>\
+                        </td>\
+                        <td width=\"100%\">\
+                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetUSStorage('postMarkingText',this.value)\" /></b><br />\
+                            <span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
+                        </td>\
+                    </tr>\
+                    <tr><td>&nbsp;</td></tr>\
+                    <tr>\
+                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
                             <b class=\"genmed\">Extra BB code buttons:</b>\
                         </td>\
                         <td width=\"100%\">\
@@ -580,8 +612,6 @@ if (window.location.href.indexOf("ucp.php") != -1)
     
     //Load all the saved values into the menu
     
-    $('#imageMarkingCheck').attr('checked', GetUSStorage('imageMarking'));
-    $('#imageMarkingColorBox').attr('value', GetUSStorage('imageMarkingColor'));
     $('#settingsLinkCheck').attr('checked', GetUSStorage('settingsLink'));
     $('#extraSmiliesCheck').attr('checked', GetUSStorage('extraSmilies'));
     $('#strawpollEmbedCheck').attr('checked', GetUSStorage('strawpollEmbed'));
