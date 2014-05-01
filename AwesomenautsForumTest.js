@@ -161,7 +161,7 @@ if (scriptLoaded)
     console.log("Script already ran! Not running again.");
     return;
 }
-var scriptLoaded = true;
+scriptLoaded = true;
 
 if (GetUSStorage('shoutbox'))
 {
