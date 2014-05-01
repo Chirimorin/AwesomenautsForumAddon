@@ -184,12 +184,13 @@ function jqueryLoaded() {
 
 function checkJquery() {
     if (window.jQuery) {
-            jqueryLoaded();
+        jqueryLoaded();
+        return;
     } 
-        if(checker == 0) {
-            console.log("Waiting for shoutbox jQuery to load...");
-            checker = window.setInterval(checkJquery, 100);
-        }
+    if(checker == 0) {
+        console.log("Waiting for shoutbox jQuery to load...");
+        checker = window.setInterval(checkJquery, 100);
+    }
 }	
 
 checkJquery();
