@@ -305,14 +305,27 @@ for (i=0; i<allClickables.length; i++)
 console.log("Onclick fix loaded");
 
 //Marking users posts
-if (window.location.href.indexOf("posting.php") == -1){
+if (GetUSStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
+{
     var PostAuthors = $('.postauthor');
     var PostBodys = $('.row-post-body');
-    for (i=0; i<PostAuthors.length; i++){
-        if (PostAuthors[i].innerHTML == UserName){
-            PostBodys[((i+1)*2)-2].style.background = '#eee';
+    for (i=0; i<PostAuthors.length; i++)
+    {
+        if (PostAuthors[i].innerHTML == UserName && window.location.href.indexOf("posting.php") == -1)
+        {
+            if (GetUSStorage('postMarkingMode') == 1) //Outline avatar. 
+            {
+                PostBodys[((i+1)*2)-2].innerHTML = PostBodys[((i+1)*2)-2].innerHTML.insert((PostBodys[((i+1)*2)-2].innerHTML.indexOf('User avatar')+12)," style='border:3px solid " + GetUSStorage('postMarkingColor') + "'");
+            }
+            if (GetUSStorage('postMarkingMode') == 2) //Background color.
+            {
+                PostBodys[((i+1)*2)-2].style.background=GetUSStorage('postMarkingColor');
+                var PostDetails = $(PostBodys[((i+1)*2)-2]).find('.postdetails');
+                PostDetails[0].style.color=GetUSStorage('postMarkingTextColor');
+            }
         }
     }
+    console.log("User posts marked");
 }
 
 //Fix oversized images and mark them
@@ -562,7 +575,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
                             <b class=\"genmed\">Post text color:</b>\
                         </td>\
                         <td width=\"100%\">\
-                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetUSStorage('postMarkingText',this.value)\" /></b><br />\
+                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingTextBox\" onchange=\"SetUSStorage('postMarkingTextColor',this.value)\" /></b><br />\
                             <span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
                         </td>\
                     </tr>\
