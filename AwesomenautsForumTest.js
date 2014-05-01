@@ -619,9 +619,9 @@ if (window.location.href.indexOf("ucp.php") != -1)
     $('#magnifyTextCheck').attr('checked', GetUSStorage('magnifyText'));
     $('#hideForumsCheck').attr('checked', GetUSStorage('hideForums'));
     $('#hideTopicsCheck').attr('checked', GetUSStorage('hideTopics'));
-    $('#postMarkingModeSelect').attr('value', GetUSStorage('postMarkingMode'));
+    $('#postMarkingModeSelect').val(GetUSStorage('postMarkingMode'));
     $('#postMarkingColorBox').attr('value', GetUSStorage('postMarkingColor'));
-    $('#postMarkingTextBox').attr('value', GetUSStorage('postMarkingText'));
+    $('#postMarkingTextBox').attr('value', GetUSStorage('postMarkingTextColor'));
     $('#extraBBCodeCheck').attr('checked', GetUSStorage('extraBBCode'));
     $('#shoutboxCheck').attr('checked', GetUSStorage('shoutbox'));
     $('#shoutboxHeightBox').attr('value', GetUSStorage('shoutboxHeight'));
