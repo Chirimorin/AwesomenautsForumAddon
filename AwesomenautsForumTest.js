@@ -165,7 +165,45 @@ scriptLoaded = true;
 
 if (GetUSStorage('shoutbox'))
 {
-    $("#wrapcentre").prepend('<iframe src="http://AwesomenautsShoutBox.freeshoutbox.net/" height="'+GetUSStorage('shoutboxHeight')+'" width="930" frameborder="0"></iframe>');
+    function loadShoutbox(callback)
+    {
+        $("#shoutbox").html('<iframe id="shoutboxFrame" height="'+GetUSStorage('shoutboxHeight')+'" width="928" frameborder="0"></iframe>');
+        $("iframe#shoutboxFrame").attr('src', "http://AwesomenautsShoutBox.freeshoutbox.net/");
+        $("iframe#shoutboxFrame").load(callback);
+    }
+    
+    function showShoutbox(){
+        loadShoutbox(function() {
+            $("#shoutbox").slideDown(1000, function() {
+                $("#hideShoutbox").one("click", hideShoutbox);
+                $("#hideShoutboxMessage").html("Click here to hide the shoutbox");
+                SetUSStorage('hideShoutbox', false);
+            });
+        });
+    };
+    
+    function hideShoutbox(){
+        $("#shoutbox").slideUp(1000, function() {
+            $(this).html("");
+            $("#hideShoutbox").one("click", showShoutbox);
+            $("#hideShoutboxMessage").html("Click here to show the shoutbox");
+            SetUSStorage('hideShoutbox', true);
+        });
+    }
+    
+    $("#wrapcentre").prepend('<div id="shoutboxContainer"><a href="#" onclick="return false;"><div id="hideShoutbox" class="bc-div bc-tbl" style="padding: 0px; margin: 0px;"><p class="bc-header" id="hideShoutboxMessage"></p></div></a><div id="shoutbox" class="bc-div bc-tbl" style="padding: 0px; margin: 0px;"></div></div>');
+    
+    if (GetUSStorage('hideShoutbox'))
+    {
+        $("#hideShoutboxMessage").html("Click here to show the shoutbox");
+        $("#hideShoutbox").one("click", showShoutbox);
+    }
+    else
+    {
+        $("#hideShoutboxMessage").html("Click here to hide the shoutbox");
+        loadShoutbox(function() { });
+        $("#hideShoutbox").one("click", hideShoutbox);
+    }
     
     if (window.location.hash.substr(1) == "unread") //If unread, scroll back down to the anchor
     {
