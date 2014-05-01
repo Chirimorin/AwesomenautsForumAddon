@@ -453,6 +453,19 @@ if (GetUSStorage('magnifyText'))
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
+    function saved(element)
+    {
+        saved=document.createElement('p');
+        $(element).after(saved);
+        $(saved).html("saved!")
+                .delay(1500)
+                .queue(function() {
+                    $(this).fadeOut(1000, function() {
+                        $(this).remove();
+                    });
+                });
+    }
+    
     table = $('.tablebg:contains(Welcome)');
     table.find('.cat-bottom').parent('tr').before("\
         <tr>\
@@ -483,7 +496,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
                             <b class=\"genmed\">Settings link:</b>\
                         </td>\
                         <td width=\"100%\">\
-                            <b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"SetUSStorage('settingsLink',this.checked)\" /></b><br />\
+                            <b class=\"gen\"><input type=\"checkbox\" id=\"settingsLinkCheck\" onchange=\"saved(this); console.log('saved!'); SetUSStorage('settingsLink',this.checked)\" /></b><br />\
                             <span class=\"genmed\">Adds the settings link to the top of the page. Use the User Control Panel link instead if this is disabled.</span>\
                         </td>\
                     </tr>\
