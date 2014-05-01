@@ -587,7 +587,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
                             <b class=\"genmed\">Post text color:</b>\
                         </td>\
                         <td width=\"100%\">\
-                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingTextColorBox\" onchange=\"settingSaved(this); console.log('saved!'); SetUSStorage('postMarkingTextColor',this.value)\" /></b><br />\
+                            <b class=\"gen\"><input type=\"text\" id=\"postMarkingTextColorBox\" onchange=\"settingSaved(this); SetUSStorage('postMarkingTextColor',this.value)\" /></b><br />\
                             <span class=\"genmed\">The text color in your avatar panel when avatar panel background color marking mode is selected.</span>\
                         </td>\
                     </tr>\
