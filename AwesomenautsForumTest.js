@@ -196,6 +196,7 @@ if (GetUSStorage('shoutbox'))
     if (GetUSStorage('hideShoutbox'))
     {
         $("#hideShoutboxMessage").html("Click here to show the shoutbox");
+        $("#shoutbox").hide(); //hide the shoutbox div so the show animation works. 
         $("#hideShoutbox").one("click", showShoutbox);
     }
     else
