@@ -224,7 +224,12 @@ if (GetUSStorage('hideForums') || GetUSStorage('hideTopics'))
 {
     //Fix table layout to fit the extra elements
     $('.row3').attr('colspan', 7);
-    $('.cat').attr('colspan', 7);
+    $('.cat').each(function() {
+        if ($(this).attr('align') != "center")
+        {
+            $(this).attr('colspan', 7);
+        }
+    });
     $('.cat-bottom').attr('colspan', 7);
 
     //Add "hide" button to topics
