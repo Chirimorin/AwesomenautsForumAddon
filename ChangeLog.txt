@@ -2,6 +2,7 @@ v3.2
 * New: The shoutbox can now easily be hidden from any page.
 * New: Settings now indicate when they have been saved.
 ~ Fix: Post marking type and Post text color settings now load correctly.
+~ Fix: Profile pages no longer look weird if you have hiding forums or topics turned on.
 & Changed: Image resizing marking changed. Works the same as the forum integrated version now. The setting was removed. 
 & Changed: Settings now appear at the bottom of the UCP page. 
 & Changed: Default post marking settings now follow the forum default. 
