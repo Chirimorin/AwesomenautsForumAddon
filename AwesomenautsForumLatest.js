@@ -469,7 +469,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
         </tr>\
         <tr>\
             <td class=\"row1\" colspan=\"3\" align=\"center\">\
-                <table width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
+                <table id=\"UserscriptSettings\" width=\"100%\" cellpadding=\"4\" cellspacing=\"1\">\
                     <tr>\
                         <td class=\"row1\" colspan=\"3\" align=\"center\">\
                             <p class=\"genmed\">\

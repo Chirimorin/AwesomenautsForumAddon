@@ -8,3 +8,17 @@ document.body.appendChild(script);
 
 //Test functionality starts here
 
+if (GetUSStorage('betterMarkRead'))
+{
+    var markReadLink = $('a').filter(function(index) { return $(this).text() === "Mark topics read"; });
+    var markReadURL = $(markReadLink).prop('href');
+    $(markReadLink).attr("href","#");
+    $(markReadLink).click(function() {
+        $("#wrapcentre").append('<iframe id="markTopicsRead" height="0" width = "0" frameborder="0"></iframe>');
+        $("iframe#markTopicsRead").attr('src', markReadURL);
+        $("iframe#markTopicsRead").load(function() {
+            location.reload(true);
+        });
+        return false;
+    });
+}
