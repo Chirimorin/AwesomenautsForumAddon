@@ -21,7 +21,7 @@ function preparedMOTD()
         minutes = parseInt(seconds_left / 60);
         seconds = parseInt(seconds_left % 60);
         
-        $("#countdown").html(hours + "h, " + minutes + "m, " + seconds + "s");  
+        $("#countdown").html(hours + "h " + minutes + "m " + seconds + "s");  
      
     }, 1000);
 }
