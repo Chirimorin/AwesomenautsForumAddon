@@ -4,9 +4,11 @@ var currentVersion = 1.04;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
-var MOTD = false;
+var MOTD = true;
 function preparedMOTD()
 {
+    $("#MOTD").html("People have reported the \"transparent\" button appearing multiple times. If this happens, please send me (Chirimorin) a PM with details of what you were doing. A copy of your console is always useful in this case.");
+    
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
     //var countdown = document.getElementById("countdown");
@@ -191,7 +193,7 @@ function jqueryLoaded() {
         //Or add the message of the day instead!
         if (MOTD)
         {
-            $("#ShoutboxScript").parent().prepend("<span id=\"countdown\"></span>");
+            $("#ShoutboxScript").parent().prepend("<span id=\"MOTD\"></span>");
             preparedMOTD();
         }
         else
