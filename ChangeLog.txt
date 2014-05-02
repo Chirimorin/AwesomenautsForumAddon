@@ -1,3 +1,6 @@
+v3.21
+* New: Mark topics read improvement.
+
 v3.2
 * New: The shoutbox can now easily be hidden from any page.
 * New: Settings now indicate when they have been saved.
