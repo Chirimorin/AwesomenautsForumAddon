@@ -1,7 +1,9 @@
 console.log("Shoutbox script loaded");
 
 var currentVersion = 1.04;
-var MOTD = "Sentry live stream today! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">Countdown here!</a>";
+streamTime = new Date();
+streamTime.setUTCHours(18);
+var MOTD = "Sentry live stream today at "+streamTime.getHours()+":00! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">Countdown here!</a>";
 
 var Ronimo = new Array();
 Ronimo.push("Jasper");
