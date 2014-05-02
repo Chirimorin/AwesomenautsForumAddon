@@ -4,7 +4,28 @@ var currentVersion = 1.04;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
-var MOTD = "Sentry live stream today at "+streamTime.getHours()+":00! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">Countdown here!</a>";
+var MOTD = "<span id=\"countdown\"></span> Until Sentry live stream at "+streamTime.getHours()+":00! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">[Official countdown]</a>";
+function preparedMOTD()
+{
+    var target_date = streamTime.getTime();
+    var hours, minutes, seconds;
+    var countdown = document.getElementById("countdown");
+    
+    setInterval(function () {
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+     
+        hours = parseInt(seconds_left / 3600);
+        seconds_left = seconds_left % 3600;
+        
+        minutes = parseInt(seconds_left / 60);
+        seconds = parseInt(seconds_left % 60);
+        
+        $("#countdown").html(hours + "h, " + minutes + "m, " + seconds + "s");  
+     
+    }, 1000);
+}
+
 
 var Ronimo = new Array();
 Ronimo.push("Jasper");
@@ -156,6 +177,7 @@ function jqueryLoaded() {
         else
         {
             $("#ShoutboxScript").parent().prepend(MOTD);
+            preparedMOTD();
         }
         
         //Custom emotes input
