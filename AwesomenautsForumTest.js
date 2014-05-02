@@ -22,3 +22,14 @@ if (GetUSStorage('betterMarkRead'))
         return false;
     });
 }
+
+$("#UserscriptSettings").append("<tr>\
+        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+            <b class=\"genmed\">Better mark topics read:</b>\
+        </td>\
+        <td width=\"100%\">\
+            <b class=\"gen\"><input type=\"checkbox\" id=\"betterMarkReadCheck\" onchange=\"settingSaved(this); SetUSStorage('betterMarkRead',this.checked)\" /></b><br />\
+            <span class=\"genmed\">Instantly reloads the current page when \"Mark topics read\" is clicked.</span>\
+        </td>\
+    </tr>");
+$('#betterMarkReadCheck').attr('checked', GetUSStorage('betterMarkRead'));
