@@ -313,6 +313,22 @@ for (i=0; i<allClickables.length; i++)
 }
 console.log("Onclick fix loaded");
 
+//Better mark topics read
+if (GetUSStorage('betterMarkRead'))
+{
+    var markReadLink = $('a').filter(function(index) { return $(this).text() === "Mark topics read"; });
+    var markReadURL = $(markReadLink).prop('href');
+    $(markReadLink).attr("href","#");
+    $(markReadLink).click(function() {
+        $("#wrapcentre").append('<iframe id="markTopicsRead" height="0" width = "0" frameborder="0"></iframe>');
+        $("iframe#markTopicsRead").attr('src', markReadURL);
+        $("iframe#markTopicsRead").load(function() {
+            location.reload(true);
+        });
+        return false;
+    });
+}
+
 //Marking users posts
 if (GetUSStorage('postMarkingMode') != 0) //Do we want to mark the users posts? 
 {
@@ -620,6 +636,16 @@ if (window.location.href.indexOf("ucp.php") != -1)
                     <tr><td>&nbsp;</td></tr>\
                     <tr>\
                         <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
+                            <b class=\"genmed\">Better mark topics read:</b>\
+                        </td>\
+                        <td width=\"100%\">\
+                            <b class=\"gen\"><input type=\"checkbox\" id=\"betterMarkReadCheck\" onchange=\"settingSaved(this); SetUSStorage('betterMarkRead',this.checked)\" /></b><br />\
+                            <span class=\"genmed\">Instantly reloads the current page when \"Mark topics read\" is clicked.</span>\
+                        </td>\
+                    </tr>\
+                    <tr><td>&nbsp;</td></tr>\
+                    <tr>\
+                        <td align=\"right\" valign=\"top\" nowrap=\"nowrap\">\
                             <b class=\"genmed\">Use test script:</b>\
                         </td>\
                         <td width=\"100%\">\
@@ -647,6 +673,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
     $('#extraBBCodeCheck').attr('checked', GetUSStorage('extraBBCode'));
     $('#shoutboxCheck').attr('checked', GetUSStorage('shoutbox'));
     $('#shoutboxHeightBox').attr('value', GetUSStorage('shoutboxHeight'));
+    $('#betterMarkReadCheck').attr('checked', GetUSStorage('betterMarkRead'));
     $('#testScriptCheck').attr('checked', GetUSStorage('testScript'));
     optionsLoaded();
     console.log("Options menu loaded");

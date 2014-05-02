@@ -20,8 +20,8 @@ String.prototype.insert = function (index, string)
 };
 
 var checker = 0;
-var currentVersion = 3.2;
-var updateMessage = "Various changes, please visit the userscript topic for more info.\nPost marking settings have been reset. Please re-apply them as you see fit.";
+var currentVersion = 3.21;
+var updateMessage = "Better \"Mark topics read\" functionality";
 var scriptLoaded = false;
  
 function jqueryLoaded() {
@@ -119,6 +119,11 @@ function jqueryLoaded() {
                 localStorage.removeItem('UserScriptimageMarking');
                 localStorage.removeItem('UserScriptimageMarkingColor');
                 localStorage.removeItem('UserScriptpostMarkingText'); //Typod setting 
+            }
+            
+            if (GetUSStorage('version')<3.21)
+            {
+                SetUSStorage('betterMarkRead', true); //Better "mark topics read"
             }
             
             SetUSStorage('testScript',false); //Disable the test script if an update is found. 
