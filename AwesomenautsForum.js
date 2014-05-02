@@ -20,8 +20,8 @@ String.prototype.insert = function (index, string)
 };
 
 var checker = 0;
-var currentVersion = 3.21;
-var updateMessage = "Better \"Mark topics read\" functionality";
+var currentVersion = 3.22;
+var updateMessage = "Twitch links no longer cause youtube embed buttons.";
 var scriptLoaded = false;
  
 function jqueryLoaded() {

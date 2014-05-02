@@ -431,15 +431,18 @@ $('a.postlink').each(function(){
     
     if (GetUSStorage('youtubeEmbed')) //Youtube link embedding
     {
-        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        var match = this.href.match(regExp);
-        if (match&&match[2].length==11){
-            var ytVideoID = match[2]; 
-            
-            var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
-            
-            $(this).after(" "+expandButton+" ");
-            i++;
+        if ((this.href.indexOf("youtube") != -1) && (this.href.indexOf("youtube") < 14) || (this.href.indexOf("youtu.be") != -1) && (this.href.indexOf("youtu.be") < 14))
+        {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = this.href.match(regExp);
+            if (match&&match[2].length==11){
+                var ytVideoID = match[2]; 
+                
+                var expandButton = "<a href=\"#\" onclick=\"embedYoutube("+i+", '"+ytVideoID+"', this); return false;\" style='color: white; background: red;'>[&#9654;]</a>";
+                
+                $(this).after(" "+expandButton+" ");
+                i++;
+            }
         }
     }
 });
