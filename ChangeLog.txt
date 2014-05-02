@@ -1,3 +1,6 @@
+v3.22
+* Fix: Twitch links no longer cause youtube embed buttons. (other non-youtube links shouldn't either)
+
 v3.21
 * New: Mark topics read improvement.
 
