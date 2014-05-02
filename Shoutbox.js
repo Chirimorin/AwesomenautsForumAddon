@@ -4,7 +4,7 @@ var currentVersion = 1.04;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
-var MOTD = "<span id=\"countdown\"></span> until Sentry livestream at "+streamTime.getHours()+":00! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">[Official countdown]</a>";
+var MOTD = "<span id=\"countdown\"></span>";
 function preparedMOTD()
 {
     var target_date = streamTime.getTime();
@@ -14,14 +14,33 @@ function preparedMOTD()
     setInterval(function () {
         var current_date = new Date().getTime();
         var seconds_left = (target_date - current_date) / 1000;
-     
-        hours = parseInt(seconds_left / 3600);
-        seconds_left = seconds_left % 3600;
         
-        minutes = parseInt(seconds_left / 60);
-        seconds = parseInt(seconds_left % 60);
+        var timestring = "";
         
-        $("#countdown").html(hours + "h " + minutes + "m " + seconds + "s");  
+        if (seconds_left > 3600)
+        {
+            hours = parseInt(seconds_left / 3600);
+            seconds_left = seconds_left % 3600;
+            timestring += hours + "h ";
+        }
+        
+        if (seconds_left > 60)
+        {
+            minutes = parseInt(seconds_left / 60);
+            timestring += minutes + "m ";
+        }
+        
+        if (seconds_left > 0)
+        {
+            seconds = parseInt(seconds_left % 60);
+            timestring += seconds + "s ";
+            $("#countdown").html(timestring + "until Sentry livestream at "+streamTime.getHours()+":00! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">[Official countdown]</a>");  
+        }
+        else
+        {
+            $("#countdown").html("Sentry livestream live right now! <a href=\"http://www.twitch.tv/ronimogames\">Watch it here!</a>");
+        }
+        //$("#countdown").html(hours + "h " + minutes + "m " + seconds + "s");  
      
     }, 1000);
 }
