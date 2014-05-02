@@ -1,6 +1,7 @@
 console.log("Shoutbox script loaded");
 
 var currentVersion = 1.04;
+var MOTD = "Live stream tonight! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">Countdown here!</a>";
 
 var Ronimo = new Array();
 Ronimo.push("Jasper");
@@ -144,7 +145,15 @@ function jqueryLoaded() {
     
     $(document).ready(function(){
         //Hide MOTD bar (used for loading this script)
-        $("#ShoutboxScript").parent().parent().parent().parent().parent().hide();
+        //Or add the message of the day instead!
+        if (MOTD == "")
+        {
+            $("#ShoutboxScript").parent().parent().parent().parent().parent().hide();
+        }
+        else
+        {
+            $("#ShoutboxScript").parent().prepend(MOTD);
+        }
         
         //Custom emotes input
         $("#divOptions").prepend("<table cellspacing=\"5\" cellpadding=\"0\" border=\"0\" align=\"center\"> \
