@@ -648,6 +648,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
     $('#shoutboxCheck').attr('checked', GetUSStorage('shoutbox'));
     $('#shoutboxHeightBox').attr('value', GetUSStorage('shoutboxHeight'));
     $('#testScriptCheck').attr('checked', GetUSStorage('testScript'));
+    optionsLoaded();
     console.log("Options menu loaded");
 }
 

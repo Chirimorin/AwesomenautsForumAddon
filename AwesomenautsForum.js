@@ -8,6 +8,8 @@ function supports_local_storage() {
   }
 }
 
+function optionsLoaded() { } //Empty function, gets overridden by test script and called by the normal script. 
+
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
 {
