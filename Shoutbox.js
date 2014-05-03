@@ -118,7 +118,7 @@ customSmilieslist.push({name: "Headbanging Swiggins (by Muffel)", url: "http://i
 customSmilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/iqKzH2e.gif", code: ":reddroid:"});
 customSmilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/8TJJRjx.gif", code: ":bluedroid:"});
 customSmilieslist.push({name: "Creep", url: "http://cdn.steamcommunity.com/economy/emoticon/creep", code: ":creep:"});
-customSmilieslist.push({name: "Solar Crab", url: "http://i.imgur.com/P9qsMhz.png", code: ":solarcrab:"});
+customSmilieslist.push({name: "Solar Crab (by RiceMaster)", url: "http://i.imgur.com/P9qsMhz.png", code: ":solarcrab:"});
 customSmilieslist.push({name: "Solar", url: "http://cdn.steamcommunity.com/economy/emoticon/solar", code: ":solar:"});
 customSmilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/awesome", code: ":awesome:"});
 customSmilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});

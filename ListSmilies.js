@@ -36,7 +36,7 @@ smilieslist.push({name: "Headbanging Swiggins (by Muffel)", url: "http://i.imgur
 smilieslist.push({name: "Red Droid (by Muffel)", url: "http://i.imgur.com/iqKzH2e.gif", code: ":reddroid:"});
 smilieslist.push({name: "Blue Droid (by Muffel)", url: "http://i.imgur.com/8TJJRjx.gif", code: ":bluedroid:"});
 smilieslist.push({name: "Creep", url: "http://cdn.steamcommunity.com/economy/emoticon/creep", code: ":creep:"});
-smilieslist.push({name: "Solar Crab", url: "http://i.imgur.com/P9qsMhz.png", code: ":solarcrab:"});
+smilieslist.push({name: "Solar Crab (by RiceMaster)", url: "http://i.imgur.com/P9qsMhz.png", code: ":solarcrab:"});
 smilieslist.push({name: "Solar", url: "http://cdn.steamcommunity.com/economy/emoticon/solar", code: ":solar:"});
 smilieslist.push({name: "Awesome", url: "http://cdn.steamcommunity.com/economy/emoticon/awesome", code: ":awesome:"});
 smilieslist.push({name: "Toast (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/toooas10.gif", code: ":toast:"});
