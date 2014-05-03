@@ -244,7 +244,7 @@ function jqueryLoaded() {
         //Replace newmessage checkbox
         $('input[name=newmess]').attr('checked', false);
         savesoundselection();
-        $('input[name=newmess]').replaceWith('<input type="checkbox" id="playsound" name="playsound" onchange="SetUSStorage(\'playSound\', this.checked)">');
+        $('input[name=newmess]').hide().after('<input type="checkbox" id="playsound" name="playsound" onchange="SetUSStorage(\'playSound\', this.checked)">');
         $('#playsound').attr('checked', GetUSStorage('playSound'));
         
         //Edit all posts
