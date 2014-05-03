@@ -133,7 +133,7 @@ filteredWords.push("fuck", "dick", "cunt", "shit", "ass", "bitch", "blowjob", "c
 function postEdits(newMess) //Changes to posts, should be called for every load. 
 {
     //New message sound
-    if (newMess)
+    if (newMess && GetUSStorage('playSound'))
     {
         new Audio('http://static.freeshoutbox.net/newmess.wav').play();
     }
