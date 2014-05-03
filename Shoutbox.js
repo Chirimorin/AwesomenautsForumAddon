@@ -4,10 +4,10 @@ var currentVersion = 1.04;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
-var MOTD = true;
+var MOTD = false;
 function preparedMOTD()
 {
-    $("#MOTD").html("People have reported the \"transparent\" button appearing multiple times. If this happens, please send me (Chirimorin) a PM with details of what you were doing. A copy of your console is always useful in this case.");
+    $("#MOTD").html("");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
