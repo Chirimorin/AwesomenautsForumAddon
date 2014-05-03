@@ -138,6 +138,9 @@ function postEdits() //Changes to posts, should be called for every load.
         $(".postbody", $("#contentarea")).each(function(){ //Loop through all posts
             var post = this;
             
+            //New message sound
+            new Audio('http://static.freeshoutbox.net/newmess.wav').play();
+            
             //Word filter
             $.each(filteredWords, function() {
                 $(post).html($(post).html().replace(new RegExp(" " + this + " ", "gi"), ' * '));
@@ -184,6 +187,16 @@ function jqueryLoaded() {
     clearInterval(checker);
     console.log("Shoutbox jQuery found; running shoutbox script version " + currentVersion);
     
+    GetUSStorage = function(item)
+    {
+        return JSON.parse(localStorage.getItem("UserScript" + item));
+    }
+
+    SetUSStorage = function(item, value)
+    {
+        localStorage.setItem("UserScript" + item, JSON.stringify(value));
+    }
+    
     //Remove pesky ads
     $("div[id^=div-gpt-ad]").each(function() { $(this).remove(); });
     
@@ -224,6 +237,12 @@ function jqueryLoaded() {
         });
         
         $("input[name='txtMessage']").width('100%');
+        
+        //Replace newmessage checkbox
+        $('input[name=newmess]').attr('checked', false);
+        savesoundselection();
+        $('input[name=newmess]').replaceWith('<input type="checkbox" id="playsound" name="playsound" onchange="SetUSStorage(\'playSound\', this.checked)">');
+        $('#playsound').attr('checked', GetUSStorage('playSound'));
         
         //Edit all posts
         postEdits();
