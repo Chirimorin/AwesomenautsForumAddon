@@ -1,13 +1,13 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.04;
+var currentVersion = 1.1;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
-var MOTD = false;
+var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html("");
+    $("#MOTD").html("New message sound fixed! Please report if it works for you.");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
