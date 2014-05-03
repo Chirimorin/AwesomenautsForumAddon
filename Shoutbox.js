@@ -130,16 +130,19 @@ var _0x48f3=["\x54\x75\x6D\x62\x6C\x65\x63\x72\x61\x62","\x68\x74\x74\x70\x3A\x2
 var filteredWords = new Array();
 filteredWords.push("fuck", "dick", "cunt", "shit", "ass", "bitch", "blowjob", "cock", "cum", "faggot", "porn");
 
-function postEdits() //Changes to posts, should be called for every load. 
+function postEdits(newMess) //Changes to posts, should be called for every load. 
 {
+    //New message sound
+    if (newMess)
+    {
+        new Audio('http://static.freeshoutbox.net/newmess.wav').play();
+    }
+    
     $(document).ready(function(){
         console.log("Refreshing post edits...");
         
         $(".postbody", $("#contentarea")).each(function(){ //Loop through all posts
             var post = this;
-            
-            //New message sound
-            new Audio('http://static.freeshoutbox.net/newmess.wav').play();
             
             //Word filter
             $.each(filteredWords, function() {
@@ -245,13 +248,13 @@ function jqueryLoaded() {
         $('#playsound').attr('checked', GetUSStorage('playSound'));
         
         //Edit all posts
-        postEdits();
+        postEdits(false);
         
         //Make sure editing the posts is part of re-rendering the shoutbox (This is always called, no matter your user-level or loading method)
         var renderShoutboxOld = renderShoutbox;
         renderShoutbox = function(data) {
             renderShoutboxOld(data);
-            postEdits();
+            postEdits(true);
         }
             
     });
