@@ -134,6 +134,28 @@ var XBBCODE = (function() {
                 return '</span>';
             }
         },
+        "colour": {
+            openTag: function(params,content) {
+            
+                var colorCode = params.substr(1) || "black";
+                colorNamePattern.lastIndex = 0;
+                colorCodePattern.lastIndex = 0;
+                if ( !colorNamePattern.test( colorCode ) ) {
+                    if ( !colorCodePattern.test( colorCode ) ) {
+                        colorCode = "black";
+                    } else {
+                        if (colorCode.substr(0,1) !== "#") {
+                            colorCode = "#" + colorCode;
+                        }
+                    }
+                }
+            
+                return '<span style="color:' + colorCode + '">';
+            },
+            closeTag: function(params,content) {
+                return '</span>';
+            }
+        },
         "i": {
             openTag: function(params,content) {
                 return '<span class="xbbcode-i">';
