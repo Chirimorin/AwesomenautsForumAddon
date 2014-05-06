@@ -20,21 +20,22 @@ function preparedMOTD()
     //    
     //    var timestring = "";
     //    
-    //    if (seconds_left > 3600)
-    //    {
-    //        hours = parseInt(seconds_left / 3600);
-    //        seconds_left = seconds_left % 3600;
-    //        timestring += hours + "h ";
-    //    }
-    //    
-    //    if (seconds_left > 60)
-    //    {
-    //        minutes = parseInt(seconds_left / 60);
-    //        timestring += minutes + "m ";
-    //    }
-    //    
     //    if (seconds_left > 0)
     //    {
+    //        if (seconds_left > 3600)
+    //        {
+    //            hours = parseInt(seconds_left / 3600);
+    //            seconds_left = seconds_left % 3600;
+    //            timestring += hours + "h ";
+    //        }
+    //        
+    //        if (seconds_left > 60)
+    //        {
+    //            minutes = parseInt(seconds_left / 60);
+    //            timestring += minutes + "m ";
+    //        }
+    //        
+    //        
     //        seconds = parseInt(seconds_left % 60);
     //        timestring += seconds + "s ";
     //        $("#countdown").html(timestring + "until Sentry livestream at "+streamTime.getHours()+":00! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">[Official countdown]</a>");  
@@ -255,16 +256,16 @@ function jqueryLoaded() {
         var renderShoutboxOld = renderShoutbox;
         renderShoutbox = function(data) {
             renderShoutboxOld(data);
-			$('title').text("New Messages - " + originalTitle);
+            $('title').text("New Messages - " + originalTitle);
             postEdits(true);
         }
             
     });
-	
-	originalTitle = $("title").text();
-	$(window).focus(function () {
-		$("title").text(originalTitle);
-	});
+    
+    originalTitle = $("title").text();
+    $(window).focus(function () {
+        $("title").text(originalTitle);
+    });
 }
 
 function checkJquery() {
@@ -276,7 +277,7 @@ function checkJquery() {
         console.log("Waiting for shoutbox jQuery to load...");
         checker = window.setInterval(checkJquery, 100);
     }
-}	
+}    
 
 checkJquery();
 
