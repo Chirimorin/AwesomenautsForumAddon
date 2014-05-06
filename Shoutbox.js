@@ -1,7 +1,7 @@
 console.log("Shoutbox script loaded");
 
 var originalTitle;
-var currentVersion = 1.1;
+var currentVersion = 1.11;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
