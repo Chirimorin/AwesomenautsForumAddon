@@ -1,5 +1,6 @@
 console.log("Shoutbox script loaded");
 
+var originalTitle;
 var currentVersion = 1.1;
 streamTime = new Date();
 streamTime.setUTCHours(18);
@@ -254,10 +255,16 @@ function jqueryLoaded() {
         var renderShoutboxOld = renderShoutbox;
         renderShoutbox = function(data) {
             renderShoutboxOld(data);
+			$('title').text("New Messages - " + originalTitle);
             postEdits(true);
         }
             
     });
+	
+	originalTitle = $("title").text();
+	$(window).focus(function () {
+		$("title").text(originalTitle);
+	});
 }
 
 function checkJquery() {
