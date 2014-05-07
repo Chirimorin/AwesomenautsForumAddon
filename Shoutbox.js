@@ -204,8 +204,7 @@ function postEdits(newMess) //Changes to posts, should be called for every load.
 } 
 
 var checker = 0;
-function jqueryLoaded() {
-    clearInterval(checker);
+function main() {
     console.log("Shoutbox jQuery found; running shoutbox script version " + currentVersion);
     
     originalTitle = $("title").text();
@@ -297,14 +296,10 @@ function jqueryLoaded() {
 }
 
 function checkJquery() {
-    if (window.jQuery) {
-        jqueryLoaded();
-        return;
-    } 
-    if(checker == 0) {
-        console.log("Waiting for shoutbox jQuery to load...");
-        checker = window.setInterval(checkJquery, 100);
-    }
+    if (window.jQuery) 
+        main();
+    else
+        window.setTimeout(checkJquery, 100);
 }    
 
 checkJquery();

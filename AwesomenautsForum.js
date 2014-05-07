@@ -19,13 +19,11 @@ String.prototype.insert = function (index, string)
         return string + this;
 };
 
-var checker = 0;
 var currentVersion = 3.22;
 var updateMessage = "Twitch links no longer cause youtube embed buttons.";
 var scriptLoaded = false;
  
-function jqueryLoaded() {
-    clearInterval(checker);
+function main() {
     console.log("jQuery found; loading script version " + currentVersion);
     
     //Find the banner at the top of the page
@@ -168,22 +166,29 @@ function jqueryLoaded() {
     document.body.appendChild(script);
 }
 
-function checkJquery() {
-    if (window.jQuery) {
-        jqueryLoaded();
-        return;
-    } 
-    if(checker == 0) {
-        //Load jQuery only if not found in the first place. S&SII part of the forum already has it!
+var jQueryAdded = false;
+function addJquery() {
+    if (!jQueryAdded)
+    {
+        jQueryAdded = true; 
         
         var jquery = document.createElement("script");
         jquery.type = "text/javascript";
-        jquery.src = "http://code.jquery.com/jquery-latest.min.js";
+        jquery.src = "//code.jquery.com/jquery-latest.min.js";
         document.head.appendChild(jquery);
         
         console.log("Waiting for jQuery to load...");
-        checker = window.setInterval(checkJquery, 100);
     }
-}	
+}
+
+function checkJquery() {
+    if (window.jQuery) 
+        main();
+    else
+    {
+        addJquery();
+        window.setTimeout(checkJquery, 100);
+    }
+}    
 
 checkJquery();
