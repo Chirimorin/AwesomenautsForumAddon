@@ -1,7 +1,7 @@
 console.log("Shoutbox script loaded");
 
 var currentVersion = 1.12;
-var focus = false;
+var focus = true;
 var lastRead;
 var originalTitle;
 streamTime = new Date();
@@ -208,6 +208,19 @@ function jqueryLoaded() {
     clearInterval(checker);
     console.log("Shoutbox jQuery found; running shoutbox script version " + currentVersion);
     
+    originalTitle = $("title").text();
+    
+    $(window).focus(function(){
+        focus = true;
+        $("title").text(originalTitle);
+        $(".unreadMarker").delay(2000).fadeOut(500);
+    });
+    
+    $(window).blur(function() {
+        lastRead = $(".postbody", $("#contentarea")).first().attr('id');
+        focus = false;
+    });
+    
     GetUSStorage = function(item)
     {
         return JSON.parse(localStorage.getItem("UserScript" + item));
@@ -280,23 +293,6 @@ function jqueryLoaded() {
         
         //Mark the latest post as read
         lastRead = $(".postbody", $("#contentarea")).first().attr('id');
-    });
-    
-    originalTitle = $("title").text();
-    
-    function focusGained() 
-    {
-        focus = true;
-        $("title").text(originalTitle);
-        $(".unreadMarker").delay(2000).fadeOut(500);
-    }
-    
-    $("body").one("click",focusGained); //In case the page is in focus to begin with, first click on the page will make it "gain focus" 
-    $(window).focus(focusGained);
-    
-    $(window).blur(function() {
-        lastRead = $(".postbody", $("#contentarea")).first().attr('id');
-        focus = false;
     });
 }
 
