@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.12;
+var currentVersion = 1.13;
 var focus = true;
 var lastRead;
 var originalTitle;
@@ -50,7 +50,6 @@ function preparedMOTD()
     // 
     //}, 1000);
 }
-
 
 var Ronimo = new Array();
 Ronimo.push("Jasper");
@@ -134,6 +133,28 @@ var _0xed16=["\x54\x75\x6D\x62\x6C\x65\x63\x72\x61\x62","\x68\x74\x74\x70\x3A\x2
 var filteredWords = new Array();
 filteredWords.push("fuck", "dick", "cunt", "shit", "ass", "bitch", "blowjob", "cock", "cum", "faggot", "porn");
 
+function updateSettings()
+{
+    if (GetUSStorage('version') == undefined)
+    {
+        SetUSStorage('version',0); //Set current version to 0. Will induce all default settings. 
+    }
+
+    if (GetUSStorage('version') < currentVersion)
+    {
+        var storedVersion = GetUSStorage('version');
+        console.log('settings for version ' + storedVersion + ' found. Updating...');
+        
+        if (storedVersion < 1.13)
+        {
+            SetUSStorage('autoHideNewMessMarker', true);
+        }
+        
+        SetUSStorage('version', currentVersion);
+        console.log('all settings updated to version ' + currentVersion);
+    }
+}
+
 function postEdits(newMess) //Changes to posts, should be called for every load. 
 {
     //New message (instead of page load)
@@ -212,7 +233,8 @@ function main() {
     $(window).focus(function(){
         focus = true;
         $("title").text(originalTitle);
-        $(".unreadMarker").delay(2000).fadeOut(500);
+        if (GetUSStorage('autoHideNewMessMarker'))
+            $(".unreadMarker").delay(3000).fadeOut(500);
     });
     
     $(window).blur(function() {
@@ -229,6 +251,8 @@ function main() {
     {
         localStorage.setItem("UserScript" + item, JSON.stringify(value));
     }
+    
+    updateSettings();
     
     //Remove pesky ads
     $("div[id^=div-gpt-ad]").each(function() { $(this).remove(); });
@@ -271,13 +295,15 @@ function main() {
         
         $("input[name='txtMessage']").width('100%');
         
-        //Replace newmessage checkbox
-        if ($('input[name=newmess]').length != 0)
+        if ($('input[name=newmess]').length != 0) //Settings. Only needed on first page.
         {
             $('input[name=newmess]').attr('checked', false);
             savesoundselection();
             $('input[name=newmess]').hide().after('<input type="checkbox" id="playsound" name="playsound" onchange="SetUSStorage(\'playSound\', this.checked)">');
             $('#playsound').attr('checked', GetUSStorage('playSound'));
+            
+            $('#playsound').before('<input type="checkbox" id="autoHideNewMessMarker" onchange="SetUSStorage(\'autoHideNewMessMarker\', this.checked)"> Auto hide unread message marker.<br />');
+            $('#autoHideNewMessMarker').attr('checked', GetUSStorage('autoHideNewMessMarker'));
         }
         
         //Edit all posts
