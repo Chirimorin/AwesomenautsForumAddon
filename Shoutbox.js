@@ -277,6 +277,9 @@ function jqueryLoaded() {
             renderShoutboxOld(data);
             postEdits(true);
         }
+        
+        //Mark the latest post as read
+        lastRead = $(".postbody", $("#contentarea")).first().attr('id');
     });
     
     originalTitle = $("title").text();
