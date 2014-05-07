@@ -1,14 +1,16 @@
 console.log("Shoutbox script loaded");
 
+var currentVersion = 1.12;
+var focus = false;
+var lastRead;
 var originalTitle;
-var currentVersion = 1.11;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html("New message sound fixed! Please report if it works for you.");
+    $("#MOTD").html("New messages are now marked!");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
@@ -134,10 +136,18 @@ filteredWords.push("fuck", "dick", "cunt", "shit", "ass", "bitch", "blowjob", "c
 
 function postEdits(newMess) //Changes to posts, should be called for every load. 
 {
-    //New message sound
-    if (newMess && GetUSStorage('playSound'))
+    //New message (instead of page load)
+    if (newMess)
     {
-        new Audio('http://static.freeshoutbox.net/newmess.wav').play();
+        if (GetUSStorage('playSound')) //Play a sound
+        {
+            new Audio('http://static.freeshoutbox.net/newmess.wav').play();
+        }
+        
+        if (!focus) //Edit the title
+        {
+            $("title").text("New messages - " + originalTitle);
+        }
     }
     
     $(document).ready(function(){
@@ -170,6 +180,12 @@ function postEdits(newMess) //Changes to posts, should be called for every load.
                 if (jQuery.inArray(name, Adminauts) != -1) { $(this).wrap("<span style='color:#FF9900'></span>") }
                 if (jQuery.inArray(name, Specials) != -1) { $(this).wrap("<span style='color:#0000AA'></span>") }
             });
+            
+            //Unread marker
+            if (!focus && ($(post).attr('id') > lastRead))
+            {
+                $(post).prepend('<span class="unreadMarker">* </span>');
+            }
             
             //Parse BBcode, external library. 
             $(this).html(XBBCODE.process({text: $(this).html()}).html);
@@ -244,10 +260,13 @@ function jqueryLoaded() {
         $("input[name='txtMessage']").width('100%');
         
         //Replace newmessage checkbox
-        $('input[name=newmess]').attr('checked', false);
-        savesoundselection();
-        $('input[name=newmess]').hide().after('<input type="checkbox" id="playsound" name="playsound" onchange="SetUSStorage(\'playSound\', this.checked)">');
-        $('#playsound').attr('checked', GetUSStorage('playSound'));
+        if ($('input[name=newmess]').length != 0)
+        {
+            $('input[name=newmess]').attr('checked', false);
+            savesoundselection();
+            $('input[name=newmess]').hide().after('<input type="checkbox" id="playsound" name="playsound" onchange="SetUSStorage(\'playSound\', this.checked)">');
+            $('#playsound').attr('checked', GetUSStorage('playSound'));
+        }
         
         //Edit all posts
         postEdits(false);
@@ -256,15 +275,25 @@ function jqueryLoaded() {
         var renderShoutboxOld = renderShoutbox;
         renderShoutbox = function(data) {
             renderShoutboxOld(data);
-            $('title').text("New Messages - " + originalTitle);
             postEdits(true);
         }
-            
     });
     
     originalTitle = $("title").text();
-    $(window).focus(function () {
+    
+    function focusGained() 
+    {
+        focus = true;
         $("title").text(originalTitle);
+        $(".unreadMarker").delay(2000).fadeOut(500);
+    }
+    
+    $("body").one("click",focusGained); //In case the page is in focus to begin with, first click on the page will make it "gain focus" 
+    $(window).focus(focusGained);
+    
+    $(window).blur(function() {
+        lastRead = $(".postbody", $("#contentarea")).first().attr('id');
+        focus = false;
     });
 }
 
