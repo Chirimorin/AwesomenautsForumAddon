@@ -1,16 +1,16 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.13;
+var currentVersion = 1.14;
 var focus = true;
 var lastRead;
 var originalTitle;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
-var MOTD = true;
+var MOTD = false;
 function preparedMOTD()
 {
-    $("#MOTD").html("New messages are now marked!");
+    $("#MOTD").html("");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
@@ -314,6 +314,12 @@ function main() {
         renderShoutbox = function(data) {
             renderShoutboxOld(data);
             postEdits(true);
+        }
+        
+        var timeoutSessionOld = timeoutSession;
+        timeoutSession = function() {
+            timeoutSessionOld();
+            $("title").text("Disconnected - " + originalTitle);
         }
         
         //Mark the latest post as read
