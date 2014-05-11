@@ -1,9 +1,10 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.14;
+var currentVersion = 1.15;
 var focus = true;
 var lastRead;
 var originalTitle;
+var timeoutSessionOriginal;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
@@ -150,9 +151,42 @@ function updateSettings()
             SetUSStorage('autoHideNewMessMarker', true);
         }
         
+        if (storedVersion < 1.15)
+        {
+            SetUSStorage('noTimeout', false);
+        }
+        
         SetUSStorage('version', currentVersion);
         console.log('all settings updated to version ' + currentVersion);
     }
+}
+
+function noTimeoutChanged(newVal)
+{
+    if (newVal)
+    {
+        timeoutSession = function() { }
+    }
+    else
+    {
+        timeoutSession = function() 
+        {
+            timeoutSessionOriginal();
+            $("title").text("Disconnected - " + originalTitle);
+        }
+    }
+}
+
+function settingSaved(element)
+{
+    MsgSaved=document.createElement('span');
+    $(element).append(MsgSaved);
+    $(MsgSaved).html(" Saved!")
+            .css("color", "#0A0")
+            .delay(1500)
+            .fadeOut(1000, function() {
+                $(this).remove();
+            });
 }
 
 function postEdits(newMess) //Changes to posts, should be called for every load. 
@@ -302,7 +336,8 @@ function main() {
             $('input[name=newmess]').hide().after('<input type="checkbox" id="playsound" name="playsound" onchange="SetUSStorage(\'playSound\', this.checked)">');
             $('#playsound').attr('checked', GetUSStorage('playSound'));
             
-            $('#playsound').before('<input type="checkbox" id="autoHideNewMessMarker" onchange="SetUSStorage(\'autoHideNewMessMarker\', this.checked)"> Auto hide unread message marker.<br />');
+            $('#playsound').before('<span><input type="checkbox" id="autoHideNewMessMarker" onchange="SetUSStorage(\'autoHideNewMessMarker\', this.checked); settingSaved($(this).parent());"> Auto hide unread message marker.</span><br />\
+                                    <span><input type="checkbox" id="noTimeout" onchange="SetUSStorage(\'noTimeout\', this.checked); noTimeoutChanged(this.checked); settingSaved($(this).parent());"> Turn off chat timeout.</span><br />');
             $('#autoHideNewMessMarker').attr('checked', GetUSStorage('autoHideNewMessMarker'));
         }
         
@@ -316,11 +351,8 @@ function main() {
             postEdits(true);
         }
         
-        var timeoutSessionOld = timeoutSession;
-        timeoutSession = function() {
-            timeoutSessionOld();
-            $("title").text("Disconnected - " + originalTitle);
-        }
+        timeoutSessionOriginal = timeoutSession;
+        noTimeoutChanged(GetUSStorage('noTimeout'));
         
         //Mark the latest post as read
         lastRead = $(".postbody", $("#contentarea")).first().attr('id');
