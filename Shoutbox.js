@@ -192,7 +192,7 @@ function formSubmitted(e)
             type: 'post',
             url: $('form[name=shoutbox]').attr('action'),
             data: $('form[name=shoutbox]').serialize(),
-            success: function(data) { $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); }
+            success: function(data) { $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); } //No need to handle the data callback. Chat update takes care of this
         });
         e.preventDefault();
     }
@@ -359,7 +359,7 @@ function main() {
             
             $('#playsound').before('<span><input type="checkbox" id="autoHideNewMessMarker" onchange="SetUSStorage(\'autoHideNewMessMarker\', this.checked); settingSaved($(this).parent());"> Auto hide unread message marker.</span><br />\
                                     <span><input type="checkbox" id="noTimeout" onchange="SetUSStorage(\'noTimeout\', this.checked); noTimeoutChanged(this.checked); settingSaved($(this).parent());"> Turn off chat timeout.</span><br />\
-                                    <div id="noRefreshDiv"><span><input type="checkbox" id="noRefresh" onchange="SetUSStorage(\'noRefresh\', this.checked); settingSaved($(this).parent());"> Refreshless chat.</span><br /></div>');
+                                    <div id="noRefreshDiv"><span><input type="checkbox" id="noRefresh" onchange="SetUSStorage(\'noRefresh\', this.checked); settingSaved($(this).parent());"> No refresh mode.</span><br /></div>');
             
             $('#autoHideNewMessMarker').attr('checked', GetUSStorage('autoHideNewMessMarker'));
             $('#noTimeout').attr('checked', GetUSStorage('noTimeout'));
