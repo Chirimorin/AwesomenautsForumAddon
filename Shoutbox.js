@@ -8,10 +8,10 @@ var timeoutSessionOriginal;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
-var MOTD = false;
+var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html("");
+    $("#MOTD").html("Online users list removed because it was incorrect about all of the time.");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
