@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.15;
+var currentVersion = 1.16;
 var focus = true;
 var lastRead;
 var originalTitle;
@@ -156,6 +156,11 @@ function updateSettings()
             SetUSStorage('noTimeout', false);
         }
         
+        if (storedVersion < 1.16)
+        {
+            SetUSStorage('noRefresh', true);
+        }
+        
         SetUSStorage('version', currentVersion);
         console.log('all settings updated to version ' + currentVersion);
     }
@@ -166,6 +171,7 @@ function noTimeoutChanged(newVal)
     if (newVal)
     {
         timeoutSession = function() { }
+        $("#noRefreshDiv").slideDown();
     }
     else
     {
@@ -174,6 +180,21 @@ function noTimeoutChanged(newVal)
             timeoutSessionOriginal();
             $("title").text("Disconnected - " + originalTitle);
         }
+        $("#noRefreshDiv").slideUp();
+    }
+}
+
+function formSubmitted(e)
+{
+    if (GetUSStorage('noTimeout') && GetUSStorage('noRefresh'))
+    {
+        $.ajax({
+            type: 'post',
+            url: $('form[name=shoutbox]').attr('action'),
+            data: $('form[name=shoutbox]').serialize(),
+            success: function(data) { $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); }
+        });
+        e.preventDefault();
     }
 }
 
@@ -337,10 +358,14 @@ function main() {
             $('#playsound').attr('checked', GetUSStorage('playSound'));
             
             $('#playsound').before('<span><input type="checkbox" id="autoHideNewMessMarker" onchange="SetUSStorage(\'autoHideNewMessMarker\', this.checked); settingSaved($(this).parent());"> Auto hide unread message marker.</span><br />\
-                                    <span><input type="checkbox" id="noTimeout" onchange="SetUSStorage(\'noTimeout\', this.checked); noTimeoutChanged(this.checked); settingSaved($(this).parent());"> Turn off chat timeout.</span><br />');
+                                    <span><input type="checkbox" id="noTimeout" onchange="SetUSStorage(\'noTimeout\', this.checked); noTimeoutChanged(this.checked); settingSaved($(this).parent());"> Turn off chat timeout.</span><br />\
+                                    <div id="noRefreshDiv"><span><input type="checkbox" id="noRefresh" onchange="SetUSStorage(\'noRefresh\', this.checked); settingSaved($(this).parent());"> Refreshless chat.</span><br /></div>');
             
             $('#autoHideNewMessMarker').attr('checked', GetUSStorage('autoHideNewMessMarker'));
             $('#noTimeout').attr('checked', GetUSStorage('noTimeout'));
+            $('#noRefresh').attr('checked', GetUSStorage('noRefresh'));
+            
+            $('form[name=shoutbox]').submit(formSubmitted);
         }
         
         //Edit all posts
