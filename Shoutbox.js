@@ -193,16 +193,14 @@ function noTimeoutChanged(newVal)
 
 function formSubmitted(e)
 {
-    console.log("form submitted!");
     if (GetUSStorage('noTimeout') && GetUSStorage('noRefresh'))
     {
-        console.log("no refresh mode found, calling AJAX");
+        e.preventDefault();
         $.ajax({
             type: 'post',
             url: $('form[name=shoutbox]').attr('action'),
             data: $('form[name=shoutbox]').serialize(),
             success: function(data) { 
-                console.log("Data callback received");
                 if (data.indexOf("alert('Double post detected or session timed out, in that case just post again.')") != -1 && !repost)
                 {
                     SetUSStorage('savedMsg', $("input[name=txtMessage]", $('form[name=shoutbox]')).val()); 
@@ -215,8 +213,6 @@ function formSubmitted(e)
                 }
             } 
         });
-        console.log("AJAX call done");
-        e.preventDefault();
     }
 }
 
