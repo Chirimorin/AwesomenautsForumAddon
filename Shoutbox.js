@@ -1,10 +1,11 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.16;
+var currentVersion = 1.17;
 var focus = true;
 var lastRead;
 var originalTitle;
 var timeoutSessionOriginal;
+var repost = false;
 streamTime = new Date();
 streamTime.setUTCHours(18);
 streamTime.setUTCMinutes(00);
@@ -161,6 +162,12 @@ function updateSettings()
             SetUSStorage('noRefresh', true);
         }
         
+        if (storedVersion < 1.17)
+        {
+            SetUSStorage('tryPostAgain', false);
+            SetUSStorage('savedMsg', "");
+        }
+        
         SetUSStorage('version', currentVersion);
         console.log('all settings updated to version ' + currentVersion);
     }
@@ -186,14 +193,29 @@ function noTimeoutChanged(newVal)
 
 function formSubmitted(e)
 {
+    console.log("form submitted!");
     if (GetUSStorage('noTimeout') && GetUSStorage('noRefresh'))
     {
+        console.log("no refresh mode found, calling AJAX");
         $.ajax({
             type: 'post',
             url: $('form[name=shoutbox]').attr('action'),
             data: $('form[name=shoutbox]').serialize(),
-            success: function(data) { $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); } //No need to handle the data callback. Chat update takes care of this
+            success: function(data) { 
+                console.log("Data callback received");
+                if (data.indexOf("alert('Double post detected or session timed out, in that case just post again.')") != -1 && !repost)
+                {
+                    SetUSStorage('savedMsg', $("input[name=txtMessage]", $('form[name=shoutbox]')).val()); 
+                    SetUSStorage('tryPostAgain', true);
+                    location.reload(true);
+                }
+                else
+                {
+                    $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
+                }
+            } 
         });
+        console.log("AJAX call done");
         e.preventDefault();
     }
 }
@@ -383,6 +405,15 @@ function main() {
         
         //Mark the latest post as read
         lastRead = $(".postbody", $("#contentarea")).first().attr('id');
+        
+        //If a timeout has been detected, retry posting the message. 
+        if (GetUSStorage('tryPostAgain'))
+        {
+            $("input[name=txtMessage]", $('form[name=shoutbox]')).val(GetUSStorage('savedMsg'));
+            SetUSStorage('tryPostAgain', false);
+            repost = true;
+            $('form[name=shoutbox]').submit();
+        }
     });
 }
 
