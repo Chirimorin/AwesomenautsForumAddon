@@ -12,7 +12,7 @@ streamTime.setUTCMinutes(00);
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html("Online users list removed because it was incorrect about all of the time.");
+    $("#MOTD").html("No refresh mode fixed! (Enable \"Turn off chat timeout\" to enable no refresh mode)");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
