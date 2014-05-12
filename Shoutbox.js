@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.17;
+var currentVersion = 1.18;
 var focus = true;
 var lastRead;
 var originalTitle;
@@ -12,7 +12,7 @@ streamTime.setUTCMinutes(00);
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html("No refresh mode fixed! (Enable \"Turn off chat timeout\" to enable no refresh mode)");
+    $("#MOTD").html("No refresh mode fixed for real, hopefully.");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
@@ -200,15 +200,19 @@ function formSubmitted(e)
             type: 'post',
             url: $('form[name=shoutbox]').attr('action'),
             data: $('form[name=shoutbox]').serialize(),
-            success: function(data) { 
+            success: function(data) {
+                console.log("Data callback received");
                 if (data.indexOf("alert('Double post detected or session timed out, in that case just post again.')") != -1 && !repost)
                 {
+                    console.log("Timeout detected... refreshing");
                     SetUSStorage('savedMsg', $("input[name=txtMessage]", $('form[name=shoutbox]')).val()); 
                     SetUSStorage('tryPostAgain', true);
                     location.reload(true);
                 }
                 else
                 {
+                    console.log("Post successful? Repost: " + repost);
+                    repost = false;
                     $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
                 }
             } 
@@ -377,7 +381,7 @@ function main() {
             
             $('#playsound').before('<span><input type="checkbox" id="autoHideNewMessMarker" onchange="SetUSStorage(\'autoHideNewMessMarker\', this.checked); settingSaved($(this).parent());"> Auto hide unread message marker</span><br />\
                                     <span><input type="checkbox" id="noTimeout" onchange="SetUSStorage(\'noTimeout\', this.checked); noTimeoutChanged(this.checked); settingSaved($(this).parent());"> Turn off chat timeout</span><br />\
-                                    <div id="noRefreshDiv"><span><input type="checkbox" id="noRefresh" onchange="SetUSStorage(\'noRefresh\', this.checked); settingSaved($(this).parent());"> No refresh mode</span><br /></div>');
+                                    <div id="noRefreshDiv"><span><input type="checkbox" id="noRefresh" onchange="SetUSStorage(\'noRefresh\', this.checked); settingSaved($(this).parent());"> No refresh mode (experimental)</span><br /></div>');
             
             $('#autoHideNewMessMarker').attr('checked', GetUSStorage('autoHideNewMessMarker'));
             $('#noTimeout').attr('checked', GetUSStorage('noTimeout'));
@@ -405,6 +409,7 @@ function main() {
         //If a timeout has been detected, retry posting the message. 
         if (GetUSStorage('tryPostAgain'))
         {
+            console.log("tryPostAgain found. Reposting message.");
             $("input[name=txtMessage]", $('form[name=shoutbox]')).val(GetUSStorage('savedMsg'));
             SetUSStorage('tryPostAgain', false);
             repost = true;
