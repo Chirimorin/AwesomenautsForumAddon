@@ -27,3 +27,30 @@ if ($('select[name=category]').val() == "Awesomenauts")
     });
     $(table).remove();
 }
+
+$('img[title="Report this post"]').each(function() { 
+    var anchor = $(this).parent();
+    
+    $(anchor).click(function(e) {
+        var reportClass = 'report' + $(anchor).attr('href').split('&p=')[1];
+        
+        if ($('.'+reportClass).size() == 0)
+        {
+            $.ajax({
+                url: $(this).attr('href'), 
+                success: function(data) {
+                    $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+$('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).html()+'</div></td></tr>');
+                    $('.'+reportClass).slideDown();
+                }
+            });
+        }
+        else
+        {
+            $('.'+reportClass).slideUp({ done: function() {
+                $('.'+reportClass).parent().parent().remove();
+            }});
+        }
+        e.preventDefault();
+    });
+    
+});
