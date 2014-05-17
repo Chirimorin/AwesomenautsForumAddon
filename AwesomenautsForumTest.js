@@ -40,6 +40,18 @@ $('img[title="Report this post"]').each(function() {
                 url: $(this).attr('href'), 
                 success: function(data) {
                     $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+$('<div>').append($('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).parent()).html()+'</div></td></tr>');
+                    $('form', $('.'+reportClass)).submit(function(e) { 
+                        //Stop the default form submit
+                        e.preventDefault(); 
+                        
+                        //TODO: Submit the form over ajax
+                        console.log('submitted') 
+                        
+                        //Remove the report div
+                        $('.'+reportClass).slideUp({ done: function() {
+                            $('.'+reportClass).parent().parent().remove();
+                        }});
+                    });
                     $('.'+reportClass).slideDown();
                 }
             });
