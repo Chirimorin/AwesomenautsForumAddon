@@ -44,13 +44,19 @@ $('img[title="Report this post"]').each(function() {
                         //Stop the default form submit
                         e.preventDefault(); 
                         
-                        //TODO: Submit the form over ajax
+                        //Submit the form over ajax
+                        $.ajax({
+                            type: 'post',
+                            url: $(this).attr('action'),
+                            data: $(this).serialize(),
+                            success: function(data) {
+                                //Remove the report div
+                                $('.'+reportClass).slideUp({ done: function() {
+                                    $('.'+reportClass).parent().parent().remove();
+                                }});
+                            } 
+                        });
                         console.log('submitted') 
-                        
-                        //Remove the report div
-                        $('.'+reportClass).slideUp({ done: function() {
-                            $('.'+reportClass).parent().parent().remove();
-                        }});
                     });
                     $('.'+reportClass).slideDown();
                 }
