@@ -58,6 +58,8 @@ $('img[title="Report this post"]').each(function() {
                                     $('.'+reportClass).parent().parent().remove();
                                 }});
                                 console.log('Data callback received. Removed form');
+                                console.log('Logging received data...');
+                                console.log(data);
                             } 
                         });
                         console.log('submitted') 
