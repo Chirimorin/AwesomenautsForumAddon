@@ -39,32 +39,40 @@ $('img[title="Report this post"]').each(function() {
             $.ajax({
                 url: $(this).attr('href'), 
                 success: function(data) {
+                    //Insert the report form on the page
                     $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+$('<div>').append($('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).parent()).html()+'</div></td></tr>');
-                    $('form', $('.'+reportClass)).submit(function(e) { 
-                        //Stop the default form submit
-                        e.preventDefault(); 
-                        
-                        console.log('submitting form...');
-                        console.log('url: ' + $('form', $('.'+reportClass)).attr('action'));
-                        console.log('data: ' + $('form', $('.'+reportClass)).serialize());
-
-                        //Submit the form over ajax
-                        $.ajax({
-                            type: 'post',
-                            url: $('form', $('.'+reportClass)).attr('action'),
-                            data: $('form', $('.'+reportClass)).serialize(),
-                            success: function(data) {
-                                //Remove the report div
-                                $('.'+reportClass).slideUp({ done: function() {
-                                    $('.'+reportClass).parent().parent().remove();
-                                }});
-                                console.log('Data callback received. Removed form');
-                                console.log('Logging received data...');
-                                console.log(data);
-                            } 
-                        });
-                        console.log('submitted') 
-                    });
+                    
+                    //Hijack the report form (Protected by phpBB?)
+                    
+                    //$('form', $('.'+reportClass)).submit(function(e) { 
+                    //    //Stop the default form submit
+                    //    e.preventDefault(); 
+                    //    
+                    //    var form = $(this);
+                    //    
+                    //    console.log('submitting form...');
+                    //    console.log('url: ' + form.attr('action'));
+                    //    console.log('data: ' + form.serialize());
+                    //
+                    //    //Submit the form over ajax
+                    //    $.ajax({
+                    //        type: form.attr('method'),
+                    //        url: form.attr('action'),
+                    //        data: form.serialize(),
+                    //        success: function(data) {
+                    //            //Remove the report div
+                    //            $('.'+reportClass).slideUp({ done: function() {
+                    //                $('.'+reportClass).parent().parent().remove();
+                    //            }});
+                    //            console.log('Data callback received. Removed form');
+                    //            console.log('Logging received data...');
+                    //            console.log(data);
+                    //        } 
+                    //    });
+                    //    console.log('submitted') 
+                    //});
+                    
+                    //Show the report form
                     $('.'+reportClass).slideDown();
                 }
             });
