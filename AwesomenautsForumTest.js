@@ -39,7 +39,7 @@ $('img[title="Report this post"]').each(function() {
             $.ajax({
                 url: $(this).attr('href'), 
                 success: function(data) {
-                    $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+$('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).html()+'</div></td></tr>');
+                    $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+$('<div>').append($('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).parent()).html();+'</div></td></tr>');
                     $('.'+reportClass).slideDown();
                 }
             });
