@@ -44,6 +44,9 @@ $('img[title="Report this post"]').each(function() {
                         //Stop the default form submit
                         e.preventDefault(); 
                         
+                        console.log('submitting form...');
+                        console.log('url: ' + $('form', $('.'+reportClass)).attr('action'));
+
                         //Submit the form over ajax
                         $.ajax({
                             type: 'post',
@@ -54,7 +57,7 @@ $('img[title="Report this post"]').each(function() {
                                 $('.'+reportClass).slideUp({ done: function() {
                                     $('.'+reportClass).parent().parent().remove();
                                 }});
-                                //Data callback received. Removed div
+                                console.log('Data callback received. Removed form');
                             } 
                         });
                         console.log('submitted') 
