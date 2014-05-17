@@ -12,7 +12,7 @@ streamTime.setUTCMinutes(00);
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html("No refresh mode fixed for real, hopefully.");
+    $("#MOTD").html("No refresh mode updated again. Someday it will work properly...");
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
@@ -212,7 +212,10 @@ function formSubmitted(e)
                 else
                 {
                     console.log("Post successful? Repost: " + repost);
-                    repost = false;
+                    if (repost) //Refresh after the repost, so your own post is directly visible
+                    {
+                        location.reload(true);
+                    }
                     $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
                 }
             } 
