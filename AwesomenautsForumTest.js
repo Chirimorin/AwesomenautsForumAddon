@@ -40,7 +40,15 @@ $('img[title="Report this post"]').each(function() {
                 url: $(this).attr('href'), 
                 success: function(data) {
                     //Insert the report form on the page
-                    $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+$('<div>').append($('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).parent()).html()+'</div></td></tr>');
+                    if ($('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).parent().is('form'))
+                    {
+                        form = $('<div>').append($('div:not([class]):not([id]):not([style])', $('#wrapcentre', data)).parent()).html();
+                    }
+                    else
+                    {
+                        form = $('<div>').append($('div:not([class]):not([id]):not([style])', $('#wrapcentre', data))).html()
+                    }
+                    $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+form+'</div></td></tr>');
                     
                     //Hijack the report form (Protected by phpBB?)
                     
