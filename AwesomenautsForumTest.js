@@ -46,6 +46,7 @@ $('img[title="Report this post"]').each(function() {
                         
                         console.log('submitting form...');
                         console.log('url: ' + $('form', $('.'+reportClass)).attr('action'));
+                        console.log('data: ' + $('.'+reportClass)).serialize());
 
                         //Submit the form over ajax
                         $.ajax({
