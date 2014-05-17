@@ -47,13 +47,14 @@ $('img[title="Report this post"]').each(function() {
                         //Submit the form over ajax
                         $.ajax({
                             type: 'post',
-                            url: $(this).attr('action'),
-                            data: $(this).serialize(),
+                            url: $('form', $('.'+reportClass)).attr('action'),
+                            data: $('form', $('.'+reportClass)).serialize(),
                             success: function(data) {
                                 //Remove the report div
                                 $('.'+reportClass).slideUp({ done: function() {
                                     $('.'+reportClass).parent().parent().remove();
                                 }});
+                                //Data callback received. Removed div
                             } 
                         });
                         console.log('submitted') 
