@@ -6,50 +6,51 @@ var lastRead;
 var originalTitle;
 var timeoutSessionOriginal;
 var repost = false;
-streamTime = new Date();
-streamTime.setUTCHours(18);
-streamTime.setUTCMinutes(00);
 var MOTD = true;
 function preparedMOTD()
 {
     $("#MOTD").html('<a href="http://www.awesomenauts.com/Vault/#AI">AI EDITOR HYPE!</a>');
     
-    //var target_date = streamTime.getTime();
-    //var hours, minutes, seconds;
-    //var countdown = document.getElementById("countdown");
+    //var target_date = new Date();
+    //target_date.setUTCMonth(5);
+    //target_date.setUTCDate(21);
+    //target_date.setUTCHours(18);
+    //target_date.setUTCMinutes(00);
+    //target_date.setUTCSeconds(00);
     //
     //setInterval(function () {
     //    var current_date = new Date().getTime();
     //    var seconds_left = (target_date - current_date) / 1000;
+    //    var total_time = seconds_left;
     //    
     //    var timestring = "";
     //    
-    //    if (seconds_left > 0)
+    //    if (total_time > 0)
     //    {
-    //        if (seconds_left > 3600)
+    //        if (total_time > 86400)
     //        {
-    //            hours = parseInt(seconds_left / 3600);
+    //            timestring += parseInt(seconds_left / 86400) + "days ";
+    //            seconds_left = seconds_left % 86400;
+    //        }
+    //        
+    //        if (total_time > 3600)
+    //        {
+    //            timestring += parseInt(seconds_left / 3600) + "h ";
     //            seconds_left = seconds_left % 3600;
-    //            timestring += hours + "h ";
     //        }
     //        
-    //        if (seconds_left > 60)
+    //        if (total_time > 60)
     //        {
-    //            minutes = parseInt(seconds_left / 60);
-    //            timestring += minutes + "m ";
+    //            timestring += parseInt(seconds_left / 60) + "m ";
     //        }
     //        
-    //        
-    //        seconds = parseInt(seconds_left % 60);
-    //        timestring += seconds + "s ";
-    //        $("#countdown").html(timestring + "until Sentry livestream at "+streamTime.getHours()+":00! <a href=\"http://www.timeanddate.com/counters/fullscreen.html?mode=a&iso=20140502T20&year=2014&month=5&day=2&hour=20&min=0&sec=0&p0=1310&msg=Ronimo%20Livestream\">[Official countdown]</a>");  
+    //        timestring += parseInt(seconds_left % 60) + "s ";
+    //        $("#MOTD").html(timestring + "Until nothing happens!");  
     //    }
     //    else
     //    {
-    //        $("#countdown").html("Sentry livestream live right now! <a href=\"http://www.twitch.tv/ronimogames\">Watch it here!</a>");
+    //        $("#MOTD").html("Timer over! :o");
     //    }
-    //    //$("#countdown").html(hours + "h " + minutes + "m " + seconds + "s");  
-    // 
     //}, 1000);
 }
 
