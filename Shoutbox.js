@@ -12,7 +12,7 @@ streamTime.setUTCMinutes(00);
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html("No refresh mode updated again. Someday it will work properly...");
+    $("#MOTD").html('<a href="http://www.awesomenauts.com/Vault/#AI">AI EDITOR HYPE!</a>');
     
     //var target_date = streamTime.getTime();
     //var hours, minutes, seconds;
