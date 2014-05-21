@@ -9,49 +9,49 @@ var repost = false;
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html('<a href="http://www.awesomenauts.com/Vault/#AI">AI EDITOR HYPE!</a>');
+    //$("#MOTD").html('');
     
-    //var target_date = new Date();
-    //target_date.setUTCMonth(5);
-    //target_date.setUTCDate(21);
-    //target_date.setUTCHours(18);
-    //target_date.setUTCMinutes(00);
-    //target_date.setUTCSeconds(00);
-    //
-    //setInterval(function () {
-    //    var current_date = new Date().getTime();
-    //    var seconds_left = (target_date - current_date) / 1000;
-    //    var total_time = seconds_left;
-    //    
-    //    var timestring = "";
-    //    
-    //    if (total_time > 0)
-    //    {
-    //        if (total_time > 86400)
-    //        {
-    //            timestring += parseInt(seconds_left / 86400) + "days ";
-    //            seconds_left = seconds_left % 86400;
-    //        }
-    //        
-    //        if (total_time > 3600)
-    //        {
-    //            timestring += parseInt(seconds_left / 3600) + "h ";
-    //            seconds_left = seconds_left % 3600;
-    //        }
-    //        
-    //        if (total_time > 60)
-    //        {
-    //            timestring += parseInt(seconds_left / 60) + "m ";
-    //        }
-    //        
-    //        timestring += parseInt(seconds_left % 60) + "s ";
-    //        $("#MOTD").html(timestring + "Until nothing happens!");  
-    //    }
-    //    else
-    //    {
-    //        $("#MOTD").html("Timer over! :o");
-    //    }
-    //}, 1000);
+    var target_date = new Date();
+    target_date.setUTCMonth(4);
+    target_date.setUTCDate(23);
+    target_date.setUTCHours(18);
+    target_date.setUTCMinutes(00);
+    target_date.setUTCSeconds(00);
+    
+    setInterval(function () {
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+        var total_time = seconds_left;
+        
+        var timestring = "";
+        
+        if (total_time > 0)
+        {
+            if (total_time > 86400)
+            {
+                timestring += parseInt(seconds_left / 86400) + " days ";
+                seconds_left = seconds_left % 86400;
+            }
+            
+            if (total_time > 3600)
+            {
+                timestring += parseInt(seconds_left / 3600) + "h ";
+                seconds_left = seconds_left % 3600;
+            }
+            
+            if (total_time > 60)
+            {
+                timestring += parseInt(seconds_left / 60) + "m ";
+            }
+            
+            timestring += parseInt(seconds_left % 60) + "s ";
+            $("#MOTD").html('<a href="http://www.awesomenauts.com/Vault/#Livestream">Livestream announced!</a> Starts in: ' + timestring);  
+        }
+        else
+        {
+            $("#MOTD").html("Very special thingamabob livestream live now! <a href='http://www.twitch.tv/RonimoGames'>Watch it here!</a>");
+        }
+    }, 1000);
 }
 
 var Ronimo = new Array();
