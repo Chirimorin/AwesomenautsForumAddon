@@ -29,7 +29,7 @@ function preparedMOTD()
         {
             if (total_time > 86400)
             {
-                timestring += parseInt(seconds_left / 86400) + " days ";
+                timestring += parseInt(seconds_left / 86400) + " day" + ((parseInt(seconds_left / 86400) != 1) ? "s" : "") + " ";
                 seconds_left = seconds_left % 86400;
             }
             
