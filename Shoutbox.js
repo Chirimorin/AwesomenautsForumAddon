@@ -12,7 +12,7 @@ function preparedMOTD()
     //$("#MOTD").html('');
     
     var target_date = new Date();
-    target_date.setUTCMonth(4);
+    //target_date.setUTCMonth(4);
     target_date.setUTCDate(23);
     target_date.setUTCHours(18);
     target_date.setUTCMinutes(00);
