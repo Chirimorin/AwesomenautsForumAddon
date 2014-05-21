@@ -50,37 +50,6 @@ $('img[title="Report this post"]').each(function() {
                     }
                     $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+form+'</div></td></tr>');
                     
-                    //Hijack the report form (Protected by phpBB?)
-                    
-                    //$('form', $('.'+reportClass)).submit(function(e) { 
-                    //    //Stop the default form submit
-                    //    e.preventDefault(); 
-                    //    
-                    //    var form = $(this);
-                    //    
-                    //    console.log('submitting form...');
-                    //    console.log('url: ' + form.attr('action'));
-                    //    console.log('data: ' + form.serialize());
-                    //
-                    //    //Submit the form over ajax
-                    //    $.ajax({
-                    //        type: form.attr('method'),
-                    //        url: form.attr('action'),
-                    //        data: form.serialize(),
-                    //        success: function(data) {
-                    //            //Remove the report div
-                    //            $('.'+reportClass).slideUp({ done: function() {
-                    //                $('.'+reportClass).parent().parent().remove();
-                    //            }});
-                    //            console.log('Data callback received. Removed form');
-                    //            console.log('Logging received data...');
-                    //            console.log(data);
-                    //        } 
-                    //    });
-                    //    console.log('submitted') 
-                    //});
-                    
-                    //Show the report form
                     $('.'+reportClass).slideDown();
                 }
             });
@@ -95,3 +64,51 @@ $('img[title="Report this post"]').each(function() {
     });
     
 });
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+function saveBreadcrumb(data) {
+    var breadcrumbs = GetUSStorage('breadcrumbs');
+    var breadcrumb = $('.bc-header:not(#hideShoutboxMessage)', data).html();
+    breadcrumbs[getUrlVars()['f']] = breadcrumb;
+    SetUSStorage('breadcrumbs', breadcrumbs);
+}
+
+function insertBreadcrumb() {
+    $('.bc-header:not(#hideShoutboxMessage)').html(GetUSStorage('breadcrumbs')[getUrlVars()['f']] + '&nbsp;»&nbsp;<a href="#" class="nav-current">Post a reply</a>');
+}
+
+if (!($.isArray(GetUSStorage('breadcrumbs'))))
+{
+    SetUSStorage('breadcrumbs', []);
+}
+
+var page = window.location.pathname.split("/").pop();
+if (page == "viewforum.php") {
+    saveBreadcrumb(document.body);
+}
+
+if (page == "posting.php") {
+    if (GetUSStorage('breadcrumbs')[getUrlVars()['f']] == undefined)
+    {
+        $.ajax({
+            type: 'get',
+            url: 'http://www.awesomenauts.com/forum/viewforum.php?f=' + getUrlVars()['f'], 
+            success: function(data) {
+                saveBreadcrumb(data);
+                insertBreadcrumb();
+            } 
+        });
+    }
+    else
+    {
+        insertBreadcrumb();
+    }
+}
+
