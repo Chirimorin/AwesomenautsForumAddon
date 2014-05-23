@@ -58,7 +58,7 @@ var Ronimo = new Array();
 Ronimo.push("Jasper");
 
 var Adminauts = new Array();
-Adminauts.push("Fish");
+Adminauts.push("Sir Emo Chap");
 
 var Specials = new Array();
 Specials.push("Chirimorin");
