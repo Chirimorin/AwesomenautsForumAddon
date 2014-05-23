@@ -25,6 +25,8 @@ function preparedMOTD()
         
         var timestring = "";
         
+        var addlink = false;
+        
         if (total_time > 0)
         {
             if (total_time > 86400)
@@ -37,6 +39,11 @@ function preparedMOTD()
             {
                 timestring += parseInt(seconds_left / 3600) + "h ";
                 seconds_left = seconds_left % 3600;
+                
+            }
+            else
+            {
+                addlink = true;
             }
             
             if (total_time > 60)
@@ -45,7 +52,7 @@ function preparedMOTD()
             }
             
             timestring += parseInt(seconds_left % 60) + "s ";
-            $("#MOTD").html('<a href="http://www.awesomenauts.com/Vault/#Livestream">Livestream announced!</a> Starts in: ' + timestring);  
+            $("#MOTD").html('<a href="http://www.awesomenauts.com/Vault/#Livestream">Livestream announced!</a> Starts in: ' + timestring + ((addlink) ? " <a href='http://www.twitch.tv/RonimoGames'>Live here soon™!</a>" : ""));  
         }
         else
         {
