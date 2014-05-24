@@ -1,5 +1,11 @@
+v3.3
+* New: Avatar gallery sorting
+* New: Quick report
+* New: Breadcrumbs correct while posting
+* New: Recolor edit/delete buttons
+
 v3.22
-* Fix: Twitch links no longer cause youtube embed buttons. (other non-youtube links shouldn't either)
+~ Fix: Twitch links no longer cause youtube embed buttons. (other non-youtube links shouldn't either)
 
 v3.21
 * New: Mark topics read improvement.
