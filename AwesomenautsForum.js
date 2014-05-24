@@ -124,6 +124,15 @@ function main() {
                 SetUSStorage('betterMarkRead', true); //Better "mark topics read"
             }
             
+            if (GetUSStorage('version')<3.3)
+            {
+                SetUSStorage('quickReport', true);
+                SetUSStorage('sortAvatars', true);
+                SetUSStorage('postBreadcrumb', true);
+                SetUSStorage('breadcrumbs', []);
+                SetUSStorage('recolorButtons', true);
+            }
+            
             SetUSStorage('testScript',false); //Disable the test script if an update is found. 
             
             SetUSStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
