@@ -8,7 +8,6 @@ function supports_local_storage() {
   }
 }
 
-function optionsLoaded() { } //Empty function, gets overridden by test script and called by the normal script. 
 var settings = [];
 
 //Insert string function for use further in the script.
@@ -30,10 +29,10 @@ function getUrlVars() {
 
 // Get page filename 
 var page = window.location.pathname.split("/").pop();
-
-var currentVersion = 3.22;
-var updateMessage = "Twitch links no longer cause youtube embed buttons.";
 var scriptLoaded = false;
+
+var currentVersion = 3.3;
+var updateMessage = "Added avatar sorting, quick report, breadcrumb fix and recoloring of edit/delete buttons.";
  
 function main() {
     console.log("jQuery found; loading script version " + currentVersion);
@@ -149,7 +148,7 @@ function main() {
             
             SetUSStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
             console.log("All settings updated");
-            alert("Awesomenauts Forum UserScript updated! \n"+updateMessage+"\nCurrent version: " + currentVersion); //Alert the user that an update has happened.
+            alert("Awesomenauts Forum UserScript updated! \n"+updateMessage+"\nPlease visit the main topic for more info.\nCurrent version: " + currentVersion); //Alert the user that an update has happened.
         }
 
         if ( GetUSStorage('testScript') == true ) //Load test script?
