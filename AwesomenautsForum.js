@@ -59,7 +59,7 @@ function main() {
             SetUSStorage('version',0); //Set current version to 0. Will induce all default settings. 
         }
         
-        if (JSON.parse(localStorage.getItem('version') == 3.16))
+        if (JSON.parse(localStorage.getItem('version')) == 3.16)
         {
             //Old settings for the userscript found. Clear everything. 
             //Forum script should load defaults after this.
