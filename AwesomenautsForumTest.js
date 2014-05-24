@@ -185,9 +185,9 @@ function saveBreadcrumb(data) {
     SetUSStorage('breadcrumbs', breadcrumbs);
 }
 
-// Inserts the correct breadcrumb into the current page (only use when posting replies or edit!)
+// Inserts the correct breadcrumb into the current page
 function insertBreadcrumb() {
-    $('.bc-header:not(#hideShoutboxMessage)').html(GetUSStorage('breadcrumbs')[getUrlVars()['f']] + '&nbsp;»&nbsp;<a href="#" class="nav-current">Post a reply</a>');
+    $('.bc-header:not(#hideShoutboxMessage)').html($('.bc-header:not(#hideShoutboxMessage)').html().replace('<a href="./index.php">Board index</a>&nbsp;', GetUSStorage('breadcrumbs')[getUrlVars()['f']]));
 }
 
 if (!($.isArray(GetUSStorage('breadcrumbs'))))
