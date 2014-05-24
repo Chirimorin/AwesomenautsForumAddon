@@ -534,6 +534,14 @@ if (GetUSStorage('quickReport'))
                         $(anchor).parent().parent().after('<tr valign="middle"><td class="gensmall"><div class="'+reportClass+'" style="display:none;">'+form+'</div></td></tr>');
                         
                         $('.'+reportClass).slideDown();
+                        
+                        $('input[value=Cancel]', $('form[id=report]', $('.'+reportClass))).click( function (e) 
+                        { 
+                            e.preventDefault();
+                            $('.'+reportClass).slideUp({ done: function() {
+                                $('.'+reportClass).parent().parent().remove();
+                            }});
+                        });
                     }
                 });
             }
