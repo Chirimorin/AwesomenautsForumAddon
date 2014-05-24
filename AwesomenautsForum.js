@@ -9,6 +9,7 @@ function supports_local_storage() {
 }
 
 function optionsLoaded() { } //Empty function, gets overridden by test script and called by the normal script. 
+var settings = [];
 
 //Insert string function for use further in the script.
 String.prototype.insert = function (index, string) 
@@ -18,6 +19,17 @@ String.prototype.insert = function (index, string)
     else
         return string + this;
 };
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+// Get page filename 
+var page = window.location.pathname.split("/").pop();
 
 var currentVersion = 3.22;
 var updateMessage = "Twitch links no longer cause youtube embed buttons.";
