@@ -220,10 +220,12 @@ function formSubmitted(e)
                 else
                 {
                     console.log("Post successful? Repost: " + repost);
-                    if (repost) //Refresh after the repost, so your own post is directly visible
-                    {
-                        location.reload(true);
-                    }
+                    //if (repost) //Refresh after the repost, so your own post is directly visible
+                    //{
+                    //    location.reload(true);
+                    //}
+                    $("#contentarea").html($("#contentarea", data).html());
+                    postEdits(false);
                     $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
                 }
             } 
