@@ -199,6 +199,7 @@ function noTimeoutChanged(newVal)
     }
 }
 
+var persistingdata = "";
 function formSubmitted(e)
 {
     if (GetUSStorage('noTimeout') && GetUSStorage('noRefresh'))
@@ -224,8 +225,9 @@ function formSubmitted(e)
                     //{
                     //    location.reload(true);
                     //}
+                    persistingdata = data;
                     $("#contentarea").html($("#contentarea", data).html());
-                    postEdits(false);
+                    //postEdits(false);
                     $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
                 }
             } 
