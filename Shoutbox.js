@@ -226,8 +226,13 @@ function formSubmitted(e)
                     //    location.reload(true);
                     //}
                     persistingdata = data;
-                    $("#contentarea").html($("#contentarea", data).html());
-                    //postEdits(false);
+                    
+                    var newdata = $($(data).filter('#contentarea').html().bold());
+                    newdata.find('script').remove();
+                    $('#contentarea').html(newdata.html());
+                    
+                    //$("#contentarea").html($("#contentarea", data).html());
+                    postEdits(false);
                     $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
                 }
             } 
