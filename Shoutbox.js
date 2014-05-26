@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.19;
+var currentVersion = 1.2;
 var focus = true;
 var lastRead;
 var originalTitle;
@@ -9,7 +9,7 @@ var repost = false;
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html('Skree beta!');
+    $("#MOTD").html('No refresh mode less buggy once again.');
     
     //var target_date = new Date();
     //target_date.setUTCMonth(4);
@@ -220,19 +220,11 @@ function formSubmitted(e)
                 }
                 else
                 {
-                    console.log("Post successful? Repost: " + repost);
-                    //if (repost) //Refresh after the repost, so your own post is directly visible
-                    //{
-                    //    location.reload(true);
-                    //}
-                    persistingdata = data;
-                    
                     var newdata = $($(data).filter('#contentarea').html().bold());
                     newdata.find('script').remove();
                     $('#contentarea').html(newdata.html());
-                    
-                    //$("#contentarea").html($("#contentarea", data).html());
                     postEdits(false);
+                    
                     $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
                 }
             } 
