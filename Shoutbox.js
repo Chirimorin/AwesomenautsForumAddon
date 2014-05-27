@@ -199,7 +199,7 @@ function noTimeoutChanged(newVal)
     }
 }
 
-var persistingdata = "";
+var oldData = "";
 function formSubmitted(e)
 {
     if (GetUSStorage('noTimeout') && GetUSStorage('noRefresh'))
@@ -210,7 +210,8 @@ function formSubmitted(e)
             url: $('form[name=shoutbox]').attr('action'),
             data: $('form[name=shoutbox]').serialize(),
             success: function(data) {
-                console.log("Data callback received");
+                oldData = data;
+                console.log("Data callback received. Saved data");
                 if (data.indexOf("alert('Double post detected or session timed out, in that case just post again.')") != -1 && !repost)
                 {
                     console.log("Timeout detected... refreshing");
@@ -220,6 +221,8 @@ function formSubmitted(e)
                 }
                 else
                 {
+                    console.log("No timeout detected.");
+                    
                     var newdata = $($(data).filter('#contentarea').html().bold());
                     newdata.find('script').remove();
                     $('#contentarea').html(newdata.html());
