@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.2;
+var currentVersion = 1.21;
 var focus = true;
 var lastRead;
 var originalTitle;
@@ -9,7 +9,7 @@ var repost = false;
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html('No refresh mode less buggy once again.');
+    $("#MOTD").html('No refresh mode fixed. It should work without problems now.');
     
     //var target_date = new Date();
     //target_date.setUTCMonth(4);
@@ -230,6 +230,7 @@ function formSubmitted(e)
                     
                     $("input[name=txtMessage]", $('form[name=shoutbox]')).val(""); 
                 }
+                repost = false; 
             } 
         });
     }
