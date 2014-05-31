@@ -9,7 +9,7 @@ var repost = false;
 var MOTD = true;
 function preparedMOTD()
 {
-    $("#MOTD").html('No refresh mode fixed. It should work without problems now.');
+    $("#MOTD").html('#StoPlateJoinSnow');
     
     //var target_date = new Date();
     //target_date.setUTCMonth(4);
