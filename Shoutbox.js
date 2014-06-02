@@ -14,7 +14,7 @@ function preparedMOTD()
     var target_date = new Date();
     //target_date.setUTCMonth(5);
     target_date.setUTCDate(4);
-    target_date.setUTCHours(17);
+    target_date.setUTCHours(15);
     target_date.setUTCMinutes(00);
     target_date.setUTCSeconds(00);
     
@@ -52,7 +52,7 @@ function preparedMOTD()
             }
             
             timestring += parseInt(seconds_left % 60) + "s ";
-            $("#MOTD").html('Challengenauts prize giveaway livestream starts in: ' + timestring + ((addlink) ? " <a href='http://www.twitch.tv/lemonandlime4'>Live here soon™!</a>" : ""));  
+            $("#MOTD").html('Challengenauts prize giveaway livestream starts in: ' + timestring + '<a href="http://www.timeanddate.com/countdown/generic?iso=20140604T17&p0=338&msg=Challengenauts+Livestream">Official countdown</a> ' + ((addlink) ? " <a href='http://www.twitch.tv/lemonandlime4'>Live here soon™!</a>" : ""));  
         }
         else
         {
