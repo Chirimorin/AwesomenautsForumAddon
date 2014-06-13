@@ -587,6 +587,10 @@ if (page == "viewforum.php") {
     saveBreadcrumb(document.body);
 }
 
+//For Emo (admin ban panel thingy) 
+$("input[name='banreason']").width('100%');
+$("input[name='bangivereason']").width('100%');
+
 //Options menu
 if (window.location.href.indexOf("ucp.php") != -1)
 {
@@ -637,6 +641,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
     settings.push({setting: 'sortAvatars', type: 'checkbox', title: 'Sort avatars', description: 'Sorts the avatars in the avatar select panel.', group: false});
     settings.push({setting: 'postBreadcrumb', type: 'checkbox', title: 'Posting breadcrumb', description: 'Inserts the right breadcrumb trail when posting.', group: false});
     settings.push({setting: 'recolorButtons', type: 'checkbox', title: 'Recolor edit/delete buttons', description: 'Makes the edit button orange and the delete button red.', group: false});
+    settings.push({setting: 'bannerReplace', type: 'checkbox', title: 'Replace Banner', description: 'Replaces the banner at the top of the page.', group: false});
     settings.push({setting: 'testScript', type: 'checkbox', title: 'Use test script', description: 'Loads the test version of this script, see the main topic for more info.', group: false});
     
     $.each(settings, function(index, value)

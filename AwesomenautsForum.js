@@ -31,8 +31,8 @@ function getUrlVars() {
 var page = window.location.pathname.split("/").pop();
 var scriptLoaded = false;
 
-var currentVersion = 3.3;
-var updateMessage = "Added avatar sorting, quick report, breadcrumb fix and recoloring of edit/delete buttons.";
+var currentVersion = 3.31;
+var updateMessage = "Added an option to replace the top banner. You can turn that text off now.";
  
 function main() {
     console.log("jQuery found; loading script version " + currentVersion);
@@ -144,6 +144,11 @@ function main() {
                 SetUSStorage('recolorButtons', true);
             }
             
+            if (GetUSStorage('version') < 3.31)
+            {
+                SetUSStorage('bannerReplace', true);
+            }
+            
             SetUSStorage('testScript',false); //Disable the test script if an update is found. 
             
             SetUSStorage('version',currentVersion); //Set the current version to prevent resetting to defaults next time. 
@@ -153,7 +158,7 @@ function main() {
 
         if ( GetUSStorage('testScript') == true ) //Load test script?
         {
-            if (banner != undefined)
+            if (banner != undefined && GetUSStorage('bannerReplace'))
             {
                 banner.src = "http://chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBannerTest.png";
                 console.log("Banner replaced");
@@ -163,7 +168,7 @@ function main() {
         }
         else //Load latest script version
         {
-            if (banner != undefined)
+            if (banner != undefined && GetUSStorage('bannerReplace'))
             {
                 banner.src = "http://chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBanner.png";
                 console.log("Banner replaced");
@@ -174,7 +179,7 @@ function main() {
     }
     else //Local storage not supported, load legacy script. 
     {
-        if (banner != undefined)
+        if (banner != undefined && GetUSStorage('bannerReplace'))
         {
             banner.src = "http://chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBanner.png";
             console.log("Banner replaced");
