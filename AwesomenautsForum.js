@@ -31,8 +31,8 @@ function getUrlVars() {
 var page = window.location.pathname.split("/").pop();
 var scriptLoaded = false;
 
-var currentVersion = 3.31;
-var updateMessage = "Added an option to replace the top banner. You can turn that text off now.";
+var currentVersion = 3.32;
+var updateMessage = "Hide buttons should no longer appear anywhere but on topics and forums.";
  
 function main() {
     console.log("jQuery found; loading script version " + currentVersion);

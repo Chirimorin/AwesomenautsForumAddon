@@ -238,7 +238,7 @@ if (GetUSStorage('shoutbox'))
     console.log("Shoutbox loaded");
 }
 
-if (GetUSStorage('hideForums') || GetUSStorage('hideTopics'))
+if ((GetUSStorage('hideForums') || GetUSStorage('hideTopics')) && (page == 'index.php' || page == 'viewforum.php'))
 {
     //Fix table layout to fit the extra elements
     $('.row3').attr('colspan', 7);
