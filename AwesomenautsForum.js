@@ -32,7 +32,7 @@ var page = window.location.pathname.split("/").pop();
 var scriptLoaded = false;
 
 var currentVersion = 3.32;
-var updateMessage = "Hide buttons should no longer appear anywhere but on topics and forums.";
+var updateMessage = "Fixed an issue that caused the userscript to fail loading.";
  
 function main() {
     console.log("jQuery found; loading script version " + currentVersion);
@@ -199,7 +199,8 @@ function addJquery() {
         
         var jquery = document.createElement("script");
         jquery.type = "text/javascript";
-        jquery.src = "//code.jquery.com/jquery-latest.min.js";
+        //jquery.src = "//code.jquery.com/jquery-latest.min.js";
+        jquery.src = "//code.jquery.com/jquery-2.1.1.min.js";
         document.head.appendChild(jquery);
         
         console.log("Waiting for jQuery to load...");

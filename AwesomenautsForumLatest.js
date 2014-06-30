@@ -481,7 +481,7 @@ if (GetUSStorage('extraBBCode'))
 if (GetUSStorage('magnifyText'))
 {
     $("span").filter(function() {
-        return (parseInt($(this).css('fontSize')) < 10);
+        return (parseInt($(this).css('fontSize')) < 9.5);
     }).each(function(){
         $(this).data('original-size', $(this).css('font-size'));
         
