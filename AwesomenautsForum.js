@@ -31,7 +31,7 @@ function getUrlVars() {
 var page = window.location.pathname.split("/").pop();
 var scriptLoaded = false;
 
-var currentVersion = 3.32;
+var currentVersion = 3.33;
 var updateMessage = "Fixed an issue that caused the userscript to fail loading.";
  
 function main() {
