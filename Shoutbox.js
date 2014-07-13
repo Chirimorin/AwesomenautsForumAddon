@@ -413,7 +413,7 @@ function main() {
             $('#autoHideNewMessMarker').attr('checked', GetUSStorage('autoHideNewMessMarker'));
             $('#noTimeout').attr('checked', GetUSStorage('noTimeout'));
             $('#noRefresh').attr('checked', GetUSStorage('noRefresh'));
-            $('#wordFilter').attr('checked'), GetUSStorage('wordFilter'));
+            $('#wordFilter').attr('checked', GetUSStorage('wordFilter'));
             
             
             $('form[name=shoutbox]').submit(formSubmitted);
