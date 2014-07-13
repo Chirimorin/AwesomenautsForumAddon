@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.21;
+var currentVersion = 1.22;
 var focus = true;
 var lastRead;
 var originalTitle;
@@ -178,6 +178,11 @@ function updateSettings()
             SetUSStorage('savedMsg', "");
         }
         
+        if (storedVersion < 1.22)
+        {
+            SetUSStorage('wordFilter', true);
+        }
+        
         SetUSStorage('version', currentVersion);
         console.log('all settings updated to version ' + currentVersion);
     }
@@ -273,9 +278,12 @@ function postEdits(newMess) //Changes to posts, should be called for every load.
             var post = this;
             
             //Word filter
-            $.each(filteredWords, function() {
-                $(post).html($(post).html().replace(new RegExp(" " + this + " ", "gi"), ' * '));
-            });
+            if (GetUSStorage('wordFilter'))
+            {
+                $.each(filteredWords, function() {
+                    $(post).html($(post).html().replace(new RegExp(" " + this + " ", "gi"), ' * '));
+                });
+            }
             
             //Smilies
             $.each(smilieslist, function() {
@@ -399,11 +407,14 @@ function main() {
             
             $('#playsound').before('<span><input type="checkbox" id="autoHideNewMessMarker" onchange="SetUSStorage(\'autoHideNewMessMarker\', this.checked); settingSaved($(this).parent());"> Auto hide unread message marker</span><br />\
                                     <span><input type="checkbox" id="noTimeout" onchange="SetUSStorage(\'noTimeout\', this.checked); noTimeoutChanged(this.checked); settingSaved($(this).parent());"> Turn off chat timeout</span><br />\
-                                    <div id="noRefreshDiv"><span><input type="checkbox" id="noRefresh" onchange="SetUSStorage(\'noRefresh\', this.checked); settingSaved($(this).parent());"> No refresh mode (experimental)</span><br /></div>');
+                                    <div id="noRefreshDiv"><span><input type="checkbox" id="noRefresh" onchange="SetUSStorage(\'noRefresh\', this.checked); settingSaved($(this).parent());"> No refresh mode (experimental)</span><br /></div>\
+                                    <span><input type="checkbox" id="wordFilter" onchange="SetUSStorage(\'wordFilter\', this.checked); settingSaved($(this).parent());"> Word filter</span><br />');
             
             $('#autoHideNewMessMarker').attr('checked', GetUSStorage('autoHideNewMessMarker'));
             $('#noTimeout').attr('checked', GetUSStorage('noTimeout'));
             $('#noRefresh').attr('checked', GetUSStorage('noRefresh'));
+            $('#wordFilter').attr('checked'), GetUSStorage('wordFilter'));
+            
             
             $('form[name=shoutbox]').submit(formSubmitted);
         }
