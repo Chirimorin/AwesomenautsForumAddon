@@ -11,56 +11,56 @@ function preparedMOTD()
 {
     //$("#MOTD").html('#StoPlateJoinSnow');
     
-    //var target_date = new Date();
-    //target_date.setUTCMonth(5);
-    //target_date.setUTCDate(4);
-    //target_date.setUTCHours(15);
-    //target_date.setUTCMinutes(00);
-    //target_date.setUTCSeconds(00);
-    //
-    //var timerInterval = setInterval(function () {
-    //    var current_date = new Date().getTime();
-    //    var seconds_left = (target_date - current_date) / 1000;
-    //    var total_time = seconds_left;
-    //    
-    //    var timestring = "";
-    //    
-    //    var addlink = false;
-    //    
-    //    if (total_time > 0)
-    //    {
-    //        if (total_time > 86400)
-    //        {
-    //            timestring += parseInt(seconds_left / 86400) + " day" + ((parseInt(seconds_left / 86400) != 1) ? "s" : "") + " ";
-    //            seconds_left = seconds_left % 86400;
-    //        }
-    //        
-    //        if (total_time > 3600)
-    //        {
-    //            timestring += parseInt(seconds_left / 3600) + "h ";
-    //            seconds_left = seconds_left % 3600;
-    //            
-    //        }
-    //        else
-    //        {
-    //            addlink = true;
-    //        }
-    //        
-    //        if (total_time > 60)
-    //        {
-    //            timestring += parseInt(seconds_left / 60) + "m ";
-    //        }
-    //        
-    //        timestring += parseInt(seconds_left % 60) + "s ";
-    //        $("#MOTD").html('Challengenauts prize giveaway livestream starts in: ' + timestring + '<a href="http://www.timeanddate.com/countdown/generic?iso=20140604T17&p0=338&msg=Challengenauts+Livestream">Official countdown</a> ' + ((addlink) ? " <a href='http://www.twitch.tv/lemonandlime4'>Live here soon™!</a>" : ""));  
-    //    }
-    //    else
-    //    {
-    //        clearInterval(timerInterval);
-    //        $("#MOTD").html("Challengenauts prize giveaway livestream! <span id='#onlineStatus'></span> <a href='http://www.twitch.tv/lemonandlime4'>Watch it here!</a>");
-    //        
-    //    }
-    //}, 1000);
+    var target_date = new Date();
+    target_date.setUTCMonth(7);
+    target_date.setUTCDate(1);
+    target_date.setUTCHours(17);
+    target_date.setUTCMinutes(00);
+    target_date.setUTCSeconds(00);
+    
+    var timerInterval = setInterval(function () {
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+        var total_time = seconds_left;
+        
+        var timestring = "";
+        
+        var addlink = false;
+        
+        if (total_time > 0)
+        {
+            if (total_time > 86400)
+            {
+                timestring += parseInt(seconds_left / 86400) + " day" + ((parseInt(seconds_left / 86400) != 1) ? "s" : "") + " ";
+                seconds_left = seconds_left % 86400;
+            }
+            
+            if (total_time > 3600)
+            {
+                timestring += parseInt(seconds_left / 3600) + "h ";
+                seconds_left = seconds_left % 3600;
+                
+            }
+            else
+            {
+                addlink = true;
+            }
+            
+            if (total_time > 60)
+            {
+                timestring += parseInt(seconds_left / 60) + "m ";
+            }
+            
+            timestring += parseInt(seconds_left % 60) + "s ";
+            $("#MOTD").html('Patch 2.6 \'big feature\' reveal livestream starts in: ' + timestring + '<a href="http://www.timeanddate.com/counters/fullscreen.html?mode=a&year=2014&month=8&day=1&hour=19&min=0&sec=0&p0=1302&msg=Awesomenauts%20Patch%202.6%20Livestream">Official countdown</a> ' + ((addlink) ? " <a href='http://www.twitch.tv/RonimoGames'>Live here soon™!</a>" : ""));  
+        }
+        else
+        {
+            clearInterval(timerInterval);
+            $("#MOTD").html("Patch 2.6 \'big feature\' reveal livestream! <span id='#onlineStatus'></span> <a href='http://www.twitch.tv/RonimoGames'>Watch it here!</a>");
+            
+        }
+    }, 1000);
 }
 
 var Ronimo = new Array();
