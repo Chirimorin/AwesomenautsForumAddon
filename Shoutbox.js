@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.22;
+var currentVersion = 1.23;
 var focus = true;
 var lastRead;
 var originalTitle;
