@@ -54,7 +54,7 @@ function preparedMOTD()
                 addlink = true;
             }
             
-            $("#MOTD").html('Patch 2.6 \'big feature\' reveal livestream starts in: ' + timestring + '<a href="http://www.timeanddate.com/counters/fullscreen.html?mode=a&year=2014&month=8&day=1&hour=19&min=0&sec=0&p0=1302&msg=Awesomenauts%20Patch%202.6%20Livestream">Official countdown</a> ' + ((addlink) ? " <a href='http://www.twitch.tv/RonimoGames'>Live here soon™!</a>" : ""));  
+            $("#MOTD").html('Patch 2.6 \'big feature\' reveal livestream starts in: ' + timestring + '<a href="http://www.timeanddate.com/counters/fullscreen.html?mode=a&year=2014&month=8&day=1&hour=19&min=0&sec=0&p0=1302&msg=Awesomenauts%20Patch%202.6%20Livestream">Official countdown</a> ' + ((addlink) ? "- <a href='http://www.twitch.tv/RonimoGames'>Live here soon™!</a>" : ""));  
         }
         else
         {
