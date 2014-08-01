@@ -49,7 +49,7 @@ function preparedMOTD()
             
             timestring += parseInt(seconds_left % 60) + "s ";
             
-            if (total_time > 7200)
+            if (total_time < 7200)
             {
                 addlink = true;
             }
