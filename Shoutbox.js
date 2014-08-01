@@ -1,6 +1,6 @@
 console.log("Shoutbox script loaded");
 
-var currentVersion = 1.23;
+var currentVersion = 1.24;
 var focus = true;
 var lastRead;
 var originalTitle;
@@ -41,10 +41,6 @@ function preparedMOTD()
                 seconds_left = seconds_left % 3600;
                 
             }
-            else
-            {
-                addlink = true;
-            }
             
             if (total_time > 60)
             {
@@ -52,6 +48,12 @@ function preparedMOTD()
             }
             
             timestring += parseInt(seconds_left % 60) + "s ";
+            
+            if (total_time > 7200)
+            {
+                addlink = true;
+            }
+            
             $("#MOTD").html('Patch 2.6 \'big feature\' reveal livestream starts in: ' + timestring + '<a href="http://www.timeanddate.com/counters/fullscreen.html?mode=a&year=2014&month=8&day=1&hour=19&min=0&sec=0&p0=1302&msg=Awesomenauts%20Patch%202.6%20Livestream">Official countdown</a> ' + ((addlink) ? " <a href='http://www.twitch.tv/RonimoGames'>Live here soon™!</a>" : ""));  
         }
         else
