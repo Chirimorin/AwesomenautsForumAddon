@@ -6,7 +6,7 @@ var lastRead;
 var originalTitle;
 var timeoutSessionOriginal;
 var repost = false;
-var MOTD = true;
+var MOTD = false;
 function preparedMOTD()
 {
     //$("#MOTD").html('#StoPlateJoinSnow');
