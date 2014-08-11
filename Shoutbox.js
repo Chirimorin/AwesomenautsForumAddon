@@ -110,6 +110,7 @@ customSmilieslist.push({name: "League 3 (by RiceMaster)", url: "http://i83.servi
 customSmilieslist.push({name: "League 4 (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/lg410.gif", code: ":l4:"});
 customSmilieslist.push({name: "Frog (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/frogst10.gif", code: ":frog:"});
 customSmilieslist.push({name: "Froggy G", url: "http://cdn.steamcommunity.com/economy/emoticon/froggy", code: ":froggy:"});
+customSmilieslist.push({name: "Froggy Deal With It (by Lune)", url: "http://s8.postimg.org/blaa6zrzl/frog_deal_copy.gif", code: ":dealwithit:"});
 customSmilieslist.push({name: "Lonestar", url: "http://cdn.steamcommunity.com/economy/emoticon/lonestar", code: ":lonestar:"});
 customSmilieslist.push({name: "Creepy Leon (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/creep_10.gif", code: ":creepyleon:"});
 customSmilieslist.push({name: "Clunk", url: "http://cdn.steamcommunity.com/economy/emoticon/clunk", code: ":clunk:"});
@@ -124,6 +125,7 @@ customSmilieslist.push({name: "Coco (by RiceMaster)", url: "http://i36.servimg.c
 customSmilieslist.push({name: "Yummy Skolldir (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/yum_sk11.gif", code: ":yummy:"});
 customSmilieslist.push({name: "Skolldir hmm (by RiceMaster)", url: "http://i.imgur.com/neuQLpL.gif", code: ":hmm:"});
 customSmilieslist.push({name: "Skolldir flip (by conorbebe)", url: "http://i.imgur.com/37JCLC7.gif", code: ":tableflip:"});
+customSmilieslist.push({name: "Skolldir fist (by Lune)", url: "http://s27.postimg.org/9nly4htjz/giff.gif", code: ":shakefist:"});
 customSmilieslist.push({name: "Rae YJM (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/rae_ma10.gif", code: ":YJM:"});
 customSmilieslist.push({name: "Rae Smirk (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/rae_ne10.gif", code: ":smirk:"});
 customSmilieslist.push({name: "Derpl (by RiceMaster)", url: "http://i.imgur.com/8lWTMmJ.png", code: ":derpl:"});

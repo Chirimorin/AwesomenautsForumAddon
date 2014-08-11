@@ -11,6 +11,7 @@ smilieslist.push({name: "League 3 (by RiceMaster)", url: "http://i83.servimg.com
 smilieslist.push({name: "League 4 (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/lg410.gif", code: ":l4:"});
 smilieslist.push({name: "Frog (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/frogst10.gif", code: ":frog:"});
 smilieslist.push({name: "Froggy G", url: "http://cdn.steamcommunity.com/economy/emoticon/froggy", code: ":froggy:"});
+smilieslist.push({name: "Froggy Deal With It (by Lune)", url: "http://s8.postimg.org/blaa6zrzl/frog_deal_copy.gif", code: ":dealwithit:"});
 smilieslist.push({name: "Lonestar", url: "http://cdn.steamcommunity.com/economy/emoticon/lonestar", code: ":lonestar:"});
 smilieslist.push({name: "Creepy Leon (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/creep_10.gif", code: ":creepyleon:"});
 smilieslist.push({name: "Clunk", url: "http://cdn.steamcommunity.com/economy/emoticon/clunk", code: ":clunk:"});
@@ -25,6 +26,7 @@ smilieslist.push({name: "Coco (by RiceMaster)", url: "http://i36.servimg.com/u/f
 smilieslist.push({name: "Yummy Skolldir (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/yum_sk11.gif", code: ":yummy:"});
 smilieslist.push({name: "Skolldir hmm (by RiceMaster)", url: "http://i.imgur.com/neuQLpL.gif", code: ":hmm:"});
 smilieslist.push({name: "Skolldir flip (by conorbebe)", url: "http://i.imgur.com/37JCLC7.gif", code: ":tableflip:"});
+smilieslist.push({name: "Skolldir fist (by Lune)", url: "http://s27.postimg.org/9nly4htjz/giff.gif", code: ":shakefist:"});
 smilieslist.push({name: "Rae YJM (by RiceMaster)", url: "http://i83.servimg.com/u/f83/17/49/01/19/rae_ma10.gif", code: ":YJM:"});
 smilieslist.push({name: "Rae Smirk (by RiceMaster)", url: "http://i36.servimg.com/u/f36/17/49/01/19/rae_ne10.gif", code: ":smirk:"});
 smilieslist.push({name: "Derpl (by RiceMaster)", url: "http://i.imgur.com/8lWTMmJ.png", code: ":derpl:"});
@@ -97,7 +99,8 @@ if (typeof help_line != 'undefined') //figure out if bbcode help texts are loade
          </tr> \
          <tr> \
             <td class=\"gensmall\" align=\"center\"><a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=14829\">RiceMasters thread</a><br /> \
-            <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=18484\">Muffels thread</a></td> \
+            <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=18484\">Muffels thread</a><br /> \
+            <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=12&t=31372\">Lunes thread</a></td> \
          </tr> \
       </tbody> \
    </table>";
