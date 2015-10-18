@@ -31,8 +31,8 @@ function getUrlVars() {
 var page = window.location.pathname.split("/").pop();
 var scriptLoaded = false;
 
-var currentVersion = 3.33;
-var updateMessage = "Fixed an issue that caused the userscript to fail loading.";
+var currentVersion = 3.34;
+var updateMessage = "Known issue: userscript fails to load over https://\nPlease manually update the userscript to V3.1\n(The Chrome plugin has to be updated by Nodja)";
  
 function main() {
     console.log("jQuery found; loading script version " + currentVersion);
@@ -42,7 +42,7 @@ function main() {
     var imgs = document.getElementsByTagName ('img');
     for (i=0; i<imgs.length ; i++) 
     {
-        if(imgs[i].src == "http://www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
+        if(imgs[i].src == "//www.awesomenauts.com/forum/styles/awesome/imageset/sitelogo.jpg")
         {
             console.log("Banner found");
             banner = imgs[i];
@@ -160,32 +160,32 @@ function main() {
         {
             if (banner != undefined && GetUSStorage('bannerReplace'))
             {
-                banner.src = "http://chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBannerTest.png";
+                banner.src = "//chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBannerTest.png";
                 console.log("Banner replaced");
             }
             console.log("Loading test script...");
-            script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/AwesomenautsForumTest.js?v=" + currentVersion;
+            script.src = "//chirimorin.github.io/AwesomenautsForumAddon/AwesomenautsForumTest.js?v=" + currentVersion;
         }
         else //Load latest script version
         {
             if (banner != undefined && GetUSStorage('bannerReplace'))
             {
-                banner.src = "http://chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBanner.png";
+                banner.src = "//chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBanner.png";
                 console.log("Banner replaced");
             }
             console.log("Loading live script...");
-            script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/AwesomenautsForumLatest.js?v=" + currentVersion;
+            script.src = "//chirimorin.github.io/AwesomenautsForumAddon/AwesomenautsForumLatest.js?v=" + currentVersion;
         }
     }
     else //Local storage not supported, load legacy script. 
     {
         if (banner != undefined && GetUSStorage('bannerReplace'))
         {
-            banner.src = "http://chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBanner.png";
+            banner.src = "//chirimorin.github.io/AwesomenautsForumAddon/Resources/ReplaceBanner.png";
             console.log("Banner replaced");
         }
         console.log("LocalStorage not supported. Loading legacy script...");
-        script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/AwesomenautsForumLegacy.js";
+        script.src = "//chirimorin.github.io/AwesomenautsForumAddon/AwesomenautsForumLegacy.js";
     }
 
     document.body.appendChild(script);

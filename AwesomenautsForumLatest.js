@@ -134,7 +134,7 @@ function embedYoutube(divID, ytVideoID, element)
     }
     else
     {
-        var embedCode = '<div id="yt-'+divID+'" class="ytembbed" style="display:none;"><iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/'+ytVideoID+'"frameborder="0" allowFullScreen></iframe></div>'
+        var embedCode = '<div id="yt-'+divID+'" class="ytembbed" style="display:none;"><iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" src="//www.youtube.com/embed/'+ytVideoID+'"frameborder="0" allowFullScreen></iframe></div>'
         
         $(element).after(embedCode);
         
@@ -190,7 +190,7 @@ if (GetUSStorage('shoutbox'))
     function loadShoutbox(callback)
     {
         $("#shoutbox").html('<iframe id="shoutboxFrame" height="'+GetUSStorage('shoutboxHeight')+'" width="928" frameborder="0"></iframe>');
-        $("iframe#shoutboxFrame").attr('src', "http://AwesomenautsShoutBox.freeshoutbox.net/");
+        $("iframe#shoutboxFrame").attr('src', "//AwesomenautsShoutBox.freeshoutbox.net/");
         $("iframe#shoutboxFrame").load(callback);
     }
     
@@ -429,7 +429,7 @@ if (GetUSStorage('extraSmilies')) //Do we want to load the extra smilies?
     console.log("Loading extra smilies...");
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
+    script.src = "//chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
     document.body.appendChild(script);
 }
 
@@ -442,7 +442,7 @@ $('a.postlink').each(function(){
             pollCode = this.href.substring(this.href.indexOf("strawpoll.me/")+13,this.href.length);
             if (pollCode.length > 0) //Did we find a poll or just a link?
             {
-                $(this).parent().append("<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>");
+                $(this).parent().append("<br /><br /><iframe src=\"//strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>");
             }
         }
     }
@@ -569,7 +569,7 @@ if (page == "posting.php" && GetUSStorage('postBreadcrumb')) {
     {
         $.ajax({
             type: 'get',
-            url: 'http://www.awesomenauts.com/forum/viewforum.php?f=' + getUrlVars()['f'], 
+            url: '//www.awesomenauts.com/forum/viewforum.php?f=' + getUrlVars()['f'], 
             success: function(data) {
                 saveBreadcrumb(data);
                 insertBreadcrumb();
@@ -606,7 +606,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
                         <td class=\"row1\" colspan=\"3\" align=\"center\">\
                             <p class=\"genmed\">\
                                 Here you can change the settings for Chirimorin's forum userscript. All settings are applied automatically.<br />\
-                                For more info, please visit <a href=\"http://www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
+                                For more info, please visit <a href=\"//www.awesomenauts.com/forum/viewtopic.php?f=6&t=14730\">this topic</a>\
                             </p>\
                         </td>\
                     </tr>\

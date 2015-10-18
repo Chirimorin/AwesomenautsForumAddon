@@ -74,7 +74,7 @@ for (i=0; i<postBodys.length ; i++)
 //Append the smilies code
 var script = document.createElement("script");
 script.type = "text/javascript";
-script.src = "http://chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
+script.src = "//chirimorin.github.io/AwesomenautsForumAddon/ListSmilies.js"
 document.body.appendChild(script);
 
 //strawpoll auto embed poll
@@ -87,7 +87,7 @@ for (var i=0; i < links.length; i++)
 		pollCode = thisLink.href.substring(thisLink.href.indexOf("strawpoll.me/")+13,thisLink.href.length);
 		if (pollCode.length > 0) //Did we find a poll or just a link?
 		{
-			thisLink.parentNode.innerHTML += "<br /><br /><iframe src=\"http://strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>";
+			thisLink.parentNode.innerHTML += "<br /><br /><iframe src=\"//strawpoll.me/embed_1/" + pollCode + "\" style=\"width: 600px; height: 390px; border: 0;\">Loading poll...</iframe>";
 		}
 	}
 }
