@@ -190,7 +190,7 @@ if (GetUSStorage('shoutbox'))
     function loadShoutbox(callback)
     {
         $("#shoutbox").html('<iframe id="shoutboxFrame" height="'+GetUSStorage('shoutboxHeight')+'" width="928" frameborder="0"></iframe>');
-        $("iframe#shoutboxFrame").attr('src', "//AwesomenautsShoutBox.freeshoutbox.net/");
+        $("iframe#shoutboxFrame").attr('src', "http://AwesomenautsShoutBox.freeshoutbox.net/");
         $("iframe#shoutboxFrame").load(callback);
     }
     
