@@ -185,6 +185,62 @@ if (scriptLoaded)
 }
 scriptLoaded = true;
 
+
+console.log("Replacing avatars with steam avatars");
+if (GetUSStorage('replaceAvatars'))
+{
+	function findSteamID(text) {
+		// finds steam profile links, returns name or 17 digit number of profile, null if nothing found 
+		
+		var pat1 = /"https?:\/\/steamcommunity.com\/profiles\/([0-9]{17})"/
+		var pat2 = /"https?:\/\/steamcommunity.com\/id\/(.+?)\/?"/
+		var steamid = text.match(pat1);
+		if (steamid == null)
+			steamid = text.match(pat2);
+		if (steamid == null)
+			return null
+		return steamid[1];
+	}
+
+	function insertavatar(elem, url)
+	{
+		// will replace src attritube for avatar img with steam one
+		// if no avatar being used, adds the element
+		
+		var post = $(elem.parents()[5]);
+		var avatar = post.find("img[alt='User avatar']")
+		
+		if (avatar.length > 0) {
+			avatar[0].src = url;
+			console.log(url)
+		}
+		// user has no avatar, we need to insert element manually
+		else {
+			var avatarcontainer = post.find("td:eq(0)>table>tbody>tr")
+			$(avatarcontainer).after("<img src=\"" + url + "\" width=\"100\" height=\"100\" alt=\"User avatar\">");
+		}
+		
+	}
+
+	var allSigs = $('.postbody');
+	for (var i=0; i<allSigs.length; i++)
+	{
+		if (allSigs[i].innerHTML.startsWith("<br>_________________"))
+		{
+			var steamid = findSteamID(allSigs[i].innerHTML)
+			if (steamid != null)
+			{
+				function inject(elem){
+				   return function (data) {
+					   insertavatar($(elem), data);
+				   }
+				}
+				$.get("//nodja.pythonanywhere.com/steam/getavatarurl/" + steamid, inject(allSigs[i]) )   
+			}
+		}
+	}
+}
+
 if (GetUSStorage('shoutbox'))
 {
     function loadShoutbox(callback)
@@ -642,6 +698,7 @@ if (window.location.href.indexOf("ucp.php") != -1)
     settings.push({setting: 'postBreadcrumb', type: 'checkbox', title: 'Posting breadcrumb', description: 'Inserts the right breadcrumb trail when posting.', group: false});
     settings.push({setting: 'recolorButtons', type: 'checkbox', title: 'Recolor edit/delete buttons', description: 'Makes the edit button orange and the delete button red.', group: false});
     settings.push({setting: 'bannerReplace', type: 'checkbox', title: 'Replace Banner', description: 'Replaces the banner at the top of the page.', group: false});
+	settings.push({setting: 'replaceAvatars', type: 'checkbox', title: 'Replace Avatars', description: 'Replaces user avatars with steam avatars. User must have steam profile link in signature', group: false});
     settings.push({setting: 'testScript', type: 'checkbox', title: 'Use test script', description: 'Loads the test version of this script, see the main topic for more info.', group: false});
     
     $.each(settings, function(index, value)
