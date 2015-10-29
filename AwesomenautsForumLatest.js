@@ -212,7 +212,6 @@ if (GetUSStorage('replaceAvatars'))
 		
 		if (avatar.length > 0) {
 			avatar[0].src = url;
-			console.log(url)
 		}
 		// user has no avatar, we need to insert element manually
 		else {
