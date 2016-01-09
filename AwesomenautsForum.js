@@ -31,8 +31,8 @@ function getUrlVars() {
 var page = window.location.pathname.split("/").pop();
 var scriptLoaded = false;
 
-var currentVersion = 3.34;
-var updateMessage = "Known issue: userscript fails to load over https://\nPlease manually update the userscript to V3.1\n(The Chrome plugin has to be updated by Nodja)";
+var currentVersion = 3.35;
+var updateMessage = "New: Avatars can now be replaced by the users Steam avatar, credit goes to Nodja.";
  
 function main() {
     console.log("jQuery found; loading script version " + currentVersion);
