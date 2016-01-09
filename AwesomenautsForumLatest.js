@@ -185,6 +185,14 @@ if (scriptLoaded)
 }
 scriptLoaded = true;
 
+// find if a login form is present on the page
+if ($("form[action='./ucp.php?mode=login']").length > 0)
+{
+	// grabs the last part of the url in the referrer and sets it as the hidden redirect field in the login form
+	var pat =  /https?:\/\/www\.awesomenauts\.com\/forum\/(.*)/;
+	redirecturl = document.referrer.match(pat)[1];
+	$("input[name='redirect']").attr('value', redirecturl)
+}
 
 console.log("Replacing avatars with steam avatars");
 if (GetUSStorage('replaceAvatars'))
