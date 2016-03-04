@@ -200,7 +200,7 @@ if (GetUSStorage('replaceAvatars'))
 	function findSteamID(text) {
 		// finds steam profile links, returns name or 17 digit number of profile, null if nothing found 
 		
-		var pat1 = /"https?:\/\/steamcommunity.com\/profiles\/([0-9]{17})"/
+		var pat1 = /"https?:\/\/steamcommunity.com\/profiles\/([0-9]{17})\/?"/
 		var pat2 = /"https?:\/\/steamcommunity.com\/id\/(.+?)\/?"/
 		var steamid = text.match(pat1);
 		if (steamid == null)
